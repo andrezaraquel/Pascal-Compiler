@@ -1,0 +1,17 @@
+grammar org.xtext.example.pascal.Pascal with org.eclipse.xtext.common.Terminals
+
+generate pascal "http://www.xtext.org/example/pascal/Pascal"
+
+Begin:
+	Function | Procedure;
+
+// Por enquanto está bem simples... Só para testar
+Function:
+	'function' name=ID '()' ':' 'return' name=ID ';' |
+	'function' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ':' 'return' name=ID ';';
+
+Procedure:
+	'procedure' name=ID '()' ';' | 
+	'procedure' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ';';
+
+Type: INT ;// Não sei se tem INT, nem os outros tipos em Pascal
