@@ -78,8 +78,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// Por enquanto está bem simples... Só para testar
 		// Function:
-		//	'function' name=ID '()' ':' 'return' name=ID ';' |
-		//	'function' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ':' 'return' name=ID ';';
+		//	'function' name=ID '()' ':' 'return' name=ID ';' | 'function' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)*
+		//	')' ':' 'return' name=ID ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'function' name=ID '()' ':' 'return' name=ID ';' | 'function' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')'
@@ -207,8 +207,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_1_8 = (Keyword)cGroup_1.eContents().get(8);
 		
 		//Procedure:
-		//	'procedure' name=ID '()' ';' |
-		//	'procedure' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ';';
+		//	'procedure' name=ID '()' ';' | 'procedure' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'procedure' name=ID '()' ';' | 'procedure' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ';'
@@ -355,8 +354,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//// Por enquanto está bem simples... Só para testar
 	// Function:
-	//	'function' name=ID '()' ':' 'return' name=ID ';' |
-	//	'function' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ':' 'return' name=ID ';';
+	//	'function' name=ID '()' ':' 'return' name=ID ';' | 'function' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)*
+	//	')' ':' 'return' name=ID ';';
 	public FunctionElements getFunctionAccess() {
 		return pFunction;
 	}
@@ -366,8 +365,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Procedure:
-	//	'procedure' name=ID '()' ';' |
-	//	'procedure' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ';';
+	//	'procedure' name=ID '()' ';' | 'procedure' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ';';
 	public ProcedureElements getProcedureAccess() {
 		return pProcedure;
 	}
