@@ -3,15 +3,163 @@ grammar org.xtext.example.pascal.Pascal with org.eclipse.xtext.common.Terminals
 generate pascal "http://www.xtext.org/example/pascal/Pascal"
 
 Begin:
-	Function | Procedure;
+	elements += program
+;
 
-// Por enquanto está bem simples... Só para testar
-Function:
-	'function' name=ID '()' ':' 'return' name=ID ';' |
-	'function' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ':' 'return' name=ID ';';
+program:
+	program_heading block ".";
+	
+program_heading:
+	"program" identifier "(" identifier_list ")" ";";
 
-Procedure:
-	'procedure' name=ID '()' ';' | 
-	'procedure' name=ID '(' name=ID ':' Type (';' name=ID ':' Type)* ')' ';';
+identifier_list:
+	identifier ( "," identifier )*;
 
-Type: INT ;// Não sei se tem INT, nem os outros tipos em Pascal
+block:
+	declaration_part statement_part;
+
+statement_part:
+	"begin" statement_sequence "end"
+;
+
+statement_sequence:
+	statement (";" statement)*
+;
+
+statement:
+	(label ":")? (simple_statement | structured_statement)
+;
+
+simple_statement:
+	( assignment_statement | procedure_statement | goto_statement)?
+;
+
+goto_statement:
+	
+;
+
+procedure_statement:
+	
+;
+
+assignment_statement:
+	(variable | function_identifier) ":=" expression
+;
+
+expression:
+	simple_expression (relational_operator simple_expression)?
+;
+
+relational_operator:
+	
+;
+
+simple_expression:
+	(sign)? term (addition_operator term)*
+;
+
+addition_operator:
+	"+" | "-" | "or"
+;
+
+term:
+	factor (multiplication_operator factor)*
+;
+
+multiplication_operator:
+	"*" | "/" | "div" | "mod" | "and"
+;
+
+factor:
+	variable | number | string | set | "nil" | constant_identifier | bound_identifier | function_designator | "(" expression ")" | "not" factor	
+;
+
+variable:
+	entire_variable | component_variable | referenced_variable
+;
+
+entire_variable:
+	variable_identifier | field_identifier
+;
+
+variable_identifier:
+	identifier
+;
+
+field_identifier:
+	identifier
+;
+
+component_variable:
+	indexed_variable | field_designator | file_buffer
+;
+
+indexed_variable:
+	array_variable "[ " expression_list " ]"
+;
+
+expression_list:
+	expression ("," expression)*
+;
+
+array_variable:
+	variable
+;
+
+field_designator:
+	
+;
+
+file_buffer:
+	
+;
+
+referenced_variable:
+	
+;
+
+function_identifier:
+	
+;
+
+label:
+	integer_number
+;
+
+integer_number:
+	digit_sequence
+;
+
+digit_sequence:
+	(sign)? unsigned_digit_sequence
+;
+
+sign:
+	"+" | "-"
+;
+
+unsigned_digit_sequence:
+	digit (digit)*
+;
+
+structured_statement:
+	compound_statement | repetitive_statement | conditional_statement | with_statement
+;
+	
+declaration_part:
+	(label_declaration_part)?
+	(constant_definition_part)?
+	(type_definition_part)?
+	(variable_declaration_part)?
+	procedure_and_function_declaration_part	
+	
+; 
+
+identifier:
+	letter (letter | digit)*;
+
+letter:
+"A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z";
+
+digit:
+"0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
