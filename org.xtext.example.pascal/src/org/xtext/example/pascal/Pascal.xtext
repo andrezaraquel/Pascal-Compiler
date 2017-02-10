@@ -35,11 +35,39 @@ simple_statement:
 ;
 
 goto_statement:
-	
+	"goto" label
 ;
 
 procedure_statement:
-	
+	procedure_identifier (actual_parameter_list)?
+;
+
+actual_parameter_list:
+	"(" actual_parameter ("," actual_parameter)* ")"
+;
+
+actual_parameter:
+	actual_value | actual_variable | actual_procedure | actual_function
+;
+
+actual_function:
+	function_identifier
+;
+
+actual_procedure:
+	procedure_identifier
+;
+
+actual_variable:
+	variable
+;
+
+actual_value:
+	expression
+;
+
+procedure_identifier:
+	identifier
 ;
 
 assignment_statement:
@@ -51,7 +79,7 @@ expression:
 ;
 
 relational_operator:
-	
+	"=" | "<>" | "<" | "<=" | ">" | ">=" | "in"
 ;
 
 simple_expression:
@@ -71,7 +99,51 @@ multiplication_operator:
 ;
 
 factor:
-	variable | number | string | set | "nil" | constant_identifier | bound_identifier | function_designator | "(" expression ")" | "not" factor	
+	variable | number | string | set | "nil" 
+	| constant_identifier | bound_identifier 
+	| function_designator | "(" expression ")" | "not" factor	
+;
+
+bound_identifier:
+	identifier
+;
+
+function_designator:
+	function_identifier (actual_parameter_list)?
+;
+
+constant_identifier:
+	identifier
+;
+
+set:
+	"[ " element_list " ]"
+;
+
+string:
+	"'" string_character (string_character)* "'"
+;
+
+string_character:
+	any_character_except_quote | "''"
+;
+
+any_character_except_quote:
+	//fazer essa regra... Na gramática não tem
+	"MUDAR"
+;
+
+number:
+	integer_number | real_number
+;
+
+real_number:
+	digit_sequence "." (digit_sequence)? (scale_factor)? |
+digit_sequence scale_factor
+;
+
+scale_factor:
+	("E" | "e") (sign)? digit_sequence
 ;
 
 variable:
@@ -107,19 +179,31 @@ array_variable:
 ;
 
 field_designator:
-	
+	record_variable "." field_identifier
+;
+
+record_variable:
+	variable
 ;
 
 file_buffer:
-	
+	file_variable "^"
+;
+
+file_variable:
+	variable
 ;
 
 referenced_variable:
-	
+	pointer_variable "^"
+;
+
+pointer_variable:
+	variable
 ;
 
 function_identifier:
-	
+	identifier
 ;
 
 label:
@@ -145,6 +229,60 @@ unsigned_digit_sequence:
 structured_statement:
 	compound_statement | repetitive_statement | conditional_statement | with_statement
 ;
+
+with_statement:
+	"with" record_variable ("," record_variable)* "do" statement	
+;
+
+conditional_statement:
+	if_statement | case_statement
+;
+
+case_statement:
+	"case" expression "of"
+	case_limb (";" case_limb)* (";")?
+	"end"
+;
+
+case_limb:
+	case_label_list ":" statement
+;
+
+case_label_list:
+	constant ("," constant)*
+;
+
+if_statement:
+	"if" expression "then" statement ("else" statement)?
+;
+
+repetitive_statement:
+	while_statement | repeat_statement | for_statement
+;
+
+for_statement:
+	"for" variable_identifier ":=" initial_expression ("to" | "downto") final_expression "do" statement
+;
+
+final_expression:
+	expression
+;
+
+initial_expression:
+	expression
+;
+
+repeat_statement:
+	"repeat" statement_sequence "until" expression
+;
+
+while_statement:
+	"while" expression "do" statement
+;
+
+compound_statement:
+	"begin" statement_sequence "end"
+;
 	
 declaration_part:
 	(label_declaration_part)?
@@ -153,6 +291,242 @@ declaration_part:
 	(variable_declaration_part)?
 	procedure_and_function_declaration_part	
 	
+;
+
+label_declaration_part:
+	"label" label ("," label)* ";"
+;
+
+constant_definition_part:
+	"const" constant_definition ";" (constant_definition ";")*
+;
+
+constant_definition:
+	identifier "=" constant
+;
+
+constant:
+	(sign)? (constant_identifier | number) | string
+;
+
+type_definition_part:
+	"type" type_definition ";" (type_definition ";")*
+;
+
+type_definition:
+	identifier "=" type
+;
+
+type:
+	simple_type | structured_type 
+	| pointer_type | type_identifier
+;
+
+type_identifier:
+	identifier
+;
+
+pointer_type:
+	"^" type_identifier
+;
+
+structured_type:
+	("packed")? unpacked_structured_type
+;
+
+unpacked_structured_type:
+	array_type | record_type 
+	| set_type | file_type	
+;
+
+file_type:
+	"file of" file_component_type
+;
+
+file_component_type:
+	type
+;
+
+set_type:
+	"set of" base_type
+;
+
+base_type:
+	type	
+;
+
+record_type:
+	"record" field_list "end"
+;
+
+field_list:
+	( (fixed_part (";" variant_part)? | variant_part) (";")? )?
+;
+
+fixed_part:
+	record_section (";" record_section)*
+;
+
+record_section:
+	identifier_list ":" type
+;
+
+variant_part:
+	"case" tag_field type_identifier "of" variant (";" variant)*
+;
+
+variant:
+	case_label_list ":" "(" field_list ")"
+;
+
+tag_field:
+	(identifier ":")?
+;
+
+array_type:
+	"array" "[ " index_type ("," index_type)* " ]" "of" element_type
+;
+
+element_type:
+	type
+;
+
+index_type:
+	simple_type
+;
+
+simple_type:
+	subrange_type | enumerated_type
+;
+
+enumerated_type:
+	"(" identifier_list ")"
+;
+
+subrange_type:
+	lower_bound ".." upper_bound
+;
+
+lower_bound:
+	constant
+;
+
+upper_bound:
+	constant
+;
+
+variable_declaration_part:
+	"var" variable_declaration ";" (variable_declaration ";")*
+;
+
+variable_declaration:
+	identifier_list ":" type
+;
+
+procedure_and_function_declaration_part:
+	((procedure_declaration | function_declaration) ";")*
+;
+
+function_declaration:
+	function_heading ";" function_body |
+	function_heading ";" directive |
+	function_identification ";" function_body
+;
+
+function_identification:
+	"function" function_identifier
+;
+
+function_body:
+	block
+;
+
+procedure_declaration:
+	procedure_heading ";" procedure_body |
+	procedure_heading ";" directive |
+	procedure_identification ";" procedure_body
+;
+
+procedure_identification:
+	"procedure" procedure_identifier
+;
+
+directive:
+	"forward" | compiler_defined_directives
+;
+
+compiler_defined_directives:
+	// TODO
+	"FAZER"
+;
+
+procedure_body:
+	block
+;
+
+procedure_heading:
+	"procedure" identifier (formal_parameter_list)?
+;
+
+formal_parameter_list:
+	"(" formal_parameter_section (";" formal_parameter_section)* ")"
+;
+
+formal_parameter_section:
+	value_parameter_section |
+	variable_parameter_section |
+	procedure_parameter_section |
+	function_parameter_section
+;
+
+function_parameter_section:
+	function_heading
+;
+
+function_heading:
+	"function" identifier (formal_parameter_list)? ":" result_type
+;
+
+result_type:
+	type_identifier
+;
+
+procedure_parameter_section:
+	procedure_heading
+;
+
+variable_parameter_section:
+	"var" identifier_list ":" parameter_type
+;
+
+value_parameter_section:
+	identifier_list ":" parameter_type
+;
+
+parameter_type:
+	type_identifier | conformant_array_schema
+;
+
+conformant_array_schema:
+	packed_conformant_array_schema |
+	unpacked_conformant_array_schema
+;
+
+unpacked_conformant_array_schema:
+	"array" "[ " bound_specification (";" bound_specification)* " ]"
+	"of" (type_identifier | conformant_array_schema)
+;
+
+bound_specification:
+	identifier ".." identifier ":" ordinal_type_identifier
+;
+
+ordinal_type_identifier:
+	type_identifier
+;
+
+packed_conformant_array_schema:
+	"packed array" "[ " bound_specification " ]" "of" type_identifier
 ; 
 
 identifier:
