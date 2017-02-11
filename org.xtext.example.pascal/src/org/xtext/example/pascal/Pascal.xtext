@@ -7,75 +7,75 @@ Begin:
 ;
 
 program:
-	program_heading block ".";
+	program_heading=program_heading block=block ".";
 	
 program_heading:
-	"program" identifier "(" identifier_list ")" ";";
+	"program" identifier=identifier "(" identifier_list=identifier_list ")" ";";
 
 identifier_list:
-	identifier ( "," identifier )*;
+	identifier=identifier ( "," identifier_loop=identifier )*;
 
 block:
-	declaration_part statement_part;
+	declaration_part=declaration_part statement_part=statement_part;
 
 statement_part:
-	"begin" statement_sequence "end"
+	"begin" statement_sequence=statement_sequence "end"
 ;
 
 statement_sequence:
-	statement (";" statement)*
+	statement=statement (";" statement_loop=statement)*
 ;
 
 statement:
-	(label ":")? (simple_statement | structured_statement)
+	(label=label ":")? (simple_statement=simple_statement | structured_statement=structured_statement)
 ;
 
 simple_statement:
-	( assignment_statement | procedure_statement | goto_statement)?
+	( assignment_statement=assignment_statement | procedure_statement=procedure_statement | goto_statement=goto_statement)?
 ;
 
 goto_statement:
-	"goto" label
+	"goto" label=label
 ;
 
 procedure_statement:
-	procedure_identifier (actual_parameter_list)?
+	procedure_identifier=procedure_identifier (actual_parameter_list=actual_parameter_list)?
 ;
 
 actual_parameter_list:
-	"(" actual_parameter ("," actual_parameter)* ")"
+	"(" actual_parameter=actual_parameter ("," actual_parameter_loop=actual_parameter)* ")"
 ;
 
 actual_parameter:
-	actual_value | actual_variable | actual_procedure | actual_function
+	actual_value=actual_value | actual_variable=actual_variable | actual_procedure=actual_procedure | actual_function=actual_function
 ;
 
 actual_function:
-	function_identifier
+	function_identifier=function_identifier
 ;
 
 actual_procedure:
-	procedure_identifier
+	procedure_identifier=procedure_identifier
 ;
 
 actual_variable:
-	variable
+	variable=variable
 ;
 
 actual_value:
-	expression
+	expression=expression
 ;
 
 procedure_identifier:
-	identifier
+	identifier=identifier
 ;
 
 assignment_statement:
-	(variable | function_identifier) ":=" expression
+	(variable=variable | function_identifier=function_identifier) ":=" expression=expression
 ;
 
 expression:
-	simple_expression (relational_operator simple_expression)?
+	simple_expression=simple_expression (relational_operator=relational_operator simple_expression_loop=simple_expression)?
 ;
 
 relational_operator:
@@ -83,7 +83,7 @@ relational_operator:
 ;
 
 simple_expression:
-	(sign)? term (addition_operator term)*
+	(sign=sign)? term=term (addition_operator term_loop=term)*
 ;
 
 addition_operator:
@@ -91,7 +91,7 @@ addition_operator:
 ;
 
 term:
-	factor (multiplication_operator factor)*
+	factor=factor (multiplication_operator=multiplication_operator factor_loop=factor)*
 ;
 
 multiplication_operator:
@@ -99,33 +99,37 @@ multiplication_operator:
 ;
 
 factor:
-	variable | number | string | set | "nil" 
-	| constant_identifier | bound_identifier 
-	| function_designator | "(" expression ")" | "not" factor	
+	variable=variable | number=number | strings=strings | set=set | "nil" 
+	| constant_identifier=constant_identifier | bound_identifier=bound_identifier 
+	| function_designator=function_designator | "(" expression=expression ")" | "not" factor=factor	
 ;
 
 bound_identifier:
-	identifier
+	identifier=identifier
 ;
 
 function_designator:
-	function_identifier (actual_parameter_list)?
+	function_identifier=function_identifier (actual_parameter_list=actual_parameter_list)?
 ;
 
 constant_identifier:
-	identifier
+	identifier=identifier
 ;
 
 set:
-	"[ " element_list " ]"
+	"[" element_list=element_list "]"
 ;
 
-string:
-	"'" string_character (string_character)* "'"
+element_list: {element_list}
+	(expression=expression ("," expression_loop=expression)*)?
+;
+
+strings:
+	"'" string_character=string_character (string_character_loop=string_character)* "'"
 ;
 
 string_character:
-	any_character_except_quote | "''"
+	any_character_except_quote=any_character_except_quote | "''"
 ;
 
 any_character_except_quote:
@@ -134,88 +138,88 @@ any_character_except_quote:
 ;
 
 number:
-	integer_number | real_number
+	integer_number=integer_number | real_number=real_number
 ;
 
 real_number:
-	digit_sequence "." (digit_sequence)? (scale_factor)? |
-digit_sequence scale_factor
+	digit_sequence=digit_sequence "." (digit_sequence2=digit_sequence)? (scale_factor=scale_factor)? |
+	digit_sequence=digit_sequence scale_factor=scale_factor
 ;
 
 scale_factor:
-	("E" | "e") (sign)? digit_sequence
+	("E" | "e") (sign=sign)? digit_sequence=digit_sequence
 ;
 
 variable:
-	entire_variable | component_variable | referenced_variable
+	entire_variable=entire_variable | component_variable=component_variable | referenced_variable=referenced_variable
 ;
 
 entire_variable:
-	variable_identifier | field_identifier
+	variable_identifier=variable_identifier | field_identifier=field_identifier
 ;
 
 variable_identifier:
-	identifier
+	identifier=identifier
 ;
 
 field_identifier:
-	identifier
+	identifier=identifier
 ;
 
 component_variable:
-	indexed_variable | field_designator | file_buffer
+	indexed_variable=indexed_variable | field_designator=field_designator | file_buffer=file_buffer
 ;
 
 indexed_variable:
-	array_variable "[ " expression_list " ]"
+	array_variable=array_variable "[" expression_list=expression_list "]"
 ;
 
 expression_list:
-	expression ("," expression)*
+	expression=expression ("," expression_loop=expression)*
 ;
 
 array_variable:
-	variable
+	variable=variable
 ;
 
 field_designator:
-	record_variable "." field_identifier
+	record_variable=record_variable "." field_identifier=field_identifier
 ;
 
 record_variable:
-	variable
+	variable=variable
 ;
 
 file_buffer:
-	file_variable "^"
+	file_variable=file_variable "^"
 ;
 
 file_variable:
-	variable
+	variable=variable
 ;
 
 referenced_variable:
-	pointer_variable "^"
+	pointer_variable=pointer_variable "^"
 ;
 
 pointer_variable:
-	variable
+	variable=variable
 ;
 
 function_identifier:
-	identifier
+	identifier=identifier
 ;
 
 label:
-	integer_number
+	integer_number=integer_number
 ;
 
 integer_number:
-	digit_sequence
+	digit_sequence=digit_sequence
 ;
 
 digit_sequence:
-	(sign)? unsigned_digit_sequence
+	(sign=sign)? unsigned_digit_sequence=unsigned_digit_sequence
 ;
 
 sign:
@@ -223,236 +227,236 @@ sign:
 ;
 
 unsigned_digit_sequence:
-	digit (digit)*
+	digit=digit (digit_loop=digit)*
 ;
 
 structured_statement:
-	compound_statement | repetitive_statement | conditional_statement | with_statement
+	compound_statement=compound_statement | repetitive_statement=repetitive_statement | conditional_statement=conditional_statement | with_statement=with_statement
 ;
 
 with_statement:
-	"with" record_variable ("," record_variable)* "do" statement	
+	"with" record_variable=record_variable ("," record_variable_loop=record_variable)* "do" statement=statement	
 ;
 
 conditional_statement:
-	if_statement | case_statement
+	if_statement=if_statement | case_statement=case_statement
 ;
 
 case_statement:
-	"case" expression "of"
-	case_limb (";" case_limb)* (";")?
+	"case" expression=expression "of"
+	case_limb=case_limb (";" case_limb_loop=case_limb)* (";")?
 	"end"
 ;
 
 case_limb:
-	case_label_list ":" statement
+	case_label_list=case_label_list ":" statement=statement
 ;
 
 case_label_list:
-	constant ("," constant)*
+	constant=constant ("," constant_loop=constant)*
 ;
 
 if_statement:
-	"if" expression "then" statement ("else" statement)?
+	"if" expression=expression "then" statement=statement ("else" statement_loop=statement)?
 ;
 
 repetitive_statement:
-	while_statement | repeat_statement | for_statement
+	while_statement=while_statement | repeat_statement=repeat_statement | for_statement=for_statement
 ;
 
 for_statement:
-	"for" variable_identifier ":=" initial_expression ("to" | "downto") final_expression "do" statement
+	"for" variable_identifier=variable_identifier ":=" initial_expression=initial_expression ("to" | "downto") final_expression=final_expression "do" statement=statement
 ;
 
 final_expression:
-	expression
+	expression=expression
 ;
 
 initial_expression:
-	expression
+	expression=expression
 ;
 
 repeat_statement:
-	"repeat" statement_sequence "until" expression
+	"repeat" statement_sequence=statement_sequence "until" expression=expression
 ;
 
 while_statement:
-	"while" expression "do" statement
+	"while" expression=expression "do" statement=statement
 ;
 
 compound_statement:
-	"begin" statement_sequence "end"
+	"begin" statement_sequence=statement_sequence "end"
 ;
 	
 declaration_part:
-	(label_declaration_part)?
-	(constant_definition_part)?
-	(type_definition_part)?
-	(variable_declaration_part)?
-	procedure_and_function_declaration_part	
+	(label_declaration_part=label_declaration_part)?
+	(constant_definition_part=constant_definition_part)?
+	(type_definition_part=type_definition_part)?
+	(variable_declaration_part=variable_declaration_part)?
+	procedure_and_function_declaration_part=procedure_and_function_declaration_part	
 	
 ;
 
 label_declaration_part:
-	"label" label ("," label)* ";"
+	"label" label=label ("," label_loop=label)* ";"
 ;
 
 constant_definition_part:
-	"const" constant_definition ";" (constant_definition ";")*
+	"const" constant_definition=constant_definition ";" (constant_definition_loop=constant_definition ";")*
 ;
 
 constant_definition:
-	identifier "=" constant
+	identifier=identifier "=" constant=constant
 ;
 
 constant:
-	(sign)? (constant_identifier | number) | string
+	(sign=sign)? (constant_identifier=constant_identifier | number=number) | strings=strings
 ;
 
 type_definition_part:
-	"type" type_definition ";" (type_definition ";")*
+	"type" type_definition=type_definition ";" (type_definition_loop=type_definition ";")*
 ;
 
 type_definition:
-	identifier "=" type
+	identifier=identifier "=" type=type
 ;
 
 type:
-	simple_type | structured_type 
-	| pointer_type | type_identifier
+	simple_type=simple_type | structured_type=structured_type 
+	| pointer_type=pointer_type | type_identifier=type_identifier
 ;
 
 type_identifier:
-	identifier
+	identifier=identifier
 ;
 
 pointer_type:
-	"^" type_identifier
+	"^" type_identifier=type_identifier
 ;
 
 structured_type:
-	("packed")? unpacked_structured_type
+	("packed")? unpacked_structured_type=unpacked_structured_type
 ;
 
 unpacked_structured_type:
-	array_type | record_type 
-	| set_type | file_type	
+	array_type=array_type | record_type=record_type 
+	| set_type=set_type | file_type=file_type	
 ;
 
 file_type:
-	"file of" file_component_type
+	"file" "of" file_component_type=file_component_type
 ;
 
 file_component_type:
-	type
+	type=type
 ;
 
 set_type:
-	"set of" base_type
+	"set" "of" base_type=base_type
 ;
 
 base_type:
-	type	
+	type=type	
 ;
 
 record_type:
-	"record" field_list "end"
+	"record" field_list=field_list "end"
 ;
 
-field_list:
-	( (fixed_part (";" variant_part)? | variant_part) (";")? )?
+field_list: {field_list}
+	( (fixed_part=fixed_part (";" variant_part=variant_part)? | variant_part=variant_part) (";")? )?
 ;
 
 fixed_part:
-	record_section (";" record_section)*
+	record_section=record_section (";" record_section_loop=record_section)*
 ;
 
 record_section:
-	identifier_list ":" type
+	identifier_list=identifier_list ":" type=type
 ;
 
 variant_part:
-	"case" tag_field type_identifier "of" variant (";" variant)*
+	"case" tag_field=tag_field type_identifier=type_identifier "of" variant=variant (";" variant_loop=variant)*
 ;
 
 variant:
-	case_label_list ":" "(" field_list ")"
+	case_label_list=case_label_list ":" "(" field_list=field_list ")"
 ;
 
-tag_field:
-	(identifier ":")?
+tag_field: {tag_field}
+	(identifier=identifier ":")?
 ;
 
 array_type:
-	"array" "[ " index_type ("," index_type)* " ]" "of" element_type
+	"array" "[" index_type=index_type ("," index_type_loop=index_type)* "]" "of" element_type=element_type
 ;
 
 element_type:
-	type
+	type=type
 ;
 
 index_type:
-	simple_type
+	simple_type=simple_type
 ;
 
 simple_type:
-	subrange_type | enumerated_type
+	subrange_type=subrange_type | enumerated_type=enumerated_type
 ;
 
 enumerated_type:
-	"(" identifier_list ")"
+	"(" identifier_list=identifier_list ")"
 ;
 
 subrange_type:
-	lower_bound ".." upper_bound
+	lower_bound=lower_bound ".." upper_bound=upper_bound
 ;
 
 lower_bound:
-	constant
+	constant=constant
 ;
 
 upper_bound:
-	constant
+	constant=constant
 ;
 
 variable_declaration_part:
-	"var" variable_declaration ";" (variable_declaration ";")*
+	"var" variable_declaration=variable_declaration ";" (variable_declaration_loop=variable_declaration ";")*
 ;
 
 variable_declaration:
-	identifier_list ":" type
+	identifier_list=identifier_list ":" type=type
 ;
 
 procedure_and_function_declaration_part:
-	((procedure_declaration | function_declaration) ";")*
+	((procedure_declaration_loop=procedure_declaration | function_declaration_loop=function_declaration) ";")*
 ;
 
 function_declaration:
-	function_heading ";" function_body |
-	function_heading ";" directive |
-	function_identification ";" function_body
+	function_heading=function_heading ";" function_body=function_body |
+	function_heading=function_heading ";" directive=directive |
+	function_identification=function_identification ";" function_body=function_body
 ;
 
 function_identification:
-	"function" function_identifier
+	"function" function_identifier=function_identifier
 ;
 
 function_body:
-	block
+	block=block
 ;
 
 procedure_declaration:
-	procedure_heading ";" procedure_body |
-	procedure_heading ";" directive |
-	procedure_identification ";" procedure_body
+	procedure_heading=procedure_heading ";" procedure_body=procedure_body |
+	procedure_heading=procedure_heading ";" directive=directive |
+	procedure_identification=procedure_identification ";" procedure_body=procedure_body
 ;
 
 procedure_identification:
-	"procedure" procedure_identifier
+	"procedure" procedure_identifier=procedure_identifier
 ;
 
 directive:
-	"forward" | compiler_defined_directives
+	"forward" | compiler_defined_directives=compiler_defined_directives
 ;
 
 compiler_defined_directives:
@@ -461,76 +465,76 @@ compiler_defined_directives:
 ;
 
 procedure_body:
-	block
+	block=block
 ;
 
 procedure_heading:
-	"procedure" identifier (formal_parameter_list)?
+	"procedure" identifier=identifier (formal_parameter_list=formal_parameter_list)?
 ;
 
 formal_parameter_list:
-	"(" formal_parameter_section (";" formal_parameter_section)* ")"
+	"(" formal_parameter_section=formal_parameter_section (";" formal_parameter_section_loop=formal_parameter_section)* ")"
 ;
 
 formal_parameter_section:
-	value_parameter_section |
-	variable_parameter_section |
-	procedure_parameter_section |
-	function_parameter_section
+	value_parameter_section=value_parameter_section |
+	variable_parameter_section=variable_parameter_section |
+	procedure_parameter_section=procedure_parameter_section |
+	function_parameter_section=function_parameter_section
 ;
 
 function_parameter_section:
-	function_heading
+	function_heading=function_heading
 ;
 
 function_heading:
-	"function" identifier (formal_parameter_list)? ":" result_type
+	"function" identifier=identifier (formal_parameter_list=formal_parameter_list)? ":" result_type=result_type
 ;
 
 result_type:
-	type_identifier
+	type_identifier=type_identifier
 ;
 
 procedure_parameter_section:
-	procedure_heading
+	procedure_heading=procedure_heading
 ;
 
 variable_parameter_section:
-	"var" identifier_list ":" parameter_type
+	"var" identifier_list=identifier_list ":" parameter_type=parameter_type
 ;
 
 value_parameter_section:
-	identifier_list ":" parameter_type
+	identifier_list=identifier_list ":" parameter_type=parameter_type
 ;
 
 parameter_type:
-	type_identifier | conformant_array_schema
+	type_identifier=type_identifier | conformant_array_schema=conformant_array_schema
 ;
 
 conformant_array_schema:
-	packed_conformant_array_schema |
-	unpacked_conformant_array_schema
+	packed_conformant_array_schema=packed_conformant_array_schema |
+	unpacked_conformant_array_schema=unpacked_conformant_array_schema
 ;
 
 unpacked_conformant_array_schema:
-	"array" "[ " bound_specification (";" bound_specification)* " ]"
-	"of" (type_identifier | conformant_array_schema)
+	"array" "[" bound_specification=bound_specification (";" bound_specification_loop=bound_specification)* " ]"
+	"of" (type_identifier=type_identifier | conformant_array_schema=conformant_array_schema)
 ;
 
 bound_specification:
-	identifier ".." identifier ":" ordinal_type_identifier
+	identifier=identifier ".." identifier2=identifier ":" ordinal_type_identifier=ordinal_type_identifier
 ;
 
 ordinal_type_identifier:
-	type_identifier
+	type_identifier=type_identifier
 ;
 
 packed_conformant_array_schema:
-	"packed array" "[ " bound_specification " ]" "of" type_identifier
+	"packed array" "[" bound_specification=bound_specification "]" "of" type_identifier=type_identifier
 ; 
 
 identifier:
-	letter (letter | digit)*;
+	letter=letter (letter_loop=letter | digit=digit)*;
 
 letter:
 "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z";
