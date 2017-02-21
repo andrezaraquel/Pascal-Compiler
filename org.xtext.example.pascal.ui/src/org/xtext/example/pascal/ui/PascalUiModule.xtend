@@ -4,10 +4,15 @@
 package org.xtext.example.pascal.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import org.eclipse.ui.plugin.AbstractUIPlugin
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
-@FinalFieldsConstructor
 class PascalUiModule extends AbstractPascalUiModule {
+	
+	new(AbstractUIPlugin plugin) {
+		super(plugin)
+	}
+	
 }

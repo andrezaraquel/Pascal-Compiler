@@ -10,10 +10,10 @@ program:
 	program_heading=program_heading block=block ".";
 	
 program_heading:
-	"program" identifier=identifier "(" identifier_list=identifier_list ")" ";";
+	"program" identifier=ID "(" identifier_list=identifier_list ")" ";";
 
 identifier_list:
-	identifier=identifier ( "," identifier_loop=identifier )*;
+	identifier=ID ( "," identifier_loop=ID )*;
 
 block:
 	declaration_part=declaration_part statement_part=statement_part;
@@ -39,7 +39,7 @@ goto_statement:
 ;
 
 procedure_statement:
-	procedure_identifier=procedure_identifier (actual_parameter_list=actual_parameter_list)?
+	procedure_identifier=identifier (actual_parameter_list=actual_parameter_list)?
 ;
 
 actual_parameter_list:
@@ -51,11 +51,11 @@ actual_parameter:
 ;
 
 actual_function:
-	function_identifier=function_identifier
+	function_identifier=identifier
 ;
 
 actual_procedure:
-	procedure_identifier=procedure_identifier
+	procedure_identifier=identifier
 ;
 
 actual_variable:
@@ -66,12 +66,12 @@ actual_value:
 	expression=expression
 ;
 
-procedure_identifier:
-	identifier=identifier
+identifier:
+	identifier=ID
 ;
 
 assignment_statement:
-	(variable=variable | function_identifier=function_identifier) ":=" expression=expression
+	(variable=variable | function_identifier=identifier) ":=" expression=expression
 ;
 
 expression:
@@ -87,7 +87,7 @@ simple_expression:
 ;
 
 addition_operator:
-	"+" | "-" | "or"
+	sign | "or"
 ;
 
 term:
@@ -100,20 +100,12 @@ multiplication_operator:
 
 factor:
 	variable=variable | number=number | strings=strings | set=set | "nil" 
-	| constant_identifier=constant_identifier | bound_identifier=bound_identifier 
+	| identifier=identifier
 	| function_designator=function_designator | "(" expression=expression ")" | "not" factor=factor	
 ;
 
-bound_identifier:
-	identifier=identifier
-;
-
 function_designator:
-	function_identifier=function_identifier (actual_parameter_list=actual_parameter_list)?
-;
-
-constant_identifier:
-	identifier=identifier
+	function_identifier=identifier (actual_parameter_list=actual_parameter_list)?
 ;
 
 set:
@@ -134,7 +126,8 @@ string_character:
 
 any_character_except_quote:
 	//fazer essa regra... Na gramática não tem
-	"MUDAR"
+	//TODO
+	procedure_heading=procedure_heading
 ;
 
 number:
@@ -151,63 +144,17 @@ scale_factor:
 ;
 
 variable:
-	entire_variable=entire_variable | component_variable=component_variable | referenced_variable=referenced_variable
+	entire_variable=entire_variable 
+	("[" expression_list=expression_list "]" )*
+	("." field_identifier=identifier )*
+	("^")*  ("^")*
 ;
 
 entire_variable:
-	variable_identifier=variable_identifier | field_identifier=field_identifier
-;
-
-variable_identifier:
 	identifier=identifier
 ;
-
-field_identifier:
-	identifier=identifier
-;
-
-component_variable:
-	indexed_variable=indexed_variable | field_designator=field_designator | file_buffer=file_buffer
-;
-
-indexed_variable:
-	array_variable=array_variable "[" expression_list=expression_list "]"
-;
-
 expression_list:
 	expression=expression ("," expression_loop=expression)*
-;
-
-array_variable:
-	variable=variable
-;
-
-field_designator:
-	record_variable=record_variable "." field_identifier=field_identifier
-;
-
-record_variable:
-	variable=variable
-;
-
-file_buffer:
-	file_variable=file_variable "^"
-;
-
-file_variable:
-	variable=variable
-;
-
-referenced_variable:
-	pointer_variable=pointer_variable "^"
-;
-
-pointer_variable:
-	variable=variable
-;
-
-function_identifier:
-	identifier=identifier
 ;
 
 label:
@@ -227,7 +174,7 @@ sign:
 ;
 
 unsigned_digit_sequence:
-	digit=digit (digit_loop=digit)*
+	INT
 ;
 
 structured_statement:
@@ -235,7 +182,7 @@ structured_statement:
 ;
 
 with_statement:
-	"with" record_variable=record_variable ("," record_variable_loop=record_variable)* "do" statement=statement	
+	"with" variable=variable ("," variable_loop=variable)* "do" statement=statement	
 ;
 
 conditional_statement:
@@ -265,7 +212,7 @@ repetitive_statement:
 ;
 
 for_statement:
-	"for" variable_identifier=variable_identifier ":=" initial_expression=initial_expression ("to" | "downto") final_expression=final_expression "do" statement=statement
+	"for" variable_identifier=identifier ":=" initial_expression=initial_expression ("to" | "downto") final_expression=final_expression "do" statement=statement
 ;
 
 final_expression:
@@ -310,7 +257,7 @@ constant_definition:
 ;
 
 constant:
-	(sign=sign)? (constant_identifier=constant_identifier | number=number) | strings=strings
+	(sign=sign)? (constant_identifier=identifier | number=number) | strings=strings
 ;
 
 type_definition_part:
@@ -438,7 +385,7 @@ function_declaration:
 ;
 
 function_identification:
-	"function" function_identifier=function_identifier
+	"function" function_identifier=identifier
 ;
 
 function_body:
@@ -452,7 +399,7 @@ procedure_declaration:
 ;
 
 procedure_identification:
-	"procedure" procedure_identifier=procedure_identifier
+	"procedure" procedure_identifier=identifier
 ;
 
 directive:
@@ -461,7 +408,7 @@ directive:
 
 compiler_defined_directives:
 	// TODO
-	"FAZER"
+	procedure_heading=procedure_heading
 ;
 
 procedure_body:
@@ -532,12 +479,3 @@ ordinal_type_identifier:
 packed_conformant_array_schema:
 	"packed array" "[" bound_specification=bound_specification "]" "of" type_identifier=type_identifier
 ; 
-
-identifier:
-	letter=letter (letter_loop=letter | digit=digit)*;
-
-letter:
-"A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z";
-
-digit:
-"0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
