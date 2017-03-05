@@ -13,7 +13,7 @@ program_heading:
 	"program" identifier=ID "(" identifier_list=identifier_list ")" ";";
 
 identifier_list:
-	identifier=ID ( "," identifier_loop+=ID )*;
+	identifier+=ID ( "," identifier+=ID )*;
 
 block:
 	declaration_part=declaration_part statement_part=statement_part;
@@ -23,7 +23,7 @@ statement_part:
 ;
 
 statement_sequence:
-	statement=statement (";" statement_loop+=statement)*
+	statement+=statement (";" statement+=statement)*
 ;
 
 statement:
@@ -43,7 +43,7 @@ procedure_statement:
 ;
 
 actual_parameter_list:
-	"(" actual_parameter=actual_parameter ("," actual_parameter_loop+=actual_parameter)* ")"
+	"(" actual_parameter+=actual_parameter ("," actual_parameter+=actual_parameter)* ")"
 ;
 
 actual_parameter:
@@ -75,7 +75,7 @@ assignment_statement:
 ;
 
 expression:
-	simple_expression=simple_expression (relational_operator=relational_operator simple_expression_loop=simple_expression)?
+	simple_expression+=simple_expression (relational_operator=relational_operator simple_expression+=simple_expression)?
 ;
 
 relational_operator:
@@ -83,7 +83,7 @@ relational_operator:
 ;
 
 simple_expression:
-	(sign=sign)? term=term (addition_operator term_loop+=term)*
+	(sign=sign)? term+=term (addition_operator term+=term)*
 ;
 
 addition_operator:
@@ -91,7 +91,7 @@ addition_operator:
 ;
 
 term:
-	factor=factor (multiplication_operator+=multiplication_operator factor_loop+=factor)*
+	factor+=factor (multiplication_operator+=multiplication_operator factor+=factor)*
 ;
 
 multiplication_operator:
@@ -113,11 +113,11 @@ set:
 ;
 
 element_list: {element_list}
-	(expression=expression ("," expression_loop+=expression)*)?
+	(expression+=expression ("," expression+=expression)*)?
 ;
 
 strings:
-	"'" string_character=string_character (string_character_loop+=string_character)* "'"
+	"'" string_character+=string_character (string_character+=string_character)* "'"
 ;
 
 string_character: {string_character}
@@ -154,7 +154,7 @@ entire_variable:
 	identifier=identifier
 ;
 expression_list:
-	expression=expression ("," expression_loop+=expression)*
+	expression+=expression ("," expression+=expression)*
 ;
 
 label:
@@ -182,7 +182,7 @@ structured_statement:
 ;
 
 with_statement:
-	"with" variable=variable ("," variable_loop+=variable)* "do" statement=statement	
+	"with" variable+=variable ("," variable+=variable)* "do" statement=statement	
 ;
 
 conditional_statement:
@@ -191,7 +191,7 @@ conditional_statement:
 
 case_statement:
 	"case" expression=expression "of"
-	case_limb=case_limb (";" case_limb_loop+=case_limb)* (";")?
+	case_limb+=case_limb (";" case_limb+=case_limb)* (";")?
 	"end"
 ;
 
@@ -200,11 +200,11 @@ case_limb:
 ;
 
 case_label_list:
-	constant=constant ("," constant_loop+=constant)*
+	constant+=constant ("," constant+=constant)*
 ;
 
 if_statement:
-	"if" expression=expression "then" statement=statement ("else" statement_loop=statement)?
+	"if" expression=expression "then" statement+=statement ("else" statement+=statement)?
 ;
 
 repetitive_statement:
@@ -235,21 +235,28 @@ compound_statement:
 	"begin" statement_sequence=statement_sequence "end"
 ;
 	
-declaration_part:
+declaration_part: {declaration_part}
 	(label_declaration_part=label_declaration_part)?
 	(constant_definition_part=constant_definition_part)?
 	(type_definition_part=type_definition_part)?
 	(variable_declaration_part=variable_declaration_part)?
-	procedure_and_function_declaration_part=procedure_and_function_declaration_part	
+	(
+		(procedure_heading+=procedure_heading ";" procedure_body+=procedure_body |
+		procedure_heading+=procedure_heading ";" directive+=directive |
+		procedure_identification+=procedure_identification ";" procedure_body+=procedure_body |
+		
+		function_heading+=function_heading ";" function_body+=function_body |
+		function_heading+=function_heading ";" directive+=directive |
+		function_identification+=function_identification ";" function_body+=function_body) ";")*	
 	
 ;
 
 label_declaration_part:
-	"label" label=label ("," label_loop+=label)* ";"
+	"label" label+=label ("," label+=label)* ";"
 ;
 
 constant_definition_part:
-	"const" constant_definition=constant_definition ";" (constant_definition_loop+=constant_definition ";")*
+	"const" constant_definition+=constant_definition ";" (constant_definition+=constant_definition ";")*
 ;
 
 constant_definition:
@@ -261,7 +268,7 @@ constant:
 ;
 
 type_definition_part:
-	"type" type_definition=type_definition ";" (type_definition_loop+=type_definition ";")*
+	"type" type_definition+=type_definition ";" (type_definition+=type_definition ";")*
 ;
 
 type_definition:
@@ -315,7 +322,7 @@ field_list: {field_list}
 ;
 
 fixed_part:
-	record_section=record_section (";" record_section_loop+=record_section)*
+	record_section+=record_section (";" record_section+=record_section)*
 ;
 
 record_section:
@@ -323,7 +330,7 @@ record_section:
 ;
 
 variant_part:
-	"case" tag_field=tag_field type_identifier=type_identifier "of" variant=variant (";" variant_loop+=variant)*
+	"case" tag_field=tag_field type_identifier=type_identifier "of" variant+=variant (";" variant+=variant)*
 ;
 
 variant:
@@ -335,7 +342,7 @@ tag_field: {tag_field}
 ;
 
 array_type:
-	"array" "[" index_type=index_type ("," index_type_loop+=index_type)* "]" "of" element_type=element_type
+	"array" "[" index_type+=index_type ("," index_type+=index_type)* "]" "of" element_type=element_type
 ;
 
 element_type:
@@ -367,21 +374,11 @@ upper_bound:
 ;
 
 variable_declaration_part:
-	"var" variable_declaration=variable_declaration ";" (variable_declaration_loop+=variable_declaration ";")*
+	"var" variable_declaration+=variable_declaration ";" (variable_declaration+=variable_declaration ";")*
 ;
 
 variable_declaration:
 	identifier_list=identifier_list ":" type=type
-;
-
-procedure_and_function_declaration_part: {procedure_and_function_declaration_part}
-	((procedure_declaration_loop+=procedure_declaration | function_declaration_loop+=function_declaration) ";")*
-;
-
-function_declaration:
-	function_heading=function_heading ";" function_body=function_body |
-	function_heading=function_heading ";" directive=directive |
-	function_identification=function_identification ";" function_body=function_body
 ;
 
 function_identification:
@@ -392,14 +389,9 @@ function_body:
 	block=block
 ;
 
-procedure_declaration:
-	procedure_heading=procedure_heading ";" procedure_body=procedure_body |
-	procedure_heading=procedure_heading ";" directive=directive |
-	procedure_identification=procedure_identification ";" procedure_body=procedure_body
-;
 
 procedure_identification:
-	"procedure" procedure_identifier=identifier
+	"procedure" identifier=identifier
 ;
 
 directive: {directive}
@@ -420,7 +412,7 @@ procedure_heading:
 ;
 
 formal_parameter_list:
-	"(" formal_parameter_section=formal_parameter_section (";" formal_parameter_section_loop+=formal_parameter_section)* ")"
+	"(" formal_parameter_section+=formal_parameter_section (";" formal_parameter_section+=formal_parameter_section)* ")"
 ;
 
 formal_parameter_section:
@@ -464,7 +456,7 @@ conformant_array_schema:
 ;
 
 unpacked_conformant_array_schema:
-	"array" "[" bound_specification=bound_specification (";" bound_specification_loop+=bound_specification)* "]"
+	"array" "[" bound_specification+=bound_specification (";" bound_specification+=bound_specification)* "]"
 	"of" (type_identifier=type_identifier | conformant_array_schema=conformant_array_schema)
 ;
 
@@ -485,4 +477,3 @@ output_list:
 	
 output_value:
 	expression (";" expression+=expression (":" expression+=expression)? )?;
-	

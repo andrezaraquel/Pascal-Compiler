@@ -3,6 +3,9 @@
  */
 package org.xtext.example.pascal.validation
 
+import org.eclipse.xtext.validation.Check
+import org.xtext.example.pascal.pascal.*
+import org.xtext.example.pascal.validation.exception.InvalidException
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +14,18 @@ package org.xtext.example.pascal.validation
  */
 class PascalValidator extends AbstractPascalValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					PascalPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	
+	@Check
+	def checkBlockDeclaration(block block) {
+		try {
+			BlockValidator.validateBlock(block)			
+		} catch (InvalidException e) {
+			this.error(e.message, e.component, null);
+		} catch (Exception e) {
+			e.printStackTrace()
+		}
+	}
+	
+	
 	
 }
