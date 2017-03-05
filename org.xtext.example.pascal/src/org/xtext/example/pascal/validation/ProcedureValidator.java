@@ -17,7 +17,8 @@ public class ProcedureValidator {
 		Procedure newProcedure = new Procedure(name);
 		
 		if(BlockValidator.hasProcedure(block, newProcedure)) {
-			InvalidException.error(Message.DECLARED_PROCEDURE, procedure_heading);
+//			InvalidException.error(Message.DECLARED_PROCEDURE, procedure_heading);
+			BlockValidator.addError(new InvalidException(Message.DECLARED_PROCEDURE, procedure_heading));
 		}
 		BlockValidator.addProcedure(newProcedure);
 		
@@ -29,7 +30,8 @@ public class ProcedureValidator {
 		Procedure newProcedure = new Procedure(name);
 		
 		if(BlockValidator.hasProcedure(block, newProcedure)) {
-			InvalidException.error(Message.DECLARED_PROCEDURE, procedure_identification);
+//			InvalidException.error(Message.DECLARED_PROCEDURE, procedure_identification);
+			BlockValidator.addError(new InvalidException(Message.DECLARED_PROCEDURE, procedure_identification));
 		}
 		BlockValidator.addProcedure(newProcedure);
 		

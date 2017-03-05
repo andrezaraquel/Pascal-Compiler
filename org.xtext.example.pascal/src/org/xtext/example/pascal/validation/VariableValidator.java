@@ -23,7 +23,8 @@ public class VariableValidator {
 			for (String name : names){
 				Variable variable = new Variable(type, name);
 				if (BlockValidator.hasVariable(block, variable)) {
-					InvalidException.error(Message.DECLARED_VARIABLE, declaration.getVariable_declaration_part());
+//					InvalidException.error(Message.DECLARED_VARIABLE, declaration.getVariable_declaration_part());
+					BlockValidator.addError(new InvalidException(Message.DECLARED_VARIABLE, declaration.getVariable_declaration_part()));
 				} 
 				BlockValidator.addVariable(block, variable);
 			}

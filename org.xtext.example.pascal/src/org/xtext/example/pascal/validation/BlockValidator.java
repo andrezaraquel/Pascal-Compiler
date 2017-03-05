@@ -14,14 +14,16 @@ import org.xtext.example.pascal.validation.obj.Variable;
 public class BlockValidator {
 	
 	
-	private static List<Variable> listVariables;
-	private static List<Procedure> listProcedures;
-	private static List<Function> listFunctions;
+	private static List<Variable> variablesList;
+	private static List<Procedure> proceduresList;
+	private static List<Function> functionsList;
+	private static List<InvalidException> errorList;
 	
 	private static void init() {
-		listVariables = new ArrayList<>();
-		listProcedures = new ArrayList<>();
-		listFunctions = new ArrayList<>();
+		variablesList = new ArrayList<>();
+		proceduresList = new ArrayList<>();
+		functionsList = new ArrayList<>();
+		errorList = new ArrayList<>();
 	}
 
 	public static void validateBlock(block block) {
@@ -31,40 +33,43 @@ public class BlockValidator {
 	}	
 	
 	public static void addField(block block, declaration_part declaration) {
-		if (declaration.getVariable_declaration_part() != null) {
-			VariableValidator.validateDeclarationVariable(block, declaration);
-		
-		} 
-		
-		if (declaration.getProcedure_heading() != null){			
+		if (declaration != null) {
+			if (declaration.getVariable_declaration_part() != null) {
+				VariableValidator.validateDeclarationVariable(block, declaration);
 			
-			EList<procedure_heading> procedures = declaration.getProcedure_heading();
+			} 
 			
-			for (procedure_heading procedure : procedures){
-				ProcedureValidator.validateDeclarationProcedure(block, procedure);
-			}
-		} else if (declaration.getProcedure_identification() != null) {
-			
-			EList<procedure_identification> procedures = declaration.getProcedure_identification();
-			
-			for (procedure_identification procedure : procedures){
-				ProcedureValidator.validateDeclarationProcedure(block, procedure);
-			}
-		} 
+			if (declaration.getProcedure_heading() != null){			
+				
+				EList<procedure_heading> procedures = declaration.getProcedure_heading();
+				
+				for (procedure_heading procedure : procedures){
+					ProcedureValidator.validateDeclarationProcedure(block, procedure);
+				}
+			} else if (declaration.getProcedure_identification() != null) {
+				
+				EList<procedure_identification> procedures = declaration.getProcedure_identification();
+				
+				for (procedure_identification procedure : procedures){
+					ProcedureValidator.validateDeclarationProcedure(block, procedure);
+				}
+			} 
 
-		if (declaration.getFunction_heading() != null) {
-			EList<function_heading> functions = declaration.getFunction_heading();
-			
-			for (function_heading function : functions){
-				FunctionValidator.validateDeclarationFunction(block, function);
-			}
-		} else if (declaration.getFunction_identification() != null) {
-			EList<function_identification> functions = declaration.getFunction_identification();
-			
-			for (function_identification function : functions){
-				FunctionValidator.validateDeclarationFunction(block, function);
+			if (declaration.getFunction_heading() != null) {
+				EList<function_heading> functions = declaration.getFunction_heading();
+				
+				for (function_heading function : functions){
+					FunctionValidator.validateDeclarationFunction(block, function);
+				}
+			} else if (declaration.getFunction_identification() != null) {
+				EList<function_identification> functions = declaration.getFunction_identification();
+				
+				for (function_identification function : functions){
+					FunctionValidator.validateDeclarationFunction(block, function);
+				}
 			}
 		}
+		
 	}
 	
 		
@@ -73,44 +78,55 @@ public class BlockValidator {
 	}
 	
 	public static void addProcedure(Procedure procedure) {
-		getListProcedures().add(procedure);
+		getProceduresList().add(procedure);
 	}
 
 	public static void addFunction(Function function) {
-		getListFunctions().add(function);
+		getFunctionsList().add(function);
 	}
 	
-	private static List<Function> getListFunctions() {
-		if (listFunctions == null) {
-			listFunctions = new ArrayList<>();
+	public static void addError(InvalidException error) {
+		getErrorList().add(error);
+	}
+	
+	public static List<InvalidException> getErrorList() {
+		if (errorList == null) {
+			errorList = new ArrayList<>();
 		}
-		return listFunctions;
+		return errorList;
+	}
+
+	private static List<Function> getFunctionsList() {
+		if (functionsList == null) {
+			functionsList = new ArrayList<>();
+		}
+		return functionsList;
 	}
 
 	public static List<Variable> getVariables() {
-		if (listVariables == null) {
-			listVariables = new ArrayList<>();
+		if (variablesList == null) {
+			variablesList = new ArrayList<>();
 		}
-		return listVariables;
+		return variablesList;		
 	}
 
 	public static boolean hasVariable(block block, Variable variable) {
 		return getVariables().contains(variable);
 	}
 	
-	public static List<Procedure> getListProcedures() {
-		if (listProcedures == null) {
-			listProcedures = new ArrayList<>();
+	public static List<Procedure> getProceduresList() {
+		if (proceduresList == null) {
+			proceduresList = new ArrayList<>();
 		}
-		return listProcedures;
+		return proceduresList;
 	}
-	
+		
 	public static boolean hasProcedure(block block, Procedure procedure) {				
-		return getListProcedures().contains(procedure);
+		return getProceduresList().contains(procedure);
 	}
 	
 	public static boolean hasFunction(block block, Function function) {				
-		return getListFunctions().contains(function);
+		return getFunctionsList().contains(function);
 	}
 	
 }

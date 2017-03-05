@@ -16,7 +16,8 @@ public static void validateDeclarationFunction(block block, function_heading fun
 		Function newFunction = new Function(name);
 		
 		if(BlockValidator.hasFunction(block, newFunction)) {
-			InvalidException.error(Message.DECLARED_FUNCTION, function_heading);
+//			InvalidException.error(Message.DECLARED_FUNCTION, function_heading);
+			BlockValidator.addError(new InvalidException(Message.DECLARED_FUNCTION, function_heading));
 		}
 		BlockValidator.addFunction(newFunction);
 		
@@ -28,7 +29,8 @@ public static void validateDeclarationFunction(block block, function_heading fun
 		Function newFunction = new Function(name);
 		
 		if(BlockValidator.hasFunction(block, newFunction)) {
-			InvalidException.error(Message.DECLARED_FUNCTION, function_identification);
+//			InvalidException.error(Message.DECLARED_FUNCTION, function_identification);
+			BlockValidator.addError(new InvalidException(Message.DECLARED_FUNCTION, function_identification));
 		}
 		BlockValidator.addFunction(newFunction);
 		
