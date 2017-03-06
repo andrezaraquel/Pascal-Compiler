@@ -13,13 +13,23 @@ import org.xtext.example.pascal.validation.obj.Variable;
 
 public class BlockValidator {
 	
+	private static final String[] ARRAY_TYPES = 			
+		{"string", "char", "integer", "shortint", "longint", "byte", "single", "extended", "word", "double", "real", "comp", "boolean"};
 	
+	private static List<String> declaredTypes;	
+	private static List<String> typeList;	
 	private static List<Variable> variablesList;
 	private static List<Procedure> proceduresList;
 	private static List<Function> functionsList;
 	private static List<InvalidException> errorList;
 	
-	private static void init() {
+	private static void init() {		
+
+		typeList = new ArrayList<>();
+		for (String s : ARRAY_TYPES) {
+			typeList.add(s);
+		}
+		declaredTypes = new ArrayList<>();
 		variablesList = new ArrayList<>();
 		proceduresList = new ArrayList<>();
 		functionsList = new ArrayList<>();
@@ -33,8 +43,17 @@ public class BlockValidator {
 	}	
 	
 	public static void addField(block block, declaration_part declaration) {
+		
+		
+		
+		
 		if (declaration != null) {
 			if (declaration.getVariable_declaration_part() != null) {
+				
+				for (type_definition type_definition : declaration.getType_definition_part().getType_definition()) {
+					addDeclaredType(type_definition.getIdentifier().getIdentifier());
+				}
+				
 				VariableValidator.validateDeclarationVariable(block, declaration);
 			
 			} 
@@ -127,6 +146,18 @@ public class BlockValidator {
 	
 	public static boolean hasFunction(block block, Function function) {				
 		return getFunctionsList().contains(function);
+	}
+	
+	public static boolean isType(String string) {
+		return typeList.contains(string);
+	}
+	
+	public static void addDeclaredType(String newType) {
+		declaredTypes.add(newType);
+	}
+
+	public static boolean hasDeclaredType(String type) {
+		return declaredTypes.contains(type);
 	}
 	
 }

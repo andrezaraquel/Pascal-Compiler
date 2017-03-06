@@ -1,11 +1,13 @@
 package org.xtext.example.pascal.validation.exception;
 
 public enum Message {
-	UNEXPECTE_ERROR("Erro inesperado."),
+	UNEXPECTED_ERROR("Erro inesperado."),
 	DECLARED_VARIABLE("Variável já declarada com este nome."),
-	UNDECLARED_VARIABLE("A variável não foi declarada."),
 	DECLARED_PROCEDURE("Procedure já declarada com este nome."),
-	DECLARED_FUNCTION("Função já declarada com este nome.");
+	DECLARED_FUNCTION("Função já declarada com este nome."),
+	UNDECLARED_VARIABLE("Variável não declarada."),
+	INVALID_TERM("Termo da expressão inválido."),
+	INVALID_TYPE("Tipo inválido.");
 	
 	
 	private String content;

@@ -20,11 +20,14 @@ public class VariableValidator {
 			EList<String> names = v_declaration.getIdentifier_list().getIdentifier();
 			String type = v_declaration.getType().getType_identifier().getIdentifier().getIdentifier();
 			
+			if (type != null && !BlockValidator.isType(type) && !BlockValidator.hasDeclaredType(type)) {
+				BlockValidator.addError(new InvalidException(Message.INVALID_TYPE, v_declaration));
+			}			
+			
 			for (String name : names){
 				Variable variable = new Variable(type, name);
 				if (BlockValidator.hasVariable(block, variable)) {
-//					InvalidException.error(Message.DECLARED_VARIABLE, declaration.getVariable_declaration_part());
-					BlockValidator.addError(new InvalidException(Message.DECLARED_VARIABLE, declaration.getVariable_declaration_part()));
+					BlockValidator.addError(new InvalidException(Message.DECLARED_VARIABLE, v_declaration));
 				} 
 				BlockValidator.addVariable(block, variable);
 			}

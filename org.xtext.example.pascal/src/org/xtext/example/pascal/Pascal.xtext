@@ -6,8 +6,8 @@ Begin:
 	elements += program
 ;
 
-program:
-	program_heading=program_heading block=block ".";
+program:{program}
+	(program_heading=program_heading block=block ".")?;
 	
 program_heading:
 	"program" identifier=ID "(" identifier_list=identifier_list ")" ";";
@@ -83,7 +83,7 @@ relational_operator:
 ;
 
 simple_expression:
-	(sign=sign)? term+=term (addition_operator term+=term)*
+	(sign=sign)? term+=term (addition_operator+=addition_operator term+=term)*
 ;
 
 addition_operator:

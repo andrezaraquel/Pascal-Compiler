@@ -23,6 +23,6 @@ public class InvalidException extends RuntimeException implements Serializable {
 	}
 
 	public static void invalid(EObject e) {
-		error(Message.UNEXPECTE_ERROR, e);
+		error(Message.UNEXPECTED_ERROR, e);
 	}
 }

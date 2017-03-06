@@ -24,14 +24,34 @@ class PascalValidator extends AbstractPascalValidator {
 			for (InvalidException exc : BlockValidator.getErrorList()) {
 				error(exc.message, exc.component, null)
 			}
-				
-//		} catch (InvalidException e) {
-//			this.error(e.message, e.component, null);
 		} catch (Exception e) {
 			e.printStackTrace()
 		}
 	}
 	
+	@Check
+	def checkExpression(assignment_statement statement) {
+		try {
+			ExpressionValidator.validateExpression(statement)				
+			for (InvalidException exc : ExpressionValidator.getErrorList()) {
+				error(exc.message, exc.component, null)
+			}
+		} catch (Exception e) {
+			e.printStackTrace()
+		}
+	}
+	
+	@Check
+	def checkType(assignment_statement statement) {
+		try {
+			ExpressionValidator.validateExpression(statement)				
+			for (InvalidException exc : ExpressionValidator.getErrorList()) {
+				error(exc.message, exc.component, null)
+			}
+		} catch (Exception e) {
+			e.printStackTrace()
+		}
+	}
 	
 	
 }
