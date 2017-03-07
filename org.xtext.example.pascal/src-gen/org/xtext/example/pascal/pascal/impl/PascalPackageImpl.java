@@ -53,6 +53,7 @@ import org.xtext.example.pascal.pascal.fixed_part;
 import org.xtext.example.pascal.pascal.for_statement;
 import org.xtext.example.pascal.pascal.formal_parameter_list;
 import org.xtext.example.pascal.pascal.formal_parameter_section;
+import org.xtext.example.pascal.pascal.function_block;
 import org.xtext.example.pascal.pascal.function_body;
 import org.xtext.example.pascal.pascal.function_designator;
 import org.xtext.example.pascal.pascal.function_heading;
@@ -75,6 +76,7 @@ import org.xtext.example.pascal.pascal.output_value;
 import org.xtext.example.pascal.pascal.packed_conformant_array_schema;
 import org.xtext.example.pascal.pascal.parameter_type;
 import org.xtext.example.pascal.pascal.pointer_type;
+import org.xtext.example.pascal.pascal.procedure_block;
 import org.xtext.example.pascal.pascal.procedure_body;
 import org.xtext.example.pascal.pascal.procedure_heading;
 import org.xtext.example.pascal.pascal.procedure_identification;
@@ -156,6 +158,20 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * @generated
    */
   private EClass identifier_listEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass procedure_blockEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass function_blockEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1046,6 +1062,66 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
   public EAttribute getidentifier_list_Identifier()
   {
     return (EAttribute)identifier_listEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getprocedure_block()
+  {
+    return procedure_blockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getprocedure_block_Declaration_part()
+  {
+    return (EReference)procedure_blockEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getprocedure_block_Statement_part()
+  {
+    return (EReference)procedure_blockEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getfunction_block()
+  {
+    return function_blockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getfunction_block_Declaration_part()
+  {
+    return (EReference)function_blockEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getfunction_block_Statement_part()
+  {
+    return (EReference)function_blockEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3463,7 +3539,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getfunction_body_Block()
+  public EReference getfunction_body_Function_block()
   {
     return (EReference)function_bodyEClass.getEStructuralFeatures().get(0);
   }
@@ -3543,7 +3619,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getprocedure_body_Block()
+  public EReference getprocedure_body_Procedure_block()
   {
     return (EReference)procedure_bodyEClass.getEStructuralFeatures().get(0);
   }
@@ -4072,6 +4148,14 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     identifier_listEClass = createEClass(IDENTIFIER_LIST);
     createEAttribute(identifier_listEClass, IDENTIFIER_LIST__IDENTIFIER);
 
+    procedure_blockEClass = createEClass(PROCEDURE_BLOCK);
+    createEReference(procedure_blockEClass, PROCEDURE_BLOCK__DECLARATION_PART);
+    createEReference(procedure_blockEClass, PROCEDURE_BLOCK__STATEMENT_PART);
+
+    function_blockEClass = createEClass(FUNCTION_BLOCK);
+    createEReference(function_blockEClass, FUNCTION_BLOCK__DECLARATION_PART);
+    createEReference(function_blockEClass, FUNCTION_BLOCK__STATEMENT_PART);
+
     blockEClass = createEClass(BLOCK);
     createEReference(blockEClass, BLOCK__DECLARATION_PART);
     createEReference(blockEClass, BLOCK__STATEMENT_PART);
@@ -4395,7 +4479,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     createEReference(function_identificationEClass, FUNCTION_IDENTIFICATION__FUNCTION_IDENTIFIER);
 
     function_bodyEClass = createEClass(FUNCTION_BODY);
-    createEReference(function_bodyEClass, FUNCTION_BODY__BLOCK);
+    createEReference(function_bodyEClass, FUNCTION_BODY__FUNCTION_BLOCK);
 
     procedure_identificationEClass = createEClass(PROCEDURE_IDENTIFICATION);
     createEReference(procedure_identificationEClass, PROCEDURE_IDENTIFICATION__IDENTIFIER);
@@ -4407,7 +4491,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     createEReference(compiler_defined_directivesEClass, COMPILER_DEFINED_DIRECTIVES__PROCEDURE_HEADING);
 
     procedure_bodyEClass = createEClass(PROCEDURE_BODY);
-    createEReference(procedure_bodyEClass, PROCEDURE_BODY__BLOCK);
+    createEReference(procedure_bodyEClass, PROCEDURE_BODY__PROCEDURE_BLOCK);
 
     procedure_headingEClass = createEClass(PROCEDURE_HEADING);
     createEReference(procedure_headingEClass, PROCEDURE_HEADING__IDENTIFIER);
@@ -4521,6 +4605,14 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
 
     initEClass(identifier_listEClass, identifier_list.class, "identifier_list", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getidentifier_list_Identifier(), ecorePackage.getEString(), "identifier", null, 0, -1, identifier_list.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(procedure_blockEClass, procedure_block.class, "procedure_block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getprocedure_block_Declaration_part(), this.getdeclaration_part(), null, "declaration_part", null, 0, 1, procedure_block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getprocedure_block_Statement_part(), this.getstatement_part(), null, "statement_part", null, 0, 1, procedure_block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(function_blockEClass, function_block.class, "function_block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getfunction_block_Declaration_part(), this.getdeclaration_part(), null, "declaration_part", null, 0, 1, function_block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getfunction_block_Statement_part(), this.getstatement_part(), null, "statement_part", null, 0, 1, function_block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blockEClass, block.class, "block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getblock_Declaration_part(), this.getdeclaration_part(), null, "declaration_part", null, 0, 1, block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4845,7 +4937,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEReference(getfunction_identification_Function_identifier(), this.getidentifier(), null, "function_identifier", null, 0, 1, function_identification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(function_bodyEClass, function_body.class, "function_body", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getfunction_body_Block(), this.getblock(), null, "block", null, 0, 1, function_body.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getfunction_body_Function_block(), this.getfunction_block(), null, "function_block", null, 0, 1, function_body.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(procedure_identificationEClass, procedure_identification.class, "procedure_identification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getprocedure_identification_Identifier(), this.getidentifier(), null, "identifier", null, 0, 1, procedure_identification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4857,7 +4949,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEReference(getcompiler_defined_directives_Procedure_heading(), this.getprocedure_heading(), null, "procedure_heading", null, 0, 1, compiler_defined_directives.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(procedure_bodyEClass, procedure_body.class, "procedure_body", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getprocedure_body_Block(), this.getblock(), null, "block", null, 0, 1, procedure_body.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getprocedure_body_Procedure_block(), this.getprocedure_block(), null, "procedure_block", null, 0, 1, procedure_body.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(procedure_headingEClass, procedure_heading.class, "procedure_heading", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getprocedure_heading_Identifier(), this.getidentifier(), null, "identifier", null, 0, 1, procedure_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -96,6 +96,16 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
         return createidentifier_listAdapter();
       }
       @Override
+      public Adapter caseprocedure_block(procedure_block object)
+      {
+        return createprocedure_blockAdapter();
+      }
+      @Override
+      public Adapter casefunction_block(function_block object)
+      {
+        return createfunction_blockAdapter();
+      }
+      @Override
       public Adapter caseblock(block object)
       {
         return createblockAdapter();
@@ -693,6 +703,36 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createidentifier_listAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.procedure_block <em>procedure block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.pascal.pascal.procedure_block
+   * @generated
+   */
+  public Adapter createprocedure_blockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.function_block <em>function block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.pascal.pascal.function_block
+   * @generated
+   */
+  public Adapter createfunction_blockAdapter()
   {
     return null;
   }

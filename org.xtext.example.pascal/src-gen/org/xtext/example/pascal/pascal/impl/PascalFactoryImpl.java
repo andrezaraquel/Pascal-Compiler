@@ -69,6 +69,8 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
       case PascalPackage.PROGRAM: return createprogram();
       case PascalPackage.PROGRAM_HEADING: return createprogram_heading();
       case PascalPackage.IDENTIFIER_LIST: return createidentifier_list();
+      case PascalPackage.PROCEDURE_BLOCK: return createprocedure_block();
+      case PascalPackage.FUNCTION_BLOCK: return createfunction_block();
       case PascalPackage.BLOCK: return createblock();
       case PascalPackage.STATEMENT_PART: return createstatement_part();
       case PascalPackage.STATEMENT_SEQUENCE: return createstatement_sequence();
@@ -220,6 +222,28 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
   {
     identifier_listImpl identifier_list = new identifier_listImpl();
     return identifier_list;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public procedure_block createprocedure_block()
+  {
+    procedure_blockImpl procedure_block = new procedure_blockImpl();
+    return procedure_block;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public function_block createfunction_block()
+  {
+    function_blockImpl function_block = new function_blockImpl();
+    return function_block;
   }
 
   /**

@@ -65,6 +65,8 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProgram_headingAccess().getGroup(), "rule__Program_heading__Group__0");
 					put(grammarAccess.getIdentifier_listAccess().getGroup(), "rule__Identifier_list__Group__0");
 					put(grammarAccess.getIdentifier_listAccess().getGroup_1(), "rule__Identifier_list__Group_1__0");
+					put(grammarAccess.getProcedure_blockAccess().getGroup(), "rule__Procedure_block__Group__0");
+					put(grammarAccess.getFunction_blockAccess().getGroup(), "rule__Function_block__Group__0");
 					put(grammarAccess.getBlockAccess().getGroup(), "rule__Block__Group__0");
 					put(grammarAccess.getStatement_partAccess().getGroup(), "rule__Statement_part__Group__0");
 					put(grammarAccess.getStatement_sequenceAccess().getGroup(), "rule__Statement_sequence__Group__0");
@@ -181,6 +183,10 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProgram_headingAccess().getIdentifier_listAssignment_3(), "rule__Program_heading__Identifier_listAssignment_3");
 					put(grammarAccess.getIdentifier_listAccess().getIdentifierAssignment_0(), "rule__Identifier_list__IdentifierAssignment_0");
 					put(grammarAccess.getIdentifier_listAccess().getIdentifierAssignment_1_1(), "rule__Identifier_list__IdentifierAssignment_1_1");
+					put(grammarAccess.getProcedure_blockAccess().getDeclaration_partAssignment_0(), "rule__Procedure_block__Declaration_partAssignment_0");
+					put(grammarAccess.getProcedure_blockAccess().getStatement_partAssignment_1(), "rule__Procedure_block__Statement_partAssignment_1");
+					put(grammarAccess.getFunction_blockAccess().getDeclaration_partAssignment_0(), "rule__Function_block__Declaration_partAssignment_0");
+					put(grammarAccess.getFunction_blockAccess().getStatement_partAssignment_1(), "rule__Function_block__Statement_partAssignment_1");
 					put(grammarAccess.getBlockAccess().getDeclaration_partAssignment_0(), "rule__Block__Declaration_partAssignment_0");
 					put(grammarAccess.getBlockAccess().getStatement_partAssignment_1(), "rule__Block__Statement_partAssignment_1");
 					put(grammarAccess.getStatement_partAccess().getStatement_sequenceAssignment_1(), "rule__Statement_part__Statement_sequenceAssignment_1");
@@ -365,11 +371,11 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVariable_declarationAccess().getIdentifier_listAssignment_0(), "rule__Variable_declaration__Identifier_listAssignment_0");
 					put(grammarAccess.getVariable_declarationAccess().getTypeAssignment_2(), "rule__Variable_declaration__TypeAssignment_2");
 					put(grammarAccess.getFunction_identificationAccess().getFunction_identifierAssignment_1(), "rule__Function_identification__Function_identifierAssignment_1");
-					put(grammarAccess.getFunction_bodyAccess().getBlockAssignment(), "rule__Function_body__BlockAssignment");
+					put(grammarAccess.getFunction_bodyAccess().getFunction_blockAssignment(), "rule__Function_body__Function_blockAssignment");
 					put(grammarAccess.getProcedure_identificationAccess().getIdentifierAssignment_1(), "rule__Procedure_identification__IdentifierAssignment_1");
 					put(grammarAccess.getDirectiveAccess().getCompiler_defined_directivesAssignment_1(), "rule__Directive__Compiler_defined_directivesAssignment_1");
 					put(grammarAccess.getCompiler_defined_directivesAccess().getProcedure_headingAssignment(), "rule__Compiler_defined_directives__Procedure_headingAssignment");
-					put(grammarAccess.getProcedure_bodyAccess().getBlockAssignment(), "rule__Procedure_body__BlockAssignment");
+					put(grammarAccess.getProcedure_bodyAccess().getProcedure_blockAssignment(), "rule__Procedure_body__Procedure_blockAssignment");
 					put(grammarAccess.getProcedure_headingAccess().getIdentifierAssignment_1(), "rule__Procedure_heading__IdentifierAssignment_1");
 					put(grammarAccess.getProcedure_headingAccess().getFormal_parameter_listAssignment_2(), "rule__Procedure_heading__Formal_parameter_listAssignment_2");
 					put(grammarAccess.getFormal_parameter_listAccess().getFormal_parameter_sectionAssignment_1(), "rule__Formal_parameter_list__Formal_parameter_sectionAssignment_1");

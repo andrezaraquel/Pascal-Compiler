@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.function_body#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.function_body#getFunction_block <em>Function block</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.pascal.pascal.PascalPackage#getfunction_body()
@@ -24,29 +24,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface function_body extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Block</b></em>' containment reference.
+   * Returns the value of the '<em><b>Function block</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Block</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Function block</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Block</em>' containment reference.
-   * @see #setBlock(block)
-   * @see org.xtext.example.pascal.pascal.PascalPackage#getfunction_body_Block()
+   * @return the value of the '<em>Function block</em>' containment reference.
+   * @see #setFunction_block(function_block)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getfunction_body_Function_block()
    * @model containment="true"
    * @generated
    */
-  block getBlock();
+  function_block getFunction_block();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.pascal.pascal.function_body#getBlock <em>Block</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.function_body#getFunction_block <em>Function block</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Block</em>' containment reference.
-   * @see #getBlock()
+   * @param value the new value of the '<em>Function block</em>' containment reference.
+   * @see #getFunction_block()
    * @generated
    */
-  void setBlock(block value);
+  void setFunction_block(function_block value);
 
 } // function_body

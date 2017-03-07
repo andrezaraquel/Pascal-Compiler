@@ -308,6 +308,120 @@ ruleidentifier_list returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleprocedure_block
+entryRuleprocedure_block returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getProcedure_blockRule()); }
+	iv_ruleprocedure_block=ruleprocedure_block
+	{ $current=$iv_ruleprocedure_block.current; }
+	EOF;
+
+// Rule procedure_block
+ruleprocedure_block returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProcedure_blockAccess().getDeclaration_partDeclaration_partParserRuleCall_0_0());
+				}
+				lv_declaration_part_0_0=ruledeclaration_part
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProcedure_blockRule());
+					}
+					set(
+						$current,
+						"declaration_part",
+						lv_declaration_part_0_0,
+						"org.xtext.example.pascal.Pascal.declaration_part");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProcedure_blockAccess().getStatement_partStatement_partParserRuleCall_1_0());
+				}
+				lv_statement_part_1_0=rulestatement_part
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProcedure_blockRule());
+					}
+					set(
+						$current,
+						"statement_part",
+						lv_statement_part_1_0,
+						"org.xtext.example.pascal.Pascal.statement_part");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRulefunction_block
+entryRulefunction_block returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFunction_blockRule()); }
+	iv_rulefunction_block=rulefunction_block
+	{ $current=$iv_rulefunction_block.current; }
+	EOF;
+
+// Rule function_block
+rulefunction_block returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFunction_blockAccess().getDeclaration_partDeclaration_partParserRuleCall_0_0());
+				}
+				lv_declaration_part_0_0=ruledeclaration_part
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFunction_blockRule());
+					}
+					set(
+						$current,
+						"declaration_part",
+						lv_declaration_part_0_0,
+						"org.xtext.example.pascal.Pascal.declaration_part");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFunction_blockAccess().getStatement_partStatement_partParserRuleCall_1_0());
+				}
+				lv_statement_part_1_0=rulestatement_part
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFunction_blockRule());
+					}
+					set(
+						$current,
+						"statement_part",
+						lv_statement_part_1_0,
+						"org.xtext.example.pascal.Pascal.statement_part");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
 // Entry rule entryRuleblock
 entryRuleblock returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getBlockRule()); }
@@ -6165,18 +6279,18 @@ rulefunction_body returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getFunction_bodyAccess().getBlockBlockParserRuleCall_0());
+				newCompositeNode(grammarAccess.getFunction_bodyAccess().getFunction_blockFunction_blockParserRuleCall_0());
 			}
-			lv_block_0_0=ruleblock
+			lv_function_block_0_0=rulefunction_block
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getFunction_bodyRule());
 				}
 				set(
 					$current,
-					"block",
-					lv_block_0_0,
-					"org.xtext.example.pascal.Pascal.block");
+					"function_block",
+					lv_function_block_0_0,
+					"org.xtext.example.pascal.Pascal.function_block");
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -6334,18 +6448,18 @@ ruleprocedure_body returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getProcedure_bodyAccess().getBlockBlockParserRuleCall_0());
+				newCompositeNode(grammarAccess.getProcedure_bodyAccess().getProcedure_blockProcedure_blockParserRuleCall_0());
 			}
-			lv_block_0_0=ruleblock
+			lv_procedure_block_0_0=ruleprocedure_block
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getProcedure_bodyRule());
 				}
 				set(
 					$current,
-					"block",
-					lv_block_0_0,
-					"org.xtext.example.pascal.Pascal.block");
+					"procedure_block",
+					lv_procedure_block_0_0,
+					"org.xtext.example.pascal.Pascal.procedure_block");
 				afterParserOrEnumRuleCall();
 			}
 		)

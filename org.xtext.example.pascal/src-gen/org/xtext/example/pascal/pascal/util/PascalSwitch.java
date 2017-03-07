@@ -101,6 +101,20 @@ public class PascalSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PascalPackage.PROCEDURE_BLOCK:
+      {
+        procedure_block procedure_block = (procedure_block)theEObject;
+        T result = caseprocedure_block(procedure_block);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PascalPackage.FUNCTION_BLOCK:
+      {
+        function_block function_block = (function_block)theEObject;
+        T result = casefunction_block(function_block);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case PascalPackage.BLOCK:
       {
         block block = (block)theEObject;
@@ -896,6 +910,38 @@ public class PascalSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseidentifier_list(identifier_list object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>procedure block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>procedure block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseprocedure_block(procedure_block object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>function block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>function block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casefunction_block(function_block object)
   {
     return null;
   }

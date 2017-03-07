@@ -20,6 +20,18 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="procedure_block">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration_part" eType="#//declaration_part"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement_part" eType="#//statement_part"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="function_block">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration_part" eType="#//declaration_part"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement_part" eType="#//statement_part"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="block">
     <eStructuralFeatures xsi:type="ecore:EReference" name="declaration_part" eType="#//declaration_part"
         containment="true"/>
@@ -488,7 +500,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="function_body">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//block"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function_block" eType="#//function_block"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="procedure_identification">
@@ -504,7 +516,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="procedure_body">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//block"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedure_block" eType="#//procedure_block"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="procedure_heading">

@@ -10,9 +10,9 @@ public class Variable {
 	public Variable(String name){
 		this.name = name;
 	}
-	public Variable(String type, String name){
-		this.type = type;
+	public Variable(String name, String type){	
 		this.name = name;
+		this.type = type;
 	}
 
 	public String getType(){

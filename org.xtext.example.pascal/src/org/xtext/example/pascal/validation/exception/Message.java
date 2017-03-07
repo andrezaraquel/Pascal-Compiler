@@ -7,7 +7,8 @@ public enum Message {
 	DECLARED_FUNCTION("Função já declarada com este nome."),
 	UNDECLARED_VARIABLE("Variável não declarada."),
 	INVALID_TERM("Termo da expressão inválido."),
-	INVALID_TYPE("Tipo inválido.");
+	INVALID_TYPE("Tipo inválido."),
+	PARAMS_EQUALS("Parâmetros não podem ter o mesmo nome.");
 	
 	
 	private String content;

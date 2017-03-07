@@ -42,62 +42,67 @@ public class BlockValidator {
 	}	
 	
 	private static void verifyVariables(statement_part statement_part) {
-		for (statement statement: statement_part.getStatement_sequence().getStatement()) {
-			simple_statement simpleStatement = statement.getSimple_statement();
-			if (simpleStatement != null && simpleStatement.getAssignment_statement() != null) {
-				String name = simpleStatement.getAssignment_statement().getVariable().getEntire_variable().getIdentifier().getIdentifier();
-				
-				if (name != null && !hasVariable(null, new Variable(name))) {
-					addError(new InvalidException(Message.UNDECLARED_VARIABLE, statement.getSimple_statement().getAssignment_statement().getVariable()));
+		if (statement_part.getStatement_sequence() != null) {
+			for (statement statement: statement_part.getStatement_sequence().getStatement()) {
+				simple_statement simpleStatement = statement.getSimple_statement();
+				if (simpleStatement != null && simpleStatement.getAssignment_statement() != null) {
+					String name = simpleStatement.getAssignment_statement().getVariable().getEntire_variable().getIdentifier().getIdentifier();
+					
+					if (name != null && !hasVariable(null, new Variable(name))) {
+						addError(new InvalidException(Message.UNDECLARED_VARIABLE, statement.getSimple_statement().getAssignment_statement().getVariable()));
+					}
 				}
+				
 			}
-			
 		}
-		
 	}
 
-	public static void addField(block block, declaration_part declaration) {		
+	public static void addField(block block, declaration_part declarationPart) {		
 		
-		if (declaration != null) {
-			if (declaration.getVariable_declaration_part() != null) {
+		if (declarationPart != null) {
+			if (declarationPart.getVariable_declaration_part() != null) {
 				
-				for (type_definition type_definition : declaration.getType_definition_part().getType_definition()) {
+				for (type_definition type_definition : declarationPart.getType_definition_part().getType_definition()) {
 					addDeclaredType(type_definition.getIdentifier().getIdentifier());
 				}
 				
-				VariableValidator.validateDeclarationVariable(block, declaration);
+				VariableValidator.validateDeclarationVariable(block, declarationPart);
 			
 			} 
 			
-			if (declaration.getProcedure_heading() != null){			
+			if (declarationPart.getProcedure_heading() != null){			
 				
-				EList<procedure_heading> procedures = declaration.getProcedure_heading();
+				EList<procedure_heading> procedures = declarationPart.getProcedure_heading();
 				
 				for (procedure_heading procedure : procedures){
 					ProcedureValidator.validateDeclarationProcedure(block, procedure);
 				}
-			} else if (declaration.getProcedure_identification() != null) {
+			} else if (declarationPart.getProcedure_identification() != null) {
 				
-				EList<procedure_identification> procedures = declaration.getProcedure_identification();
+				EList<procedure_identification> procedures = declarationPart.getProcedure_identification();
 				
 				for (procedure_identification procedure : procedures){
 					ProcedureValidator.validateDeclarationProcedure(block, procedure);
 				}
 			} 
 
-			if (declaration.getFunction_heading() != null) {
-				EList<function_heading> functions = declaration.getFunction_heading();
+			ProcedureValidator.verifyProcedureVariables(declarationPart);
+			
+			
+			if (declarationPart.getFunction_heading() != null) {
+				EList<function_heading> functions = declarationPart.getFunction_heading();
 				
 				for (function_heading function : functions){
 					FunctionValidator.validateDeclarationFunction(block, function);
 				}
-			} else if (declaration.getFunction_identification() != null) {
-				EList<function_identification> functions = declaration.getFunction_identification();
+			} else if (declarationPart.getFunction_identification() != null) {
+				EList<function_identification> functions = declarationPart.getFunction_identification();
 				
 				for (function_identification function : functions){
 					FunctionValidator.validateDeclarationFunction(block, function);
 				}
 			}
+			FunctionValidator.verifyFunctionVariables(declarationPart);
 		}
 		
 	}
@@ -126,7 +131,7 @@ public class BlockValidator {
 		return errorList;
 	}
 
-	private static List<Function> getFunctionsList() {
+	public static List<Function> getFunctionsList() {
 		if (functionsList == null) {
 			functionsList = new ArrayList<>();
 		}

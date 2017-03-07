@@ -15,6 +15,12 @@ program_heading:
 identifier_list:
 	identifier+=ID ( "," identifier+=ID )*;
 
+procedure_block:
+	declaration_part=declaration_part statement_part=statement_part;
+
+function_block:
+	declaration_part=declaration_part statement_part=statement_part;
+
 block:
 	declaration_part=declaration_part statement_part=statement_part;
 
@@ -386,7 +392,7 @@ function_identification:
 ;
 
 function_body:
-	block=block
+	function_block=function_block
 ;
 
 
@@ -404,7 +410,7 @@ compiler_defined_directives:
 ;
 
 procedure_body:
-	block=block
+	procedure_block=procedure_block
 ;
 
 procedure_heading:

@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
-import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.function_block;
 import org.xtext.example.pascal.pascal.function_body;
 
 /**
@@ -24,7 +24,7 @@ import org.xtext.example.pascal.pascal.function_body;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.function_bodyImpl#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.function_bodyImpl#getFunction_block <em>Function block</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +32,14 @@ import org.xtext.example.pascal.pascal.function_body;
 public class function_bodyImpl extends MinimalEObjectImpl.Container implements function_body
 {
   /**
-   * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
+   * The cached value of the '{@link #getFunction_block() <em>Function block</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBlock()
+   * @see #getFunction_block()
    * @generated
    * @ordered
    */
-  protected block block;
+  protected function_block function_block;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,9 +67,9 @@ public class function_bodyImpl extends MinimalEObjectImpl.Container implements f
    * <!-- end-user-doc -->
    * @generated
    */
-  public block getBlock()
+  public function_block getFunction_block()
   {
-    return block;
+    return function_block;
   }
 
   /**
@@ -77,13 +77,13 @@ public class function_bodyImpl extends MinimalEObjectImpl.Container implements f
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBlock(block newBlock, NotificationChain msgs)
+  public NotificationChain basicSetFunction_block(function_block newFunction_block, NotificationChain msgs)
   {
-    block oldBlock = block;
-    block = newBlock;
+    function_block oldFunction_block = function_block;
+    function_block = newFunction_block;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.FUNCTION_BODY__BLOCK, oldBlock, newBlock);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK, oldFunction_block, newFunction_block);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class function_bodyImpl extends MinimalEObjectImpl.Container implements f
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBlock(block newBlock)
+  public void setFunction_block(function_block newFunction_block)
   {
-    if (newBlock != block)
+    if (newFunction_block != function_block)
     {
       NotificationChain msgs = null;
-      if (block != null)
-        msgs = ((InternalEObject)block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.FUNCTION_BODY__BLOCK, null, msgs);
-      if (newBlock != null)
-        msgs = ((InternalEObject)newBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.FUNCTION_BODY__BLOCK, null, msgs);
-      msgs = basicSetBlock(newBlock, msgs);
+      if (function_block != null)
+        msgs = ((InternalEObject)function_block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK, null, msgs);
+      if (newFunction_block != null)
+        msgs = ((InternalEObject)newFunction_block).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK, null, msgs);
+      msgs = basicSetFunction_block(newFunction_block, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.FUNCTION_BODY__BLOCK, newBlock, newBlock));
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK, newFunction_block, newFunction_block));
   }
 
   /**
@@ -120,8 +120,8 @@ public class function_bodyImpl extends MinimalEObjectImpl.Container implements f
   {
     switch (featureID)
     {
-      case PascalPackage.FUNCTION_BODY__BLOCK:
-        return basicSetBlock(null, msgs);
+      case PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK:
+        return basicSetFunction_block(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +136,8 @@ public class function_bodyImpl extends MinimalEObjectImpl.Container implements f
   {
     switch (featureID)
     {
-      case PascalPackage.FUNCTION_BODY__BLOCK:
-        return getBlock();
+      case PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK:
+        return getFunction_block();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +152,8 @@ public class function_bodyImpl extends MinimalEObjectImpl.Container implements f
   {
     switch (featureID)
     {
-      case PascalPackage.FUNCTION_BODY__BLOCK:
-        setBlock((block)newValue);
+      case PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK:
+        setFunction_block((function_block)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class function_bodyImpl extends MinimalEObjectImpl.Container implements f
   {
     switch (featureID)
     {
-      case PascalPackage.FUNCTION_BODY__BLOCK:
-        setBlock((block)null);
+      case PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK:
+        setFunction_block((function_block)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,8 +186,8 @@ public class function_bodyImpl extends MinimalEObjectImpl.Container implements f
   {
     switch (featureID)
     {
-      case PascalPackage.FUNCTION_BODY__BLOCK:
-        return block != null;
+      case PascalPackage.FUNCTION_BODY__FUNCTION_BLOCK:
+        return function_block != null;
     }
     return super.eIsSet(featureID);
   }

@@ -60,6 +60,24 @@ public interface PascalFactory extends EFactory
   identifier_list createidentifier_list();
 
   /**
+   * Returns a new object of class '<em>procedure block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>procedure block</em>'.
+   * @generated
+   */
+  procedure_block createprocedure_block();
+
+  /**
+   * Returns a new object of class '<em>function block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>function block</em>'.
+   * @generated
+   */
+  function_block createfunction_block();
+
+  /**
    * Returns a new object of class '<em>block</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

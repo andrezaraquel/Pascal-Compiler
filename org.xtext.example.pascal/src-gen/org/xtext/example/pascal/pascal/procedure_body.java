@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.procedure_body#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.procedure_body#getProcedure_block <em>Procedure block</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.pascal.pascal.PascalPackage#getprocedure_body()
@@ -24,29 +24,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface procedure_body extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Block</b></em>' containment reference.
+   * Returns the value of the '<em><b>Procedure block</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Block</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Procedure block</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Block</em>' containment reference.
-   * @see #setBlock(block)
-   * @see org.xtext.example.pascal.pascal.PascalPackage#getprocedure_body_Block()
+   * @return the value of the '<em>Procedure block</em>' containment reference.
+   * @see #setProcedure_block(procedure_block)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getprocedure_body_Procedure_block()
    * @model containment="true"
    * @generated
    */
-  block getBlock();
+  procedure_block getProcedure_block();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.pascal.pascal.procedure_body#getBlock <em>Block</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.procedure_body#getProcedure_block <em>Procedure block</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Block</em>' containment reference.
-   * @see #getBlock()
+   * @param value the new value of the '<em>Procedure block</em>' containment reference.
+   * @see #getProcedure_block()
    * @generated
    */
-  void setBlock(block value);
+  void setProcedure_block(procedure_block value);
 
 } // procedure_body

@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
-import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.procedure_block;
 import org.xtext.example.pascal.pascal.procedure_body;
 
 /**
@@ -24,7 +24,7 @@ import org.xtext.example.pascal.pascal.procedure_body;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.procedure_bodyImpl#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.procedure_bodyImpl#getProcedure_block <em>Procedure block</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +32,14 @@ import org.xtext.example.pascal.pascal.procedure_body;
 public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements procedure_body
 {
   /**
-   * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
+   * The cached value of the '{@link #getProcedure_block() <em>Procedure block</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBlock()
+   * @see #getProcedure_block()
    * @generated
    * @ordered
    */
-  protected block block;
+  protected procedure_block procedure_block;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,9 +67,9 @@ public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public block getBlock()
+  public procedure_block getProcedure_block()
   {
-    return block;
+    return procedure_block;
   }
 
   /**
@@ -77,13 +77,13 @@ public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBlock(block newBlock, NotificationChain msgs)
+  public NotificationChain basicSetProcedure_block(procedure_block newProcedure_block, NotificationChain msgs)
   {
-    block oldBlock = block;
-    block = newBlock;
+    procedure_block oldProcedure_block = procedure_block;
+    procedure_block = newProcedure_block;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.PROCEDURE_BODY__BLOCK, oldBlock, newBlock);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK, oldProcedure_block, newProcedure_block);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBlock(block newBlock)
+  public void setProcedure_block(procedure_block newProcedure_block)
   {
-    if (newBlock != block)
+    if (newProcedure_block != procedure_block)
     {
       NotificationChain msgs = null;
-      if (block != null)
-        msgs = ((InternalEObject)block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.PROCEDURE_BODY__BLOCK, null, msgs);
-      if (newBlock != null)
-        msgs = ((InternalEObject)newBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.PROCEDURE_BODY__BLOCK, null, msgs);
-      msgs = basicSetBlock(newBlock, msgs);
+      if (procedure_block != null)
+        msgs = ((InternalEObject)procedure_block).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK, null, msgs);
+      if (newProcedure_block != null)
+        msgs = ((InternalEObject)newProcedure_block).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK, null, msgs);
+      msgs = basicSetProcedure_block(newProcedure_block, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.PROCEDURE_BODY__BLOCK, newBlock, newBlock));
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK, newProcedure_block, newProcedure_block));
   }
 
   /**
@@ -120,8 +120,8 @@ public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case PascalPackage.PROCEDURE_BODY__BLOCK:
-        return basicSetBlock(null, msgs);
+      case PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK:
+        return basicSetProcedure_block(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +136,8 @@ public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case PascalPackage.PROCEDURE_BODY__BLOCK:
-        return getBlock();
+      case PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK:
+        return getProcedure_block();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +152,8 @@ public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case PascalPackage.PROCEDURE_BODY__BLOCK:
-        setBlock((block)newValue);
+      case PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK:
+        setProcedure_block((procedure_block)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case PascalPackage.PROCEDURE_BODY__BLOCK:
-        setBlock((block)null);
+      case PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK:
+        setProcedure_block((procedure_block)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,8 +186,8 @@ public class procedure_bodyImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case PascalPackage.PROCEDURE_BODY__BLOCK:
-        return block != null;
+      case PascalPackage.PROCEDURE_BODY__PROCEDURE_BLOCK:
+        return procedure_block != null;
     }
     return super.eIsSet(featureID);
   }

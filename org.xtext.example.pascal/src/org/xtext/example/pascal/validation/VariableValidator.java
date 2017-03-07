@@ -12,8 +12,8 @@ import org.xtext.example.pascal.pascal.assignment_statement;
 
 public class VariableValidator {
 		
-	public static void validateDeclarationVariable(block block, declaration_part declaration) {
-		variable_declaration_part declaration_variable = (variable_declaration_part) declaration.getVariable_declaration_part();
+	public static void validateDeclarationVariable(block block, declaration_part declarationPart) {
+		variable_declaration_part declaration_variable = (variable_declaration_part) declarationPart.getVariable_declaration_part();
 
 		EList<variable_declaration> varibles_declaration =  declaration_variable.getVariable_declaration();
 
@@ -26,7 +26,7 @@ public class VariableValidator {
 			}			
 			
 			for (String name : names){
-				Variable variable = new Variable(type, name);
+				Variable variable = new Variable(name, type);
 				if (BlockValidator.hasVariable(block, variable)) {
 					BlockValidator.addError(new InvalidException(Message.DECLARED_VARIABLE, v_declaration));
 				} 
