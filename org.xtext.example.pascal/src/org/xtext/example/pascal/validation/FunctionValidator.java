@@ -26,6 +26,11 @@ public static void validateDeclarationFunction(block block, function_heading fun
 		
 		String name = function_heading.getIdentifier().getIdentifier();
 		
+		String resultType = function_heading.getResult_type().getType_identifier().getIdentifier().getIdentifier();
+		if (!BlockValidator.isType(resultType) && !BlockValidator.hasDeclaredType(resultType)) {
+			BlockValidator.addError(new InvalidException(Message.INVALID_TYPE, function_heading.getResult_type()));
+		}
+		
 		List<Variable> params = new ArrayList<>();
 		formal_parameter_list formalParameter = function_heading.getFormal_parameter_list();
 		if (formalParameter!= null && formalParameter.getFormal_parameter_section() != null) {

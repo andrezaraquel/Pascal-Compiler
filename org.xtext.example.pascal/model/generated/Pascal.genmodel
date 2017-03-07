@@ -5,7 +5,7 @@
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.12">
   <genPackages prefix="Pascal" basePackage="org.xtext.example.pascal" disposableProviderFactory="true"
-      fileExtensions="xtext" ecorePackage="Pascal.ecore#/">
+      fileExtensions="pascal" ecorePackage="Pascal.ecore#/">
     <genClasses ecoreClass="Pascal.ecore#//Begin">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//Begin/elements"/>
     </genClasses>
