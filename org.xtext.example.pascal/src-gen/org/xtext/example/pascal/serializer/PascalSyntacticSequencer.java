@@ -43,21 +43,9 @@ public class PascalSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getAddition_operatorRule())
-			return getaddition_operatorToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
-	/**
-	 * addition_operator:
-	 * 	sign | "or"
-	 * ;
-	 */
-	protected String getaddition_operatorToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "+";
-	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {

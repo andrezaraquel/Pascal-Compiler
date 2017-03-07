@@ -1,6 +1,7 @@
 package org.xtext.example.pascal.validation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -25,10 +26,7 @@ public class BlockValidator {
 	
 	private static void init() {		
 
-		typeList = new ArrayList<>();
-		for (String s : ARRAY_TYPES) {
-			typeList.add(s);
-		}
+		typeList = Arrays.asList(ARRAY_TYPES);
 		declaredTypes = new ArrayList<>();
 		variablesList = new ArrayList<>();
 		proceduresList = new ArrayList<>();
@@ -39,13 +37,26 @@ public class BlockValidator {
 	public static void validateBlock(block block) {
 		init();		
 		addField(block,  block.getDeclaration_part());
+		verifyVariables(block.getStatement_part());
 
 	}	
 	
-	public static void addField(block block, declaration_part declaration) {
+	private static void verifyVariables(statement_part statement_part) {
+		for (statement statement: statement_part.getStatement_sequence().getStatement()) {
+			simple_statement simpleStatement = statement.getSimple_statement();
+			if (simpleStatement != null && simpleStatement.getAssignment_statement() != null) {
+				String name = simpleStatement.getAssignment_statement().getVariable().getEntire_variable().getIdentifier().getIdentifier();
+				
+				if (name != null && !hasVariable(null, new Variable(name))) {
+					addError(new InvalidException(Message.UNDECLARED_VARIABLE, statement.getSimple_statement().getAssignment_statement().getVariable()));
+				}
+			}
+			
+		}
 		
-		
-		
+	}
+
+	public static void addField(block block, declaration_part declaration) {		
 		
 		if (declaration != null) {
 			if (declaration.getVariable_declaration_part() != null) {

@@ -840,45 +840,19 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *
 	 * Constraint:
 	 *     (
-	 *         (label_declaration_part=label_declaration_part? variable_declaration_part=variable_declaration_part) | 
+	 *         label_declaration_part=label_declaration_part? 
+	 *         constant_definition_part=constant_definition_part? 
+	 *         type_definition_part=type_definition_part? 
+	 *         variable_declaration_part=variable_declaration_part? 
 	 *         (
-	 *             label_declaration_part=label_declaration_part? 
-	 *             constant_definition_part=constant_definition_part? 
-	 *             variable_declaration_part=variable_declaration_part
-	 *         ) | 
-	 *         (
-	 *             label_declaration_part=label_declaration_part? 
-	 *             constant_definition_part=constant_definition_part? 
-	 *             type_definition_part=type_definition_part 
-	 *             variable_declaration_part=variable_declaration_part
-	 *         ) | 
-	 *         (
-	 *             (
-	 *                 (label_declaration_part=label_declaration_part? variable_declaration_part=variable_declaration_part) | 
-	 *                 (
-	 *                     label_declaration_part=label_declaration_part? 
-	 *                     constant_definition_part=constant_definition_part? 
-	 *                     variable_declaration_part=variable_declaration_part
-	 *                 ) | 
-	 *                 (
-	 *                     label_declaration_part=label_declaration_part? 
-	 *                     constant_definition_part=constant_definition_part? 
-	 *                     type_definition_part=type_definition_part 
-	 *                     variable_declaration_part=variable_declaration_part
-	 *                 ) | 
-	 *                 variable_declaration_part=variable_declaration_part
-	 *             ) 
-	 *             (
-	 *                 (procedure_heading+=procedure_heading procedure_body+=procedure_body) | 
-	 *                 (procedure_heading+=procedure_heading directive+=directive) | 
-	 *                 (procedure_identification+=procedure_identification procedure_body+=procedure_body) | 
-	 *                 (function_heading+=function_heading function_body+=function_body) | 
-	 *                 (function_heading+=function_heading directive+=directive) | 
-	 *                 (function_identification+=function_identification function_body+=function_body)
-	 *             )+
-	 *         ) | 
-	 *         variable_declaration_part=variable_declaration_part
-	 *     )?
+	 *             (procedure_heading+=procedure_heading procedure_body+=procedure_body) | 
+	 *             (procedure_heading+=procedure_heading directive+=directive) | 
+	 *             (procedure_identification+=procedure_identification procedure_body+=procedure_body) | 
+	 *             (function_heading+=function_heading function_body+=function_body) | 
+	 *             (function_heading+=function_heading directive+=directive) | 
+	 *             (function_identification+=function_identification function_body+=function_body)
+	 *         )*
+	 *     )
 	 */
 	protected void sequence_declaration_part(ISerializationContext context, declaration_part semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1612,19 +1586,10 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     program returns program
 	 *
 	 * Constraint:
-	 *     (program_heading=program_heading block=block)
+	 *     (program_heading=program_heading block=block)?
 	 */
 	protected void sequence_program(ISerializationContext context, program semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, PascalPackage.Literals.PROGRAM__PROGRAM_HEADING) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalPackage.Literals.PROGRAM__PROGRAM_HEADING));
-			if (transientValues.isValueTransient(semanticObject, PascalPackage.Literals.PROGRAM__BLOCK) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalPackage.Literals.PROGRAM__BLOCK));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProgramAccess().getProgram_headingProgram_headingParserRuleCall_0_0(), semanticObject.getProgram_heading());
-		feeder.accept(grammarAccess.getProgramAccess().getBlockBlockParserRuleCall_1_0(), semanticObject.getBlock());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1786,7 +1751,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     simple_expression returns simple_expression
 	 *
 	 * Constraint:
-	 *     (sign=sign? term+=term term+=term*)
+	 *     (sign=sign? term+=term (addition_operator+=addition_operator term+=term)*)
 	 */
 	protected void sequence_simple_expression(ISerializationContext context, simple_expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -119,47 +119,59 @@ ruleprogram returns [EObject current=null]
 }:
 	(
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getProgramAccess().getProgram_headingProgram_headingParserRuleCall_0_0());
-				}
-				lv_program_heading_0_0=ruleprogram_heading
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getProgramRule());
-					}
-					set(
-						$current,
-						"program_heading",
-						lv_program_heading_0_0,
-						"org.xtext.example.pascal.Pascal.program_heading");
-					afterParserOrEnumRuleCall();
-				}
-			)
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getProgramAccess().getProgramAction_0(),
+					$current);
+			}
 		)
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getProgramAccess().getBlockBlockParserRuleCall_1_0());
-				}
-				lv_block_1_0=ruleblock
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getProgramRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getProgramAccess().getProgram_headingProgram_headingParserRuleCall_1_0_0());
 					}
-					set(
-						$current,
-						"block",
-						lv_block_1_0,
-						"org.xtext.example.pascal.Pascal.block");
-					afterParserOrEnumRuleCall();
-				}
+					lv_program_heading_1_0=ruleprogram_heading
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getProgramRule());
+						}
+						set(
+							$current,
+							"program_heading",
+							lv_program_heading_1_0,
+							"org.xtext.example.pascal.Pascal.program_heading");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		otherlv_2='.'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getProgramAccess().getFullStopKeyword_2());
-		}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getProgramAccess().getBlockBlockParserRuleCall_1_1_0());
+					}
+					lv_block_2_0=ruleblock
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getProgramRule());
+						}
+						set(
+							$current,
+							"block",
+							lv_block_2_0,
+							"org.xtext.example.pascal.Pascal.block");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_3='.'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getProgramAccess().getFullStopKeyword_1_2());
+			}
+		)?
 	)
 ;
 
@@ -1360,16 +1372,25 @@ rulesimple_expression returns [EObject current=null]
 			)
 		)
 		(
-			{
-				/* */
-			}
-			{
-				newCompositeNode(grammarAccess.getSimple_expressionAccess().getAddition_operatorParserRuleCall_2_0());
-			}
-			ruleaddition_operator
-			{
-				afterParserOrEnumRuleCall();
-			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getSimple_expressionAccess().getAddition_operatorAddition_operatorParserRuleCall_2_0_0());
+					}
+					lv_addition_operator_2_0=ruleaddition_operator
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getSimple_expressionRule());
+						}
+						add(
+							$current,
+							"addition_operator",
+							lv_addition_operator_2_0,
+							"org.xtext.example.pascal.Pascal.addition_operator");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 			(
 				(
 					{
@@ -3755,11 +3776,21 @@ ruledeclaration_part returns [EObject current=null]
 }:
 	(
 		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getDeclaration_partAccess().getDeclaration_partAction_0(),
+					$current);
+			}
+		)
+		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDeclaration_partAccess().getLabel_declaration_partLabel_declaration_partParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getDeclaration_partAccess().getLabel_declaration_partLabel_declaration_partParserRuleCall_1_0());
 				}
-				lv_label_declaration_part_0_0=rulelabel_declaration_part
+				lv_label_declaration_part_1_0=rulelabel_declaration_part
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3767,7 +3798,7 @@ ruledeclaration_part returns [EObject current=null]
 					set(
 						$current,
 						"label_declaration_part",
-						lv_label_declaration_part_0_0,
+						lv_label_declaration_part_1_0,
 						"org.xtext.example.pascal.Pascal.label_declaration_part");
 					afterParserOrEnumRuleCall();
 				}
@@ -3776,9 +3807,9 @@ ruledeclaration_part returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDeclaration_partAccess().getConstant_definition_partConstant_definition_partParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getDeclaration_partAccess().getConstant_definition_partConstant_definition_partParserRuleCall_2_0());
 				}
-				lv_constant_definition_part_1_0=ruleconstant_definition_part
+				lv_constant_definition_part_2_0=ruleconstant_definition_part
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3786,7 +3817,7 @@ ruledeclaration_part returns [EObject current=null]
 					set(
 						$current,
 						"constant_definition_part",
-						lv_constant_definition_part_1_0,
+						lv_constant_definition_part_2_0,
 						"org.xtext.example.pascal.Pascal.constant_definition_part");
 					afterParserOrEnumRuleCall();
 				}
@@ -3795,9 +3826,9 @@ ruledeclaration_part returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDeclaration_partAccess().getType_definition_partType_definition_partParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getDeclaration_partAccess().getType_definition_partType_definition_partParserRuleCall_3_0());
 				}
-				lv_type_definition_part_2_0=ruletype_definition_part
+				lv_type_definition_part_3_0=ruletype_definition_part
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3805,7 +3836,7 @@ ruledeclaration_part returns [EObject current=null]
 					set(
 						$current,
 						"type_definition_part",
-						lv_type_definition_part_2_0,
+						lv_type_definition_part_3_0,
 						"org.xtext.example.pascal.Pascal.type_definition_part");
 					afterParserOrEnumRuleCall();
 				}
@@ -3814,9 +3845,9 @@ ruledeclaration_part returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDeclaration_partAccess().getVariable_declaration_partVariable_declaration_partParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getDeclaration_partAccess().getVariable_declaration_partVariable_declaration_partParserRuleCall_4_0());
 				}
-				lv_variable_declaration_part_3_0=rulevariable_declaration_part
+				lv_variable_declaration_part_4_0=rulevariable_declaration_part
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3824,7 +3855,7 @@ ruledeclaration_part returns [EObject current=null]
 					set(
 						$current,
 						"variable_declaration_part",
-						lv_variable_declaration_part_3_0,
+						lv_variable_declaration_part_4_0,
 						"org.xtext.example.pascal.Pascal.variable_declaration_part");
 					afterParserOrEnumRuleCall();
 				}
@@ -3836,9 +3867,9 @@ ruledeclaration_part returns [EObject current=null]
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_headingProcedure_headingParserRuleCall_4_0_0_0_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_headingProcedure_headingParserRuleCall_5_0_0_0_0());
 							}
-							lv_procedure_heading_4_0=ruleprocedure_heading
+							lv_procedure_heading_5_0=ruleprocedure_heading
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3846,22 +3877,22 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"procedure_heading",
-									lv_procedure_heading_4_0,
+									lv_procedure_heading_5_0,
 									"org.xtext.example.pascal.Pascal.procedure_heading");
 								afterParserOrEnumRuleCall();
 							}
 						)
 					)
-					otherlv_5=';'
+					otherlv_6=';'
 					{
-						newLeafNode(otherlv_5, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_4_0_0_1());
+						newLeafNode(otherlv_6, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_5_0_0_1());
 					}
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_bodyProcedure_bodyParserRuleCall_4_0_0_2_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_bodyProcedure_bodyParserRuleCall_5_0_0_2_0());
 							}
-							lv_procedure_body_6_0=ruleprocedure_body
+							lv_procedure_body_7_0=ruleprocedure_body
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3869,7 +3900,7 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"procedure_body",
-									lv_procedure_body_6_0,
+									lv_procedure_body_7_0,
 									"org.xtext.example.pascal.Pascal.procedure_body");
 								afterParserOrEnumRuleCall();
 							}
@@ -3881,9 +3912,9 @@ ruledeclaration_part returns [EObject current=null]
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_headingProcedure_headingParserRuleCall_4_0_1_0_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_headingProcedure_headingParserRuleCall_5_0_1_0_0());
 							}
-							lv_procedure_heading_7_0=ruleprocedure_heading
+							lv_procedure_heading_8_0=ruleprocedure_heading
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3891,22 +3922,22 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"procedure_heading",
-									lv_procedure_heading_7_0,
+									lv_procedure_heading_8_0,
 									"org.xtext.example.pascal.Pascal.procedure_heading");
 								afterParserOrEnumRuleCall();
 							}
 						)
 					)
-					otherlv_8=';'
+					otherlv_9=';'
 					{
-						newLeafNode(otherlv_8, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_4_0_1_1());
+						newLeafNode(otherlv_9, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_5_0_1_1());
 					}
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getDirectiveDirectiveParserRuleCall_4_0_1_2_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getDirectiveDirectiveParserRuleCall_5_0_1_2_0());
 							}
-							lv_directive_9_0=ruledirective
+							lv_directive_10_0=ruledirective
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3914,7 +3945,7 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"directive",
-									lv_directive_9_0,
+									lv_directive_10_0,
 									"org.xtext.example.pascal.Pascal.directive");
 								afterParserOrEnumRuleCall();
 							}
@@ -3926,9 +3957,9 @@ ruledeclaration_part returns [EObject current=null]
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_identificationProcedure_identificationParserRuleCall_4_0_2_0_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_identificationProcedure_identificationParserRuleCall_5_0_2_0_0());
 							}
-							lv_procedure_identification_10_0=ruleprocedure_identification
+							lv_procedure_identification_11_0=ruleprocedure_identification
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3936,22 +3967,22 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"procedure_identification",
-									lv_procedure_identification_10_0,
+									lv_procedure_identification_11_0,
 									"org.xtext.example.pascal.Pascal.procedure_identification");
 								afterParserOrEnumRuleCall();
 							}
 						)
 					)
-					otherlv_11=';'
+					otherlv_12=';'
 					{
-						newLeafNode(otherlv_11, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_4_0_2_1());
+						newLeafNode(otherlv_12, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_5_0_2_1());
 					}
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_bodyProcedure_bodyParserRuleCall_4_0_2_2_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getProcedure_bodyProcedure_bodyParserRuleCall_5_0_2_2_0());
 							}
-							lv_procedure_body_12_0=ruleprocedure_body
+							lv_procedure_body_13_0=ruleprocedure_body
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3959,7 +3990,7 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"procedure_body",
-									lv_procedure_body_12_0,
+									lv_procedure_body_13_0,
 									"org.xtext.example.pascal.Pascal.procedure_body");
 								afterParserOrEnumRuleCall();
 							}
@@ -3971,9 +4002,9 @@ ruledeclaration_part returns [EObject current=null]
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_headingFunction_headingParserRuleCall_4_0_3_0_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_headingFunction_headingParserRuleCall_5_0_3_0_0());
 							}
-							lv_function_heading_13_0=rulefunction_heading
+							lv_function_heading_14_0=rulefunction_heading
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -3981,22 +4012,22 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"function_heading",
-									lv_function_heading_13_0,
+									lv_function_heading_14_0,
 									"org.xtext.example.pascal.Pascal.function_heading");
 								afterParserOrEnumRuleCall();
 							}
 						)
 					)
-					otherlv_14=';'
+					otherlv_15=';'
 					{
-						newLeafNode(otherlv_14, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_4_0_3_1());
+						newLeafNode(otherlv_15, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_5_0_3_1());
 					}
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_bodyFunction_bodyParserRuleCall_4_0_3_2_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_bodyFunction_bodyParserRuleCall_5_0_3_2_0());
 							}
-							lv_function_body_15_0=rulefunction_body
+							lv_function_body_16_0=rulefunction_body
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -4004,7 +4035,7 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"function_body",
-									lv_function_body_15_0,
+									lv_function_body_16_0,
 									"org.xtext.example.pascal.Pascal.function_body");
 								afterParserOrEnumRuleCall();
 							}
@@ -4016,9 +4047,9 @@ ruledeclaration_part returns [EObject current=null]
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_headingFunction_headingParserRuleCall_4_0_4_0_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_headingFunction_headingParserRuleCall_5_0_4_0_0());
 							}
-							lv_function_heading_16_0=rulefunction_heading
+							lv_function_heading_17_0=rulefunction_heading
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -4026,22 +4057,22 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"function_heading",
-									lv_function_heading_16_0,
+									lv_function_heading_17_0,
 									"org.xtext.example.pascal.Pascal.function_heading");
 								afterParserOrEnumRuleCall();
 							}
 						)
 					)
-					otherlv_17=';'
+					otherlv_18=';'
 					{
-						newLeafNode(otherlv_17, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_4_0_4_1());
+						newLeafNode(otherlv_18, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_5_0_4_1());
 					}
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getDirectiveDirectiveParserRuleCall_4_0_4_2_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getDirectiveDirectiveParserRuleCall_5_0_4_2_0());
 							}
-							lv_directive_18_0=ruledirective
+							lv_directive_19_0=ruledirective
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -4049,7 +4080,7 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"directive",
-									lv_directive_18_0,
+									lv_directive_19_0,
 									"org.xtext.example.pascal.Pascal.directive");
 								afterParserOrEnumRuleCall();
 							}
@@ -4061,9 +4092,9 @@ ruledeclaration_part returns [EObject current=null]
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_identificationFunction_identificationParserRuleCall_4_0_5_0_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_identificationFunction_identificationParserRuleCall_5_0_5_0_0());
 							}
-							lv_function_identification_19_0=rulefunction_identification
+							lv_function_identification_20_0=rulefunction_identification
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -4071,22 +4102,22 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"function_identification",
-									lv_function_identification_19_0,
+									lv_function_identification_20_0,
 									"org.xtext.example.pascal.Pascal.function_identification");
 								afterParserOrEnumRuleCall();
 							}
 						)
 					)
-					otherlv_20=';'
+					otherlv_21=';'
 					{
-						newLeafNode(otherlv_20, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_4_0_5_1());
+						newLeafNode(otherlv_21, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_5_0_5_1());
 					}
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_bodyFunction_bodyParserRuleCall_4_0_5_2_0());
+								newCompositeNode(grammarAccess.getDeclaration_partAccess().getFunction_bodyFunction_bodyParserRuleCall_5_0_5_2_0());
 							}
-							lv_function_body_21_0=rulefunction_body
+							lv_function_body_22_0=rulefunction_body
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getDeclaration_partRule());
@@ -4094,7 +4125,7 @@ ruledeclaration_part returns [EObject current=null]
 								add(
 									$current,
 									"function_body",
-									lv_function_body_21_0,
+									lv_function_body_22_0,
 									"org.xtext.example.pascal.Pascal.function_body");
 								afterParserOrEnumRuleCall();
 							}
@@ -4102,9 +4133,9 @@ ruledeclaration_part returns [EObject current=null]
 					)
 				)
 			)
-			otherlv_22=';'
+			otherlv_23=';'
 			{
-				newLeafNode(otherlv_22, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_4_1());
+				newLeafNode(otherlv_23, grammarAccess.getDeclaration_partAccess().getSemicolonKeyword_5_1());
 			}
 		)*
 	)

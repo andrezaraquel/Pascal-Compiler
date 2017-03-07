@@ -41,33 +41,41 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	public class ProgramElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.pascal.Pascal.program");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cProgram_headingAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cProgram_headingProgram_headingParserRuleCall_0_0 = (RuleCall)cProgram_headingAssignment_0.eContents().get(0);
-		private final Assignment cBlockAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBlockBlockParserRuleCall_1_0 = (RuleCall)cBlockAssignment_1.eContents().get(0);
-		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Action cProgramAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cProgram_headingAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cProgram_headingProgram_headingParserRuleCall_1_0_0 = (RuleCall)cProgram_headingAssignment_1_0.eContents().get(0);
+		private final Assignment cBlockAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cBlockBlockParserRuleCall_1_1_0 = (RuleCall)cBlockAssignment_1_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//program:
-		//	program_heading=program_heading block=block ".";
+		//	{program} (program_heading=program_heading block=block ".")?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//program_heading=program_heading block=block "."
+		//{program} (program_heading=program_heading block=block ".")?
 		public Group getGroup() { return cGroup; }
 		
+		//{program}
+		public Action getProgramAction_0() { return cProgramAction_0; }
+		
+		//(program_heading=program_heading block=block ".")?
+		public Group getGroup_1() { return cGroup_1; }
+		
 		//program_heading=program_heading
-		public Assignment getProgram_headingAssignment_0() { return cProgram_headingAssignment_0; }
+		public Assignment getProgram_headingAssignment_1_0() { return cProgram_headingAssignment_1_0; }
 		
 		//program_heading
-		public RuleCall getProgram_headingProgram_headingParserRuleCall_0_0() { return cProgram_headingProgram_headingParserRuleCall_0_0; }
+		public RuleCall getProgram_headingProgram_headingParserRuleCall_1_0_0() { return cProgram_headingProgram_headingParserRuleCall_1_0_0; }
 		
 		//block=block
-		public Assignment getBlockAssignment_1() { return cBlockAssignment_1; }
+		public Assignment getBlockAssignment_1_1() { return cBlockAssignment_1_1; }
 		
 		//block
-		public RuleCall getBlockBlockParserRuleCall_1_0() { return cBlockBlockParserRuleCall_1_0; }
+		public RuleCall getBlockBlockParserRuleCall_1_1_0() { return cBlockBlockParserRuleCall_1_1_0; }
 		
 		//"."
-		public Keyword getFullStopKeyword_2() { return cFullStopKeyword_2; }
+		public Keyword getFullStopKeyword_1_2() { return cFullStopKeyword_1_2; }
 	}
 	public class Program_headingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.pascal.Pascal.program_heading");
@@ -670,15 +678,16 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTermAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTermTermParserRuleCall_1_0 = (RuleCall)cTermAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final RuleCall cAddition_operatorParserRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final Assignment cAddition_operatorAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cAddition_operatorAddition_operatorParserRuleCall_2_0_0 = (RuleCall)cAddition_operatorAssignment_2_0.eContents().get(0);
 		private final Assignment cTermAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cTermTermParserRuleCall_2_1_0 = (RuleCall)cTermAssignment_2_1.eContents().get(0);
 		
 		//simple_expression:
-		//	sign=sign? term+=term (addition_operator term+=term)*;
+		//	sign=sign? term+=term (addition_operator+=addition_operator term+=term)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//sign=sign? term+=term (addition_operator term+=term)*
+		//sign=sign? term+=term (addition_operator+=addition_operator term+=term)*
 		public Group getGroup() { return cGroup; }
 		
 		//sign=sign?
@@ -693,11 +702,14 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//term
 		public RuleCall getTermTermParserRuleCall_1_0() { return cTermTermParserRuleCall_1_0; }
 		
-		//(addition_operator term+=term)*
+		//(addition_operator+=addition_operator term+=term)*
 		public Group getGroup_2() { return cGroup_2; }
 		
+		//addition_operator+=addition_operator
+		public Assignment getAddition_operatorAssignment_2_0() { return cAddition_operatorAssignment_2_0; }
+		
 		//addition_operator
-		public RuleCall getAddition_operatorParserRuleCall_2_0() { return cAddition_operatorParserRuleCall_2_0; }
+		public RuleCall getAddition_operatorAddition_operatorParserRuleCall_2_0_0() { return cAddition_operatorAddition_operatorParserRuleCall_2_0_0; }
 		
 		//term+=term
 		public Assignment getTermAssignment_2_1() { return cTermAssignment_2_1; }
@@ -1952,56 +1964,57 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	public class Declaration_partElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.pascal.Pascal.declaration_part");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cLabel_declaration_partAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cLabel_declaration_partLabel_declaration_partParserRuleCall_0_0 = (RuleCall)cLabel_declaration_partAssignment_0.eContents().get(0);
-		private final Assignment cConstant_definition_partAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cConstant_definition_partConstant_definition_partParserRuleCall_1_0 = (RuleCall)cConstant_definition_partAssignment_1.eContents().get(0);
-		private final Assignment cType_definition_partAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cType_definition_partType_definition_partParserRuleCall_2_0 = (RuleCall)cType_definition_partAssignment_2.eContents().get(0);
-		private final Assignment cVariable_declaration_partAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cVariable_declaration_partVariable_declaration_partParserRuleCall_3_0 = (RuleCall)cVariable_declaration_partAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Alternatives cAlternatives_4_0 = (Alternatives)cGroup_4.eContents().get(0);
-		private final Group cGroup_4_0_0 = (Group)cAlternatives_4_0.eContents().get(0);
-		private final Assignment cProcedure_headingAssignment_4_0_0_0 = (Assignment)cGroup_4_0_0.eContents().get(0);
-		private final RuleCall cProcedure_headingProcedure_headingParserRuleCall_4_0_0_0_0 = (RuleCall)cProcedure_headingAssignment_4_0_0_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4_0_0_1 = (Keyword)cGroup_4_0_0.eContents().get(1);
-		private final Assignment cProcedure_bodyAssignment_4_0_0_2 = (Assignment)cGroup_4_0_0.eContents().get(2);
-		private final RuleCall cProcedure_bodyProcedure_bodyParserRuleCall_4_0_0_2_0 = (RuleCall)cProcedure_bodyAssignment_4_0_0_2.eContents().get(0);
-		private final Group cGroup_4_0_1 = (Group)cAlternatives_4_0.eContents().get(1);
-		private final Assignment cProcedure_headingAssignment_4_0_1_0 = (Assignment)cGroup_4_0_1.eContents().get(0);
-		private final RuleCall cProcedure_headingProcedure_headingParserRuleCall_4_0_1_0_0 = (RuleCall)cProcedure_headingAssignment_4_0_1_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4_0_1_1 = (Keyword)cGroup_4_0_1.eContents().get(1);
-		private final Assignment cDirectiveAssignment_4_0_1_2 = (Assignment)cGroup_4_0_1.eContents().get(2);
-		private final RuleCall cDirectiveDirectiveParserRuleCall_4_0_1_2_0 = (RuleCall)cDirectiveAssignment_4_0_1_2.eContents().get(0);
-		private final Group cGroup_4_0_2 = (Group)cAlternatives_4_0.eContents().get(2);
-		private final Assignment cProcedure_identificationAssignment_4_0_2_0 = (Assignment)cGroup_4_0_2.eContents().get(0);
-		private final RuleCall cProcedure_identificationProcedure_identificationParserRuleCall_4_0_2_0_0 = (RuleCall)cProcedure_identificationAssignment_4_0_2_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4_0_2_1 = (Keyword)cGroup_4_0_2.eContents().get(1);
-		private final Assignment cProcedure_bodyAssignment_4_0_2_2 = (Assignment)cGroup_4_0_2.eContents().get(2);
-		private final RuleCall cProcedure_bodyProcedure_bodyParserRuleCall_4_0_2_2_0 = (RuleCall)cProcedure_bodyAssignment_4_0_2_2.eContents().get(0);
-		private final Group cGroup_4_0_3 = (Group)cAlternatives_4_0.eContents().get(3);
-		private final Assignment cFunction_headingAssignment_4_0_3_0 = (Assignment)cGroup_4_0_3.eContents().get(0);
-		private final RuleCall cFunction_headingFunction_headingParserRuleCall_4_0_3_0_0 = (RuleCall)cFunction_headingAssignment_4_0_3_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4_0_3_1 = (Keyword)cGroup_4_0_3.eContents().get(1);
-		private final Assignment cFunction_bodyAssignment_4_0_3_2 = (Assignment)cGroup_4_0_3.eContents().get(2);
-		private final RuleCall cFunction_bodyFunction_bodyParserRuleCall_4_0_3_2_0 = (RuleCall)cFunction_bodyAssignment_4_0_3_2.eContents().get(0);
-		private final Group cGroup_4_0_4 = (Group)cAlternatives_4_0.eContents().get(4);
-		private final Assignment cFunction_headingAssignment_4_0_4_0 = (Assignment)cGroup_4_0_4.eContents().get(0);
-		private final RuleCall cFunction_headingFunction_headingParserRuleCall_4_0_4_0_0 = (RuleCall)cFunction_headingAssignment_4_0_4_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4_0_4_1 = (Keyword)cGroup_4_0_4.eContents().get(1);
-		private final Assignment cDirectiveAssignment_4_0_4_2 = (Assignment)cGroup_4_0_4.eContents().get(2);
-		private final RuleCall cDirectiveDirectiveParserRuleCall_4_0_4_2_0 = (RuleCall)cDirectiveAssignment_4_0_4_2.eContents().get(0);
-		private final Group cGroup_4_0_5 = (Group)cAlternatives_4_0.eContents().get(5);
-		private final Assignment cFunction_identificationAssignment_4_0_5_0 = (Assignment)cGroup_4_0_5.eContents().get(0);
-		private final RuleCall cFunction_identificationFunction_identificationParserRuleCall_4_0_5_0_0 = (RuleCall)cFunction_identificationAssignment_4_0_5_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4_0_5_1 = (Keyword)cGroup_4_0_5.eContents().get(1);
-		private final Assignment cFunction_bodyAssignment_4_0_5_2 = (Assignment)cGroup_4_0_5.eContents().get(2);
-		private final RuleCall cFunction_bodyFunction_bodyParserRuleCall_4_0_5_2_0 = (RuleCall)cFunction_bodyAssignment_4_0_5_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Action cDeclaration_partAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cLabel_declaration_partAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cLabel_declaration_partLabel_declaration_partParserRuleCall_1_0 = (RuleCall)cLabel_declaration_partAssignment_1.eContents().get(0);
+		private final Assignment cConstant_definition_partAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cConstant_definition_partConstant_definition_partParserRuleCall_2_0 = (RuleCall)cConstant_definition_partAssignment_2.eContents().get(0);
+		private final Assignment cType_definition_partAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cType_definition_partType_definition_partParserRuleCall_3_0 = (RuleCall)cType_definition_partAssignment_3.eContents().get(0);
+		private final Assignment cVariable_declaration_partAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cVariable_declaration_partVariable_declaration_partParserRuleCall_4_0 = (RuleCall)cVariable_declaration_partAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Alternatives cAlternatives_5_0 = (Alternatives)cGroup_5.eContents().get(0);
+		private final Group cGroup_5_0_0 = (Group)cAlternatives_5_0.eContents().get(0);
+		private final Assignment cProcedure_headingAssignment_5_0_0_0 = (Assignment)cGroup_5_0_0.eContents().get(0);
+		private final RuleCall cProcedure_headingProcedure_headingParserRuleCall_5_0_0_0_0 = (RuleCall)cProcedure_headingAssignment_5_0_0_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5_0_0_1 = (Keyword)cGroup_5_0_0.eContents().get(1);
+		private final Assignment cProcedure_bodyAssignment_5_0_0_2 = (Assignment)cGroup_5_0_0.eContents().get(2);
+		private final RuleCall cProcedure_bodyProcedure_bodyParserRuleCall_5_0_0_2_0 = (RuleCall)cProcedure_bodyAssignment_5_0_0_2.eContents().get(0);
+		private final Group cGroup_5_0_1 = (Group)cAlternatives_5_0.eContents().get(1);
+		private final Assignment cProcedure_headingAssignment_5_0_1_0 = (Assignment)cGroup_5_0_1.eContents().get(0);
+		private final RuleCall cProcedure_headingProcedure_headingParserRuleCall_5_0_1_0_0 = (RuleCall)cProcedure_headingAssignment_5_0_1_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5_0_1_1 = (Keyword)cGroup_5_0_1.eContents().get(1);
+		private final Assignment cDirectiveAssignment_5_0_1_2 = (Assignment)cGroup_5_0_1.eContents().get(2);
+		private final RuleCall cDirectiveDirectiveParserRuleCall_5_0_1_2_0 = (RuleCall)cDirectiveAssignment_5_0_1_2.eContents().get(0);
+		private final Group cGroup_5_0_2 = (Group)cAlternatives_5_0.eContents().get(2);
+		private final Assignment cProcedure_identificationAssignment_5_0_2_0 = (Assignment)cGroup_5_0_2.eContents().get(0);
+		private final RuleCall cProcedure_identificationProcedure_identificationParserRuleCall_5_0_2_0_0 = (RuleCall)cProcedure_identificationAssignment_5_0_2_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5_0_2_1 = (Keyword)cGroup_5_0_2.eContents().get(1);
+		private final Assignment cProcedure_bodyAssignment_5_0_2_2 = (Assignment)cGroup_5_0_2.eContents().get(2);
+		private final RuleCall cProcedure_bodyProcedure_bodyParserRuleCall_5_0_2_2_0 = (RuleCall)cProcedure_bodyAssignment_5_0_2_2.eContents().get(0);
+		private final Group cGroup_5_0_3 = (Group)cAlternatives_5_0.eContents().get(3);
+		private final Assignment cFunction_headingAssignment_5_0_3_0 = (Assignment)cGroup_5_0_3.eContents().get(0);
+		private final RuleCall cFunction_headingFunction_headingParserRuleCall_5_0_3_0_0 = (RuleCall)cFunction_headingAssignment_5_0_3_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5_0_3_1 = (Keyword)cGroup_5_0_3.eContents().get(1);
+		private final Assignment cFunction_bodyAssignment_5_0_3_2 = (Assignment)cGroup_5_0_3.eContents().get(2);
+		private final RuleCall cFunction_bodyFunction_bodyParserRuleCall_5_0_3_2_0 = (RuleCall)cFunction_bodyAssignment_5_0_3_2.eContents().get(0);
+		private final Group cGroup_5_0_4 = (Group)cAlternatives_5_0.eContents().get(4);
+		private final Assignment cFunction_headingAssignment_5_0_4_0 = (Assignment)cGroup_5_0_4.eContents().get(0);
+		private final RuleCall cFunction_headingFunction_headingParserRuleCall_5_0_4_0_0 = (RuleCall)cFunction_headingAssignment_5_0_4_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5_0_4_1 = (Keyword)cGroup_5_0_4.eContents().get(1);
+		private final Assignment cDirectiveAssignment_5_0_4_2 = (Assignment)cGroup_5_0_4.eContents().get(2);
+		private final RuleCall cDirectiveDirectiveParserRuleCall_5_0_4_2_0 = (RuleCall)cDirectiveAssignment_5_0_4_2.eContents().get(0);
+		private final Group cGroup_5_0_5 = (Group)cAlternatives_5_0.eContents().get(5);
+		private final Assignment cFunction_identificationAssignment_5_0_5_0 = (Assignment)cGroup_5_0_5.eContents().get(0);
+		private final RuleCall cFunction_identificationFunction_identificationParserRuleCall_5_0_5_0_0 = (RuleCall)cFunction_identificationAssignment_5_0_5_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5_0_5_1 = (Keyword)cGroup_5_0_5.eContents().get(1);
+		private final Assignment cFunction_bodyAssignment_5_0_5_2 = (Assignment)cGroup_5_0_5.eContents().get(2);
+		private final RuleCall cFunction_bodyFunction_bodyParserRuleCall_5_0_5_2_0 = (RuleCall)cFunction_bodyAssignment_5_0_5_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		
 		//declaration_part:
-		//	label_declaration_part=label_declaration_part?
+		//	{declaration_part} label_declaration_part=label_declaration_part?
 		//	constant_definition_part=constant_definition_part?
 		//	type_definition_part=type_definition_part?
 		//	variable_declaration_part=variable_declaration_part? ((procedure_heading+=procedure_heading ";"
@@ -2011,7 +2024,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//	directive+=directive | function_identification+=function_identification ";" function_body+=function_body) ";")*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//label_declaration_part=label_declaration_part? constant_definition_part=constant_definition_part?
+		//{declaration_part} label_declaration_part=label_declaration_part? constant_definition_part=constant_definition_part?
 		//type_definition_part=type_definition_part? variable_declaration_part=variable_declaration_part?
 		//((procedure_heading+=procedure_heading ";" procedure_body+=procedure_body | procedure_heading+=procedure_heading ";"
 		//directive+=directive | procedure_identification+=procedure_identification ";" procedure_body+=procedure_body |
@@ -2019,152 +2032,155 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//directive+=directive | function_identification+=function_identification ";" function_body+=function_body) ";")*
 		public Group getGroup() { return cGroup; }
 		
+		//{declaration_part}
+		public Action getDeclaration_partAction_0() { return cDeclaration_partAction_0; }
+		
 		//label_declaration_part=label_declaration_part?
-		public Assignment getLabel_declaration_partAssignment_0() { return cLabel_declaration_partAssignment_0; }
+		public Assignment getLabel_declaration_partAssignment_1() { return cLabel_declaration_partAssignment_1; }
 		
 		//label_declaration_part
-		public RuleCall getLabel_declaration_partLabel_declaration_partParserRuleCall_0_0() { return cLabel_declaration_partLabel_declaration_partParserRuleCall_0_0; }
+		public RuleCall getLabel_declaration_partLabel_declaration_partParserRuleCall_1_0() { return cLabel_declaration_partLabel_declaration_partParserRuleCall_1_0; }
 		
 		//constant_definition_part=constant_definition_part?
-		public Assignment getConstant_definition_partAssignment_1() { return cConstant_definition_partAssignment_1; }
+		public Assignment getConstant_definition_partAssignment_2() { return cConstant_definition_partAssignment_2; }
 		
 		//constant_definition_part
-		public RuleCall getConstant_definition_partConstant_definition_partParserRuleCall_1_0() { return cConstant_definition_partConstant_definition_partParserRuleCall_1_0; }
+		public RuleCall getConstant_definition_partConstant_definition_partParserRuleCall_2_0() { return cConstant_definition_partConstant_definition_partParserRuleCall_2_0; }
 		
 		//type_definition_part=type_definition_part?
-		public Assignment getType_definition_partAssignment_2() { return cType_definition_partAssignment_2; }
+		public Assignment getType_definition_partAssignment_3() { return cType_definition_partAssignment_3; }
 		
 		//type_definition_part
-		public RuleCall getType_definition_partType_definition_partParserRuleCall_2_0() { return cType_definition_partType_definition_partParserRuleCall_2_0; }
+		public RuleCall getType_definition_partType_definition_partParserRuleCall_3_0() { return cType_definition_partType_definition_partParserRuleCall_3_0; }
 		
 		//variable_declaration_part=variable_declaration_part?
-		public Assignment getVariable_declaration_partAssignment_3() { return cVariable_declaration_partAssignment_3; }
+		public Assignment getVariable_declaration_partAssignment_4() { return cVariable_declaration_partAssignment_4; }
 		
 		//variable_declaration_part
-		public RuleCall getVariable_declaration_partVariable_declaration_partParserRuleCall_3_0() { return cVariable_declaration_partVariable_declaration_partParserRuleCall_3_0; }
+		public RuleCall getVariable_declaration_partVariable_declaration_partParserRuleCall_4_0() { return cVariable_declaration_partVariable_declaration_partParserRuleCall_4_0; }
 		
 		//((procedure_heading+=procedure_heading ";" procedure_body+=procedure_body | procedure_heading+=procedure_heading ";"
 		//directive+=directive | procedure_identification+=procedure_identification ";" procedure_body+=procedure_body |
 		//function_heading+=function_heading ";" function_body+=function_body | function_heading+=function_heading ";"
 		//directive+=directive | function_identification+=function_identification ";" function_body+=function_body) ";")*
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//procedure_heading+=procedure_heading ";" procedure_body+=procedure_body | procedure_heading+=procedure_heading ";"
 		//directive+=directive | procedure_identification+=procedure_identification ";" procedure_body+=procedure_body |
 		//function_heading+=function_heading ";" function_body+=function_body | function_heading+=function_heading ";"
 		//directive+=directive | function_identification+=function_identification ";" function_body+=function_body
-		public Alternatives getAlternatives_4_0() { return cAlternatives_4_0; }
+		public Alternatives getAlternatives_5_0() { return cAlternatives_5_0; }
 		
 		//procedure_heading+=procedure_heading ";" procedure_body+=procedure_body
-		public Group getGroup_4_0_0() { return cGroup_4_0_0; }
+		public Group getGroup_5_0_0() { return cGroup_5_0_0; }
 		
 		//procedure_heading+=procedure_heading
-		public Assignment getProcedure_headingAssignment_4_0_0_0() { return cProcedure_headingAssignment_4_0_0_0; }
+		public Assignment getProcedure_headingAssignment_5_0_0_0() { return cProcedure_headingAssignment_5_0_0_0; }
 		
 		//procedure_heading
-		public RuleCall getProcedure_headingProcedure_headingParserRuleCall_4_0_0_0_0() { return cProcedure_headingProcedure_headingParserRuleCall_4_0_0_0_0; }
+		public RuleCall getProcedure_headingProcedure_headingParserRuleCall_5_0_0_0_0() { return cProcedure_headingProcedure_headingParserRuleCall_5_0_0_0_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_4_0_0_1() { return cSemicolonKeyword_4_0_0_1; }
+		public Keyword getSemicolonKeyword_5_0_0_1() { return cSemicolonKeyword_5_0_0_1; }
 		
 		//procedure_body+=procedure_body
-		public Assignment getProcedure_bodyAssignment_4_0_0_2() { return cProcedure_bodyAssignment_4_0_0_2; }
+		public Assignment getProcedure_bodyAssignment_5_0_0_2() { return cProcedure_bodyAssignment_5_0_0_2; }
 		
 		//procedure_body
-		public RuleCall getProcedure_bodyProcedure_bodyParserRuleCall_4_0_0_2_0() { return cProcedure_bodyProcedure_bodyParserRuleCall_4_0_0_2_0; }
+		public RuleCall getProcedure_bodyProcedure_bodyParserRuleCall_5_0_0_2_0() { return cProcedure_bodyProcedure_bodyParserRuleCall_5_0_0_2_0; }
 		
 		//procedure_heading+=procedure_heading ";" directive+=directive
-		public Group getGroup_4_0_1() { return cGroup_4_0_1; }
+		public Group getGroup_5_0_1() { return cGroup_5_0_1; }
 		
 		//procedure_heading+=procedure_heading
-		public Assignment getProcedure_headingAssignment_4_0_1_0() { return cProcedure_headingAssignment_4_0_1_0; }
+		public Assignment getProcedure_headingAssignment_5_0_1_0() { return cProcedure_headingAssignment_5_0_1_0; }
 		
 		//procedure_heading
-		public RuleCall getProcedure_headingProcedure_headingParserRuleCall_4_0_1_0_0() { return cProcedure_headingProcedure_headingParserRuleCall_4_0_1_0_0; }
+		public RuleCall getProcedure_headingProcedure_headingParserRuleCall_5_0_1_0_0() { return cProcedure_headingProcedure_headingParserRuleCall_5_0_1_0_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_4_0_1_1() { return cSemicolonKeyword_4_0_1_1; }
+		public Keyword getSemicolonKeyword_5_0_1_1() { return cSemicolonKeyword_5_0_1_1; }
 		
 		//directive+=directive
-		public Assignment getDirectiveAssignment_4_0_1_2() { return cDirectiveAssignment_4_0_1_2; }
+		public Assignment getDirectiveAssignment_5_0_1_2() { return cDirectiveAssignment_5_0_1_2; }
 		
 		//directive
-		public RuleCall getDirectiveDirectiveParserRuleCall_4_0_1_2_0() { return cDirectiveDirectiveParserRuleCall_4_0_1_2_0; }
+		public RuleCall getDirectiveDirectiveParserRuleCall_5_0_1_2_0() { return cDirectiveDirectiveParserRuleCall_5_0_1_2_0; }
 		
 		//procedure_identification+=procedure_identification ";" procedure_body+=procedure_body
-		public Group getGroup_4_0_2() { return cGroup_4_0_2; }
+		public Group getGroup_5_0_2() { return cGroup_5_0_2; }
 		
 		//procedure_identification+=procedure_identification
-		public Assignment getProcedure_identificationAssignment_4_0_2_0() { return cProcedure_identificationAssignment_4_0_2_0; }
+		public Assignment getProcedure_identificationAssignment_5_0_2_0() { return cProcedure_identificationAssignment_5_0_2_0; }
 		
 		//procedure_identification
-		public RuleCall getProcedure_identificationProcedure_identificationParserRuleCall_4_0_2_0_0() { return cProcedure_identificationProcedure_identificationParserRuleCall_4_0_2_0_0; }
+		public RuleCall getProcedure_identificationProcedure_identificationParserRuleCall_5_0_2_0_0() { return cProcedure_identificationProcedure_identificationParserRuleCall_5_0_2_0_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_4_0_2_1() { return cSemicolonKeyword_4_0_2_1; }
+		public Keyword getSemicolonKeyword_5_0_2_1() { return cSemicolonKeyword_5_0_2_1; }
 		
 		//procedure_body+=procedure_body
-		public Assignment getProcedure_bodyAssignment_4_0_2_2() { return cProcedure_bodyAssignment_4_0_2_2; }
+		public Assignment getProcedure_bodyAssignment_5_0_2_2() { return cProcedure_bodyAssignment_5_0_2_2; }
 		
 		//procedure_body
-		public RuleCall getProcedure_bodyProcedure_bodyParserRuleCall_4_0_2_2_0() { return cProcedure_bodyProcedure_bodyParserRuleCall_4_0_2_2_0; }
+		public RuleCall getProcedure_bodyProcedure_bodyParserRuleCall_5_0_2_2_0() { return cProcedure_bodyProcedure_bodyParserRuleCall_5_0_2_2_0; }
 		
 		//function_heading+=function_heading ";" function_body+=function_body
-		public Group getGroup_4_0_3() { return cGroup_4_0_3; }
+		public Group getGroup_5_0_3() { return cGroup_5_0_3; }
 		
 		//function_heading+=function_heading
-		public Assignment getFunction_headingAssignment_4_0_3_0() { return cFunction_headingAssignment_4_0_3_0; }
+		public Assignment getFunction_headingAssignment_5_0_3_0() { return cFunction_headingAssignment_5_0_3_0; }
 		
 		//function_heading
-		public RuleCall getFunction_headingFunction_headingParserRuleCall_4_0_3_0_0() { return cFunction_headingFunction_headingParserRuleCall_4_0_3_0_0; }
+		public RuleCall getFunction_headingFunction_headingParserRuleCall_5_0_3_0_0() { return cFunction_headingFunction_headingParserRuleCall_5_0_3_0_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_4_0_3_1() { return cSemicolonKeyword_4_0_3_1; }
+		public Keyword getSemicolonKeyword_5_0_3_1() { return cSemicolonKeyword_5_0_3_1; }
 		
 		//function_body+=function_body
-		public Assignment getFunction_bodyAssignment_4_0_3_2() { return cFunction_bodyAssignment_4_0_3_2; }
+		public Assignment getFunction_bodyAssignment_5_0_3_2() { return cFunction_bodyAssignment_5_0_3_2; }
 		
 		//function_body
-		public RuleCall getFunction_bodyFunction_bodyParserRuleCall_4_0_3_2_0() { return cFunction_bodyFunction_bodyParserRuleCall_4_0_3_2_0; }
+		public RuleCall getFunction_bodyFunction_bodyParserRuleCall_5_0_3_2_0() { return cFunction_bodyFunction_bodyParserRuleCall_5_0_3_2_0; }
 		
 		//function_heading+=function_heading ";" directive+=directive
-		public Group getGroup_4_0_4() { return cGroup_4_0_4; }
+		public Group getGroup_5_0_4() { return cGroup_5_0_4; }
 		
 		//function_heading+=function_heading
-		public Assignment getFunction_headingAssignment_4_0_4_0() { return cFunction_headingAssignment_4_0_4_0; }
+		public Assignment getFunction_headingAssignment_5_0_4_0() { return cFunction_headingAssignment_5_0_4_0; }
 		
 		//function_heading
-		public RuleCall getFunction_headingFunction_headingParserRuleCall_4_0_4_0_0() { return cFunction_headingFunction_headingParserRuleCall_4_0_4_0_0; }
+		public RuleCall getFunction_headingFunction_headingParserRuleCall_5_0_4_0_0() { return cFunction_headingFunction_headingParserRuleCall_5_0_4_0_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_4_0_4_1() { return cSemicolonKeyword_4_0_4_1; }
+		public Keyword getSemicolonKeyword_5_0_4_1() { return cSemicolonKeyword_5_0_4_1; }
 		
 		//directive+=directive
-		public Assignment getDirectiveAssignment_4_0_4_2() { return cDirectiveAssignment_4_0_4_2; }
+		public Assignment getDirectiveAssignment_5_0_4_2() { return cDirectiveAssignment_5_0_4_2; }
 		
 		//directive
-		public RuleCall getDirectiveDirectiveParserRuleCall_4_0_4_2_0() { return cDirectiveDirectiveParserRuleCall_4_0_4_2_0; }
+		public RuleCall getDirectiveDirectiveParserRuleCall_5_0_4_2_0() { return cDirectiveDirectiveParserRuleCall_5_0_4_2_0; }
 		
 		//function_identification+=function_identification ";" function_body+=function_body
-		public Group getGroup_4_0_5() { return cGroup_4_0_5; }
+		public Group getGroup_5_0_5() { return cGroup_5_0_5; }
 		
 		//function_identification+=function_identification
-		public Assignment getFunction_identificationAssignment_4_0_5_0() { return cFunction_identificationAssignment_4_0_5_0; }
+		public Assignment getFunction_identificationAssignment_5_0_5_0() { return cFunction_identificationAssignment_5_0_5_0; }
 		
 		//function_identification
-		public RuleCall getFunction_identificationFunction_identificationParserRuleCall_4_0_5_0_0() { return cFunction_identificationFunction_identificationParserRuleCall_4_0_5_0_0; }
+		public RuleCall getFunction_identificationFunction_identificationParserRuleCall_5_0_5_0_0() { return cFunction_identificationFunction_identificationParserRuleCall_5_0_5_0_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_4_0_5_1() { return cSemicolonKeyword_4_0_5_1; }
+		public Keyword getSemicolonKeyword_5_0_5_1() { return cSemicolonKeyword_5_0_5_1; }
 		
 		//function_body+=function_body
-		public Assignment getFunction_bodyAssignment_4_0_5_2() { return cFunction_bodyAssignment_4_0_5_2; }
+		public Assignment getFunction_bodyAssignment_5_0_5_2() { return cFunction_bodyAssignment_5_0_5_2; }
 		
 		//function_body
-		public RuleCall getFunction_bodyFunction_bodyParserRuleCall_4_0_5_2_0() { return cFunction_bodyFunction_bodyParserRuleCall_4_0_5_2_0; }
+		public RuleCall getFunction_bodyFunction_bodyParserRuleCall_5_0_5_2_0() { return cFunction_bodyFunction_bodyParserRuleCall_5_0_5_2_0; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_4_1() { return cSemicolonKeyword_4_1; }
+		public Keyword getSemicolonKeyword_5_1() { return cSemicolonKeyword_5_1; }
 	}
 	public class Label_declaration_partElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.pascal.Pascal.label_declaration_part");
@@ -4191,7 +4207,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//program:
-	//	program_heading=program_heading block=block ".";
+	//	{program} (program_heading=program_heading block=block ".")?;
 	public ProgramElements getProgramAccess() {
 		return pProgram;
 	}
@@ -4393,7 +4409,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//simple_expression:
-	//	sign=sign? term+=term (addition_operator term+=term)*;
+	//	sign=sign? term+=term (addition_operator+=addition_operator term+=term)*;
 	public Simple_expressionElements getSimple_expressionAccess() {
 		return pSimple_expression;
 	}
@@ -4761,7 +4777,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//declaration_part:
-	//	label_declaration_part=label_declaration_part?
+	//	{declaration_part} label_declaration_part=label_declaration_part?
 	//	constant_definition_part=constant_definition_part?
 	//	type_definition_part=type_definition_part?
 	//	variable_declaration_part=variable_declaration_part? ((procedure_heading+=procedure_heading ";"

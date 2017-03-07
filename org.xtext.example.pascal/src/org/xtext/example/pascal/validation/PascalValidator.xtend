@@ -29,29 +29,7 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	}
 	
-	@Check
-	def checkExpression(assignment_statement statement) {
-		try {
-			ExpressionValidator.validateExpression(statement)				
-			for (InvalidException exc : ExpressionValidator.getErrorList()) {
-				error(exc.message, exc.component, null)
-			}
-		} catch (Exception e) {
-			e.printStackTrace()
-		}
-	}
 	
-	@Check
-	def checkType(assignment_statement statement) {
-		try {
-			ExpressionValidator.validateExpression(statement)				
-			for (InvalidException exc : ExpressionValidator.getErrorList()) {
-				error(exc.message, exc.component, null)
-			}
-		} catch (Exception e) {
-			e.printStackTrace()
-		}
-	}
 	
 	
 }

@@ -112,6 +112,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="term" upperBound="-1" eType="#//term"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="addition_operator" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="term">
     <eStructuralFeatures xsi:type="ecore:EReference" name="factor" upperBound="-1"

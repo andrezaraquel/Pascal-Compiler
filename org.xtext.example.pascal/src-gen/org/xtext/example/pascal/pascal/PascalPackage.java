@@ -837,13 +837,22 @@ public interface PascalPackage extends EPackage
   int SIMPLE_EXPRESSION__TERM = 1;
 
   /**
+   * The feature id for the '<em><b>Addition operator</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SIMPLE_EXPRESSION__ADDITION_OPERATOR = 2;
+
+  /**
    * The number of structural features of the '<em>simple expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SIMPLE_EXPRESSION_FEATURE_COUNT = 2;
+  int SIMPLE_EXPRESSION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.pascal.pascal.impl.termImpl <em>term</em>}' class.
@@ -4528,6 +4537,17 @@ public interface PascalPackage extends EPackage
   EReference getsimple_expression_Term();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.pascal.pascal.simple_expression#getAddition_operator <em>Addition operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Addition operator</em>'.
+   * @see org.xtext.example.pascal.pascal.simple_expression#getAddition_operator()
+   * @see #getsimple_expression()
+   * @generated
+   */
+  EAttribute getsimple_expression_Addition_operator();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.pascal.pascal.term <em>term</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -7707,6 +7727,14 @@ public interface PascalPackage extends EPackage
      * @generated
      */
     EReference SIMPLE_EXPRESSION__TERM = eINSTANCE.getsimple_expression_Term();
+
+    /**
+     * The meta object literal for the '<em><b>Addition operator</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SIMPLE_EXPRESSION__ADDITION_OPERATOR = eINSTANCE.getsimple_expression_Addition_operator();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.pascal.pascal.impl.termImpl <em>term</em>}' class.

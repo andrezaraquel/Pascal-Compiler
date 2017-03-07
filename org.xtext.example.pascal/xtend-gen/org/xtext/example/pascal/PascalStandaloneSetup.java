@@ -11,7 +11,6 @@ import org.xtext.example.pascal.PascalStandaloneSetupGenerated;
 @SuppressWarnings("all")
 public class PascalStandaloneSetup extends PascalStandaloneSetupGenerated {
   public static void doSetup() {
-    PascalStandaloneSetup _pascalStandaloneSetup = new PascalStandaloneSetup();
-    _pascalStandaloneSetup.createInjectorAndDoEMFRegistration();
+    new PascalStandaloneSetup().createInjectorAndDoEMFRegistration();
   }
 }

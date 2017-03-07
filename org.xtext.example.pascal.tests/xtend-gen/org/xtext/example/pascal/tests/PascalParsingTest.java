@@ -15,8 +15,8 @@ import org.junit.runner.RunWith;
 import org.xtext.example.pascal.pascal.Begin;
 import org.xtext.example.pascal.tests.PascalInjectorProvider;
 
-@RunWith(XtextRunner.class)
-@InjectWith(PascalInjectorProvider.class)
+@RunWith(XtextRunner.class)/* 
+@InjectWith(PascalInjectorProvider.class) */
 @SuppressWarnings("all")
 public class PascalParsingTest {
   @Inject
