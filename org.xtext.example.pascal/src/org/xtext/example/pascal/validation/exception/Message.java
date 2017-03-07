@@ -8,7 +8,8 @@ public enum Message {
 	UNDECLARED_VARIABLE("Variável não declarada."),
 	INVALID_TERM("Termo da expressão inválido."),
 	INVALID_TYPE("Tipo inválido."),
-	PARAMS_EQUALS("Parâmetros não podem ter o mesmo nome.");
+	PARAMS_EQUALS("Parâmetros não podem ter o mesmo nome."),
+	INVALID_ATTR("Expressão e variável com tipos não compatíveis.");
 	
 	
 	private String content;
