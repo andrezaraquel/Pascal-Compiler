@@ -6,7 +6,7 @@ import java.util.List;
 public class Function {
 
 	private String name;
-	private List<Variable> parameters;
+	private static List<Variable> parameters;
 	private List<String> typesList;
 	private List<String> namesList;
 	
@@ -33,7 +33,7 @@ public class Function {
 		this.name = name;
 	}
 
-	public List<Variable> getParameters() {
+	public static List<Variable> getParameters() {
 		return parameters;
 	}
 
@@ -55,6 +55,15 @@ public class Function {
 
 	public void setNamesList(List<String> namesList) {
 		this.namesList = namesList;
+	}
+	
+	public static String getTypeParameter(String variableName) {
+		for (Variable var : getParameters()) {
+			if (var.getName().equals(variableName)) {
+				return var.getType();
+			}
+		}
+		return null;
 	}
 
 	@Override

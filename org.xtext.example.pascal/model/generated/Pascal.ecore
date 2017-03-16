@@ -138,9 +138,9 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="number" eType="#//number"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="strings" eType="#//strings"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strings" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="set" eType="#//set" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="boolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="identifier" eType="#//identifier"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="function_designator" eType="#//function_designator"
@@ -163,18 +163,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="element_list">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" upperBound="-1"
         eType="#//expression" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="strings">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="string_character" upperBound="-1"
-        eType="#//string_character" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="string_character">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="any_character_except_quote"
-        eType="#//any_character_except_quote" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="any_character_except_quote">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="procedure_heading" eType="#//procedure_heading"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="number">
     <eStructuralFeatures xsi:type="ecore:EReference" name="integer_number" eType="#//integer_number"
@@ -354,8 +342,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="number" eType="#//number"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="strings" eType="#//strings"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strings" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="type_definition_part">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type_definition" upperBound="-1"

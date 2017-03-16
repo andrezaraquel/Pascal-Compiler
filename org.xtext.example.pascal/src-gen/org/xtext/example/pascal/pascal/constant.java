@@ -105,29 +105,29 @@ public interface constant extends EObject
   void setNumber(number value);
 
   /**
-   * Returns the value of the '<em><b>Strings</b></em>' containment reference.
+   * Returns the value of the '<em><b>Strings</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Strings</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Strings</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Strings</em>' containment reference.
-   * @see #setStrings(strings)
+   * @return the value of the '<em>Strings</em>' attribute.
+   * @see #setStrings(String)
    * @see org.xtext.example.pascal.pascal.PascalPackage#getconstant_Strings()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  strings getStrings();
+  String getStrings();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.pascal.pascal.constant#getStrings <em>Strings</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.constant#getStrings <em>Strings</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Strings</em>' containment reference.
+   * @param value the new value of the '<em>Strings</em>' attribute.
    * @see #getStrings()
    * @generated
    */
-  void setStrings(strings value);
+  void setStrings(String value);
 
 } // constant

@@ -271,27 +271,6 @@ public class PascalSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PascalPackage.STRINGS:
-      {
-        strings strings = (strings)theEObject;
-        T result = casestrings(strings);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PascalPackage.STRING_CHARACTER:
-      {
-        string_character string_character = (string_character)theEObject;
-        T result = casestring_character(string_character);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PascalPackage.ANY_CHARACTER_EXCEPT_QUOTE:
-      {
-        any_character_except_quote any_character_except_quote = (any_character_except_quote)theEObject;
-        T result = caseany_character_except_quote(any_character_except_quote);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case PascalPackage.NUMBER:
       {
         number number = (number)theEObject;
@@ -1294,54 +1273,6 @@ public class PascalSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseelement_list(element_list object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>strings</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>strings</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casestrings(strings object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>string character</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>string character</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casestring_character(string_character object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>any character except quote</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>any character except quote</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseany_character_except_quote(any_character_except_quote object)
   {
     return null;
   }

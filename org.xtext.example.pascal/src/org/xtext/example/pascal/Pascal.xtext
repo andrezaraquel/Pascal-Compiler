@@ -105,9 +105,13 @@ multiplication_operator:
 ;
 
 factor: {factor}
-	variable=variable | number=number | strings=strings | set=set | "nil" 
+	variable=variable | number=number | strings=strings | set=set | "nil" | boolean=boolean 
 	| identifier=identifier
 	| function_designator=function_designator | "(" expression=expression ")" | "not" factor=factor	
+;
+
+boolean:
+	"True" | "False"
 ;
 
 function_designator:
@@ -122,18 +126,8 @@ element_list: {element_list}
 	(expression+=expression ("," expression+=expression)*)?
 ;
 
-strings:
-	"'" string_character+=string_character (string_character+=string_character)* "'"
-;
-
-string_character: {string_character}
-	any_character_except_quote=any_character_except_quote | "''"
-;
-
-any_character_except_quote:
-	//fazer essa regra... Na gramática não tem
-	//TODO
-	procedure_heading=procedure_heading
+terminal strings:
+	"'" ('a'..'z' |'A'..'Z'|'_'|'0'..'9' | '^' | "?" | "." | "/" | "\\" | "*" | "%" | "&" | "@" | "#" | "(" | ")" | "$" | "=" | "{" | "}" | "[" | "]" | "," | "!" |"|" | "+" | "-")* "'"
 ;
 
 number:

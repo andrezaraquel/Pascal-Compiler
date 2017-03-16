@@ -216,21 +216,6 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
         return createelement_listAdapter();
       }
       @Override
-      public Adapter casestrings(strings object)
-      {
-        return createstringsAdapter();
-      }
-      @Override
-      public Adapter casestring_character(string_character object)
-      {
-        return createstring_characterAdapter();
-      }
-      @Override
-      public Adapter caseany_character_except_quote(any_character_except_quote object)
-      {
-        return createany_character_except_quoteAdapter();
-      }
-      @Override
       public Adapter casenumber(number object)
       {
         return createnumberAdapter();
@@ -1063,51 +1048,6 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createelement_listAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.strings <em>strings</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.strings
-   * @generated
-   */
-  public Adapter createstringsAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.string_character <em>string character</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.string_character
-   * @generated
-   */
-  public Adapter createstring_characterAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.any_character_except_quote <em>any character except quote</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.any_character_except_quote
-   * @generated
-   */
-  public Adapter createany_character_except_quoteAdapter()
   {
     return null;
   }

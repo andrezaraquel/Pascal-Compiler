@@ -19,7 +19,6 @@ import org.xtext.example.pascal.pascal.function_designator;
 import org.xtext.example.pascal.pascal.identifier;
 import org.xtext.example.pascal.pascal.number;
 import org.xtext.example.pascal.pascal.set;
-import org.xtext.example.pascal.pascal.strings;
 import org.xtext.example.pascal.pascal.variable;
 
 /**
@@ -34,6 +33,7 @@ import org.xtext.example.pascal.pascal.variable;
  *   <li>{@link org.xtext.example.pascal.pascal.impl.factorImpl#getNumber <em>Number</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.factorImpl#getStrings <em>Strings</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.factorImpl#getSet <em>Set</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.factorImpl#getBoolean <em>Boolean</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.factorImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.factorImpl#getFunction_designator <em>Function designator</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.factorImpl#getExpression <em>Expression</em>}</li>
@@ -65,14 +65,24 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
   protected number number;
 
   /**
-   * The cached value of the '{@link #getStrings() <em>Strings</em>}' containment reference.
+   * The default value of the '{@link #getStrings() <em>Strings</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getStrings()
    * @generated
    * @ordered
    */
-  protected strings strings;
+  protected static final String STRINGS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getStrings() <em>Strings</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStrings()
+   * @generated
+   * @ordered
+   */
+  protected String strings = STRINGS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getSet() <em>Set</em>}' containment reference.
@@ -83,6 +93,26 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
    * @ordered
    */
   protected set set;
+
+  /**
+   * The default value of the '{@link #getBoolean() <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBoolean()
+   * @generated
+   * @ordered
+   */
+  protected static final String BOOLEAN_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getBoolean() <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBoolean()
+   * @generated
+   * @ordered
+   */
+  protected String boolean_ = BOOLEAN_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' containment reference.
@@ -246,7 +276,7 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
    * <!-- end-user-doc -->
    * @generated
    */
-  public strings getStrings()
+  public String getStrings()
   {
     return strings;
   }
@@ -256,37 +286,12 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetStrings(strings newStrings, NotificationChain msgs)
+  public void setStrings(String newStrings)
   {
-    strings oldStrings = strings;
+    String oldStrings = strings;
     strings = newStrings;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.FACTOR__STRINGS, oldStrings, newStrings);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setStrings(strings newStrings)
-  {
-    if (newStrings != strings)
-    {
-      NotificationChain msgs = null;
-      if (strings != null)
-        msgs = ((InternalEObject)strings).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.FACTOR__STRINGS, null, msgs);
-      if (newStrings != null)
-        msgs = ((InternalEObject)newStrings).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.FACTOR__STRINGS, null, msgs);
-      msgs = basicSetStrings(newStrings, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.FACTOR__STRINGS, newStrings, newStrings));
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.FACTOR__STRINGS, oldStrings, strings));
   }
 
   /**
@@ -335,6 +340,29 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.FACTOR__SET, newSet, newSet));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getBoolean()
+  {
+    return boolean_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBoolean(String newBoolean)
+  {
+    String oldBoolean = boolean_;
+    boolean_ = newBoolean;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.FACTOR__BOOLEAN, oldBoolean, boolean_));
   }
 
   /**
@@ -543,8 +571,6 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
         return basicSetVariable(null, msgs);
       case PascalPackage.FACTOR__NUMBER:
         return basicSetNumber(null, msgs);
-      case PascalPackage.FACTOR__STRINGS:
-        return basicSetStrings(null, msgs);
       case PascalPackage.FACTOR__SET:
         return basicSetSet(null, msgs);
       case PascalPackage.FACTOR__IDENTIFIER:
@@ -577,6 +603,8 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
         return getStrings();
       case PascalPackage.FACTOR__SET:
         return getSet();
+      case PascalPackage.FACTOR__BOOLEAN:
+        return getBoolean();
       case PascalPackage.FACTOR__IDENTIFIER:
         return getIdentifier();
       case PascalPackage.FACTOR__FUNCTION_DESIGNATOR:
@@ -606,10 +634,13 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
         setNumber((number)newValue);
         return;
       case PascalPackage.FACTOR__STRINGS:
-        setStrings((strings)newValue);
+        setStrings((String)newValue);
         return;
       case PascalPackage.FACTOR__SET:
         setSet((set)newValue);
+        return;
+      case PascalPackage.FACTOR__BOOLEAN:
+        setBoolean((String)newValue);
         return;
       case PascalPackage.FACTOR__IDENTIFIER:
         setIdentifier((identifier)newValue);
@@ -644,10 +675,13 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
         setNumber((number)null);
         return;
       case PascalPackage.FACTOR__STRINGS:
-        setStrings((strings)null);
+        setStrings(STRINGS_EDEFAULT);
         return;
       case PascalPackage.FACTOR__SET:
         setSet((set)null);
+        return;
+      case PascalPackage.FACTOR__BOOLEAN:
+        setBoolean(BOOLEAN_EDEFAULT);
         return;
       case PascalPackage.FACTOR__IDENTIFIER:
         setIdentifier((identifier)null);
@@ -680,9 +714,11 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
       case PascalPackage.FACTOR__NUMBER:
         return number != null;
       case PascalPackage.FACTOR__STRINGS:
-        return strings != null;
+        return STRINGS_EDEFAULT == null ? strings != null : !STRINGS_EDEFAULT.equals(strings);
       case PascalPackage.FACTOR__SET:
         return set != null;
+      case PascalPackage.FACTOR__BOOLEAN:
+        return BOOLEAN_EDEFAULT == null ? boolean_ != null : !BOOLEAN_EDEFAULT.equals(boolean_);
       case PascalPackage.FACTOR__IDENTIFIER:
         return identifier != null;
       case PascalPackage.FACTOR__FUNCTION_DESIGNATOR:
@@ -693,6 +729,25 @@ public class factorImpl extends MinimalEObjectImpl.Container implements factor
         return factor != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (strings: ");
+    result.append(strings);
+    result.append(", boolean: ");
+    result.append(boolean_);
+    result.append(')');
+    return result.toString();
   }
 
 } //factorImpl

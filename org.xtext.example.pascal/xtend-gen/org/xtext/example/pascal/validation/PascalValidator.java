@@ -10,7 +10,7 @@ import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
 import org.xtext.example.pascal.validation.AbstractPascalValidator;
 import org.xtext.example.pascal.validation.BlockValidator;
-import org.xtext.example.pascal.validation.BooleanExpressionValidator;
+import org.xtext.example.pascal.validation.ExpressionValidator;
 import org.xtext.example.pascal.validation.exception.InvalidException;
 
 /**
@@ -41,7 +41,8 @@ public class PascalValidator extends AbstractPascalValidator {
   @Check
   public void checkBooleanExpression(final assignment_statement assignment_statement) {
     try {
-      BooleanExpressionValidator.validateBooleanExpression(assignment_statement);
+      ExpressionValidator.validateBooleanExpression(assignment_statement);
+      ExpressionValidator.validateExpression(assignment_statement);
       List<InvalidException> _errorList = BlockValidator.getErrorList();
       for (final InvalidException exc : _errorList) {
         this.error(exc.getMessage(), exc.getComponent(), null);

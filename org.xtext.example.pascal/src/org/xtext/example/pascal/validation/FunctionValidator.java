@@ -3,15 +3,15 @@ package org.xtext.example.pascal.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
 import org.xtext.example.pascal.pascal.declaration_part;
 import org.xtext.example.pascal.pascal.formal_parameter_list;
 import org.xtext.example.pascal.pascal.formal_parameter_section;
+import org.xtext.example.pascal.pascal.function_block;
 import org.xtext.example.pascal.pascal.function_body;
 import org.xtext.example.pascal.pascal.function_heading;
 import org.xtext.example.pascal.pascal.function_identification;
-import org.xtext.example.pascal.pascal.function_block;
-import org.xtext.example.pascal.pascal.function_body;
 import org.xtext.example.pascal.pascal.statement;
 import org.xtext.example.pascal.pascal.statement_part;
 import org.xtext.example.pascal.pascal.variable_parameter_section;
@@ -96,12 +96,16 @@ public static void validateDeclarationFunction(block block, function_heading fun
 							
 							if (statement.getSimple_statement() != null && statement.getSimple_statement().getAssignment_statement() != null 
 									&&  statement.getSimple_statement().getAssignment_statement().getVariable() != null) {							
-								
-								String variableName = statement.getSimple_statement().getAssignment_statement().getVariable().getEntire_variable().getIdentifier().getIdentifier();
+								assignment_statement assignment_statement = statement.getSimple_statement().getAssignment_statement(); 
+								String variableName = assignment_statement.getVariable().getEntire_variable().getIdentifier().getIdentifier();
 								Variable newVariable = new Variable(variableName);							
 								if (!BlockValidator.hasVariable(null, newVariable) && !listParamsFunction.contains(variableName) ) {
 									BlockValidator.addError(new InvalidException(Message.UNDECLARED_VARIABLE, statement));
 								}
+								
+								String paramenterType = Function.getTypeParameter(variableName);									
+								
+								ExpressionValidator.validateExpression(assignment_statement, paramenterType);
 							}
 							
 						}

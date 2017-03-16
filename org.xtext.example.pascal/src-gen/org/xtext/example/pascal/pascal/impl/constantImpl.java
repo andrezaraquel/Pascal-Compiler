@@ -16,7 +16,6 @@ import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.constant;
 import org.xtext.example.pascal.pascal.identifier;
 import org.xtext.example.pascal.pascal.number;
-import org.xtext.example.pascal.pascal.strings;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,14 +76,24 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
   protected number number;
 
   /**
-   * The cached value of the '{@link #getStrings() <em>Strings</em>}' containment reference.
+   * The default value of the '{@link #getStrings() <em>Strings</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getStrings()
    * @generated
    * @ordered
    */
-  protected strings strings;
+  protected static final String STRINGS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getStrings() <em>Strings</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStrings()
+   * @generated
+   * @ordered
+   */
+  protected String strings = STRINGS_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -231,7 +240,7 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
    * <!-- end-user-doc -->
    * @generated
    */
-  public strings getStrings()
+  public String getStrings()
   {
     return strings;
   }
@@ -241,37 +250,12 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetStrings(strings newStrings, NotificationChain msgs)
+  public void setStrings(String newStrings)
   {
-    strings oldStrings = strings;
+    String oldStrings = strings;
     strings = newStrings;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.CONSTANT__STRINGS, oldStrings, newStrings);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setStrings(strings newStrings)
-  {
-    if (newStrings != strings)
-    {
-      NotificationChain msgs = null;
-      if (strings != null)
-        msgs = ((InternalEObject)strings).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.CONSTANT__STRINGS, null, msgs);
-      if (newStrings != null)
-        msgs = ((InternalEObject)newStrings).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.CONSTANT__STRINGS, null, msgs);
-      msgs = basicSetStrings(newStrings, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.CONSTANT__STRINGS, newStrings, newStrings));
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.CONSTANT__STRINGS, oldStrings, strings));
   }
 
   /**
@@ -288,8 +272,6 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
         return basicSetConstant_identifier(null, msgs);
       case PascalPackage.CONSTANT__NUMBER:
         return basicSetNumber(null, msgs);
-      case PascalPackage.CONSTANT__STRINGS:
-        return basicSetStrings(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -336,7 +318,7 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
         setNumber((number)newValue);
         return;
       case PascalPackage.CONSTANT__STRINGS:
-        setStrings((strings)newValue);
+        setStrings((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -362,7 +344,7 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
         setNumber((number)null);
         return;
       case PascalPackage.CONSTANT__STRINGS:
-        setStrings((strings)null);
+        setStrings(STRINGS_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -385,7 +367,7 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
       case PascalPackage.CONSTANT__NUMBER:
         return number != null;
       case PascalPackage.CONSTANT__STRINGS:
-        return strings != null;
+        return STRINGS_EDEFAULT == null ? strings != null : !STRINGS_EDEFAULT.equals(strings);
     }
     return super.eIsSet(featureID);
   }
@@ -403,6 +385,8 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (sign: ");
     result.append(sign);
+    result.append(", strings: ");
+    result.append(strings);
     result.append(')');
     return result.toString();
   }

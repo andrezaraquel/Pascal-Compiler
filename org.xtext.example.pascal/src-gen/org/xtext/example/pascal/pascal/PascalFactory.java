@@ -276,33 +276,6 @@ public interface PascalFactory extends EFactory
   element_list createelement_list();
 
   /**
-   * Returns a new object of class '<em>strings</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>strings</em>'.
-   * @generated
-   */
-  strings createstrings();
-
-  /**
-   * Returns a new object of class '<em>string character</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>string character</em>'.
-   * @generated
-   */
-  string_character createstring_character();
-
-  /**
-   * Returns a new object of class '<em>any character except quote</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>any character except quote</em>'.
-   * @generated
-   */
-  any_character_except_quote createany_character_except_quote();
-
-  /**
    * Returns a new object of class '<em>number</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

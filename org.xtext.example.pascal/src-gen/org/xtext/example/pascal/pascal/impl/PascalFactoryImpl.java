@@ -93,9 +93,6 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
       case PascalPackage.FUNCTION_DESIGNATOR: return createfunction_designator();
       case PascalPackage.SET: return createset();
       case PascalPackage.ELEMENT_LIST: return createelement_list();
-      case PascalPackage.STRINGS: return createstrings();
-      case PascalPackage.STRING_CHARACTER: return createstring_character();
-      case PascalPackage.ANY_CHARACTER_EXCEPT_QUOTE: return createany_character_except_quote();
       case PascalPackage.NUMBER: return createnumber();
       case PascalPackage.REAL_NUMBER: return createreal_number();
       case PascalPackage.SCALE_FACTOR: return createscale_factor();
@@ -486,39 +483,6 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
   {
     element_listImpl element_list = new element_listImpl();
     return element_list;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public strings createstrings()
-  {
-    stringsImpl strings = new stringsImpl();
-    return strings;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public string_character createstring_character()
-  {
-    string_characterImpl string_character = new string_characterImpl();
-    return string_character;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public any_character_except_quote createany_character_except_quote()
-  {
-    any_character_except_quoteImpl any_character_except_quote = new any_character_except_quoteImpl();
-    return any_character_except_quote;
   }
 
   /**

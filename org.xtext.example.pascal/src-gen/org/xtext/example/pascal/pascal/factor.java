@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.pascal.pascal.factor#getNumber <em>Number</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.factor#getStrings <em>Strings</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.factor#getSet <em>Set</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.factor#getBoolean <em>Boolean</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.factor#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.factor#getFunction_designator <em>Function designator</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.factor#getExpression <em>Expression</em>}</li>
@@ -83,30 +84,30 @@ public interface factor extends EObject
   void setNumber(number value);
 
   /**
-   * Returns the value of the '<em><b>Strings</b></em>' containment reference.
+   * Returns the value of the '<em><b>Strings</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Strings</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Strings</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Strings</em>' containment reference.
-   * @see #setStrings(strings)
+   * @return the value of the '<em>Strings</em>' attribute.
+   * @see #setStrings(String)
    * @see org.xtext.example.pascal.pascal.PascalPackage#getfactor_Strings()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  strings getStrings();
+  String getStrings();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.pascal.pascal.factor#getStrings <em>Strings</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.factor#getStrings <em>Strings</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Strings</em>' containment reference.
+   * @param value the new value of the '<em>Strings</em>' attribute.
    * @see #getStrings()
    * @generated
    */
-  void setStrings(strings value);
+  void setStrings(String value);
 
   /**
    * Returns the value of the '<em><b>Set</b></em>' containment reference.
@@ -133,6 +134,32 @@ public interface factor extends EObject
    * @generated
    */
   void setSet(set value);
+
+  /**
+   * Returns the value of the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Boolean</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Boolean</em>' attribute.
+   * @see #setBoolean(String)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getfactor_Boolean()
+   * @model
+   * @generated
+   */
+  String getBoolean();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.factor#getBoolean <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Boolean</em>' attribute.
+   * @see #getBoolean()
+   * @generated
+   */
+  void setBoolean(String value);
 
   /**
    * Returns the value of the '<em><b>Identifier</b></em>' containment reference.

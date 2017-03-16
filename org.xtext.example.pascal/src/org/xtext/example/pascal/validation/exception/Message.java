@@ -9,7 +9,8 @@ public enum Message {
 	INVALID_TERM("Termo da expressão inválido."),
 	INVALID_TYPE("Tipo inválido."),
 	PARAMS_EQUALS("Parâmetros não podem ter o mesmo nome."),
-	INVALID_ATTR("Expressão e variável com tipos não compatíveis.");
+	INVALID_ATTR("Expressão e variável com tipos não compatíveis."),
+	INVALID_ATTRIBUITION("Tipo e atribuição não compatíveis");
 	
 	
 	private String content;

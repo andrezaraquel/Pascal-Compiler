@@ -6,36 +6,43 @@ import java.util.List;
 import com.google.common.base.Objects;
 
 public class Procedure {
-	
+
 	private String name;
-	private List<Variable> parameters; 
+	private static List<Variable> parameters;
 	private List<String> typesList;
 	private List<String> namesList;
-	
-	public Procedure(String name, List<Variable> parameters){
+
+	public Procedure(String name, List<Variable> parameters) {
 		this.name = name;
 		this.parameters = parameters;
 		this.namesList = new ArrayList<>();
 		this.typesList = new ArrayList<>();
 		setParamsLists();
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
-	
-	public List<Variable> getParameters() {
+
+	public static List<Variable> getParameters() {
 		return parameters;
 	}
-	
+
 	public void setParamsLists() {
 		for (Variable var : parameters) {
 			typesList.add(var.getType());
 			namesList.add(var.getName());
 		}
 	}
-	
-	
+
+	public static String getTypeParameter(String variableName) {
+		for (Variable var : getParameters()) {
+			if (var.getName().equals(variableName)) {
+				return var.getType();
+			}
+		}
+		return null;
+	}
 
 	public List<String> getTypesList() {
 		return typesList;
@@ -91,7 +98,5 @@ public class Procedure {
 			return false;
 		return true;
 	}
-	
-	
-}
 
+}

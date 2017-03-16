@@ -37,12 +37,11 @@ public class BlockValidator {
 	public static void validateBlock(block block) {
 		init();
 		addField(block, block.getDeclaration_part());
-		verifyVariables(block.getStatement_part());
-
+		verifyVariables(block.getStatement_part());		
 	}
 
 	private static void verifyVariables(statement_part statement_part) {
-		if (statement_part.getStatement_sequence() != null) {
+		if (statement_part!= null && statement_part.getStatement_sequence() != null) {
 			for (statement statement : statement_part.getStatement_sequence().getStatement()) {
 				simple_statement simpleStatement = statement.getSimple_statement();
 				if (simpleStatement != null && simpleStatement.getAssignment_statement() != null) {

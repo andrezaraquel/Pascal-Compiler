@@ -3,6 +3,7 @@ package org.xtext.example.pascal.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
 import org.xtext.example.pascal.pascal.declaration_part;
 import org.xtext.example.pascal.pascal.formal_parameter_list;
@@ -91,11 +92,20 @@ public class ProcedureValidator {
 							if (statement.getSimple_statement() != null && statement.getSimple_statement().getAssignment_statement() != null 
 									&&  statement.getSimple_statement().getAssignment_statement().getVariable() != null) {							
 								
-								String variableName = statement.getSimple_statement().getAssignment_statement().getVariable().getEntire_variable().getIdentifier().getIdentifier();
+								assignment_statement assignment_statement = statement.getSimple_statement().getAssignment_statement();
+								String variableName = assignment_statement.getVariable().getEntire_variable().getIdentifier().getIdentifier();
 								Variable newVariable = new Variable(variableName);							
 								if (!BlockValidator.hasVariable(null, newVariable) && !listParamsProcedure.contains(variableName) ) {
 									BlockValidator.addError(new InvalidException(Message.UNDECLARED_VARIABLE, statement));
-								}
+								} 
+								
+					
+								String paramenterType = Procedure.getTypeParameter(variableName);									
+								
+								ExpressionValidator.validateExpression(assignment_statement, paramenterType);
+								
+								
+								
 							}
 							
 						}
