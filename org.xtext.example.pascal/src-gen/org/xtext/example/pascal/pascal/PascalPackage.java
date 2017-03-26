@@ -2286,13 +2286,22 @@ public interface PascalPackage extends EPackage
   int CONSTANT__STRINGS = 3;
 
   /**
+   * The feature id for the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT__BOOLEAN = 4;
+
+  /**
    * The number of structural features of the '<em>constant</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONSTANT_FEATURE_COUNT = 4;
+  int CONSTANT_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.xtext.example.pascal.pascal.impl.type_definition_partImpl <em>type definition part</em>}' class.
@@ -5859,6 +5868,17 @@ public interface PascalPackage extends EPackage
   EAttribute getconstant_Strings();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.pascal.pascal.constant#getBoolean <em>Boolean</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Boolean</em>'.
+   * @see org.xtext.example.pascal.pascal.constant#getBoolean()
+   * @see #getconstant()
+   * @generated
+   */
+  EAttribute getconstant_Boolean();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.pascal.pascal.type_definition_part <em>type definition part</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8827,6 +8847,14 @@ public interface PascalPackage extends EPackage
      * @generated
      */
     EAttribute CONSTANT__STRINGS = eINSTANCE.getconstant_Strings();
+
+    /**
+     * The meta object literal for the '<em><b>Boolean</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTANT__BOOLEAN = eINSTANCE.getconstant_Boolean();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.pascal.pascal.impl.type_definition_partImpl <em>type definition part</em>}' class.

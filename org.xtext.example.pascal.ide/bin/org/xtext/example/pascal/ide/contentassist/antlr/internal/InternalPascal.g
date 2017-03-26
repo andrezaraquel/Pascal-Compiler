@@ -3400,6 +3400,12 @@ rule__Constant__Alternatives
 		(rule__Constant__StringsAssignment_1)
 		{ after(grammarAccess.getConstantAccess().getStringsAssignment_1()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getConstantAccess().getBooleanAssignment_2()); }
+		(rule__Constant__BooleanAssignment_2)
+		{ after(grammarAccess.getConstantAccess().getBooleanAssignment_2()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -14631,6 +14637,21 @@ rule__Constant__StringsAssignment_1
 		{ before(grammarAccess.getConstantAccess().getStringsStringsTerminalRuleCall_1_0()); }
 		RULE_STRINGS
 		{ after(grammarAccess.getConstantAccess().getStringsStringsTerminalRuleCall_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constant__BooleanAssignment_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getConstantAccess().getBooleanBooleanParserRuleCall_2_0()); }
+		ruleboolean
+		{ after(grammarAccess.getConstantAccess().getBooleanBooleanParserRuleCall_2_0()); }
 	)
 ;
 finally {

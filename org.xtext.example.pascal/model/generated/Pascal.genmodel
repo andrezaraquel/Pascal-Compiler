@@ -241,6 +241,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//constant/constant_identifier"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//constant/number"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//constant/strings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//constant/boolean"/>
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//type_definition_part">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//type_definition_part/type_definition"/>

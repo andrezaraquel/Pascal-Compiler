@@ -11,7 +11,7 @@ import org.xtext.example.pascal.validation.exception.Message;
 public class ExpressionValidator {
 
 	public static void validateExpression(assignment_statement assignment_statement, String parameterType) {
-		String expressionType = getTypeExpression(assignment_statement);
+		String expressionType = getTypeSimpleExpression(assignment_statement);
 
 		if (parameterType != null && parameterType.equals("integer")) {
 			if (expressionType == null || !expressionType.equals("integer")) {
@@ -37,12 +37,12 @@ public class ExpressionValidator {
 		}
 	}
 
-	public static void validateExpression(assignment_statement assignment_statement) {
+	public static void validateSimpleExpression(assignment_statement assignment_statement) {
 
 		String variableName = assignment_statement.getVariable().getEntire_variable().getIdentifier().getIdentifier();
 		String variableType = BlockValidator.getTypeVariable(variableName);
 
-		String expressionType = getTypeExpression(assignment_statement);
+		String expressionType = getTypeSimpleExpression(assignment_statement);
 
 		if (variableType != null) {
 			if (variableType.equals("integer")) {
@@ -74,10 +74,9 @@ public class ExpressionValidator {
 			}
 
 		}
-
 	}
 
-	private static String getTypeExpression(assignment_statement assignment_statement) {
+	private static String getTypeSimpleExpression(assignment_statement assignment_statement) {
 		for (simple_expression simple_expression : assignment_statement.getExpression().getSimple_expression()) {
 			for (term termList : simple_expression.getTerm()) {
 				for (factor factor : termList.getFactor()) {

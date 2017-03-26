@@ -794,7 +794,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     constant returns constant
 	 *
 	 * Constraint:
-	 *     ((sign=sign? (constant_identifier=identifier | number=number)) | strings=strings)
+	 *     ((sign=sign? (constant_identifier=identifier | number=number)) | strings=strings | boolean=boolean)
 	 */
 	protected void sequence_constant(ISerializationContext context, constant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

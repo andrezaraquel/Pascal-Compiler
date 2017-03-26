@@ -2743,6 +2743,16 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getconstant_Boolean()
+  {
+    return (EAttribute)constantEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass gettype_definition_part()
   {
     return type_definition_partEClass;
@@ -4323,6 +4333,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     createEReference(constantEClass, CONSTANT__CONSTANT_IDENTIFIER);
     createEReference(constantEClass, CONSTANT__NUMBER);
     createEAttribute(constantEClass, CONSTANT__STRINGS);
+    createEAttribute(constantEClass, CONSTANT__BOOLEAN);
 
     type_definition_partEClass = createEClass(TYPE_DEFINITION_PART);
     createEReference(type_definition_partEClass, TYPE_DEFINITION_PART__TYPE_DEFINITION);
@@ -4776,6 +4787,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEReference(getconstant_Constant_identifier(), this.getidentifier(), null, "constant_identifier", null, 0, 1, constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getconstant_Number(), this.getnumber(), null, "number", null, 0, 1, constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getconstant_Strings(), ecorePackage.getEString(), "strings", null, 0, 1, constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getconstant_Boolean(), ecorePackage.getEString(), "boolean", null, 0, 1, constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(type_definition_partEClass, type_definition_part.class, "type_definition_part", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(gettype_definition_part_Type_definition(), this.gettype_definition(), null, "type_definition", null, 0, -1, type_definition_part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

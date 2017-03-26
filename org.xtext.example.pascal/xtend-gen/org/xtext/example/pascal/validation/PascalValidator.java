@@ -8,8 +8,10 @@ import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.case_statement;
 import org.xtext.example.pascal.validation.AbstractPascalValidator;
 import org.xtext.example.pascal.validation.BlockValidator;
+import org.xtext.example.pascal.validation.CaseValidator;
 import org.xtext.example.pascal.validation.ExpressionValidator;
 import org.xtext.example.pascal.validation.exception.InvalidException;
 
@@ -42,8 +44,26 @@ public class PascalValidator extends AbstractPascalValidator {
   public void checkBooleanExpression(final assignment_statement assignment_statement) {
     try {
       ExpressionValidator.validateBooleanExpression(assignment_statement);
-      ExpressionValidator.validateExpression(assignment_statement);
+      ExpressionValidator.validateSimpleExpression(assignment_statement);
       ExpressionValidator.validateArithmeticExpression(assignment_statement);
+      List<InvalidException> _errorList = BlockValidator.getErrorList();
+      for (final InvalidException exc : _errorList) {
+        this.error(exc.getMessage(), exc.getComponent(), null);
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        e.printStackTrace();
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
+  
+  @Check
+  public void checkCase(final case_statement case_statement) {
+    try {
+      CaseValidator.validateCase(case_statement);
       List<InvalidException> _errorList = BlockValidator.getErrorList();
       for (final InvalidException exc : _errorList) {
         this.error(exc.getMessage(), exc.getComponent(), null);

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.pascal.pascal.constant#getConstant_identifier <em>Constant identifier</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.constant#getNumber <em>Number</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.constant#getStrings <em>Strings</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.constant#getBoolean <em>Boolean</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.pascal.pascal.PascalPackage#getconstant()
@@ -129,5 +130,31 @@ public interface constant extends EObject
    * @generated
    */
   void setStrings(String value);
+
+  /**
+   * Returns the value of the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Boolean</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Boolean</em>' attribute.
+   * @see #setBoolean(String)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getconstant_Boolean()
+   * @model
+   * @generated
+   */
+  String getBoolean();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.constant#getBoolean <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Boolean</em>' attribute.
+   * @see #getBoolean()
+   * @generated
+   */
+  void setBoolean(String value);
 
 } // constant

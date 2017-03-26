@@ -4456,6 +4456,26 @@ ruleconstant returns [EObject current=null]
 				}
 			)
 		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getConstantAccess().getBooleanBooleanParserRuleCall_2_0());
+				}
+				lv_boolean_4_0=ruleboolean
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConstantRule());
+					}
+					set(
+						$current,
+						"boolean",
+						lv_boolean_4_0,
+						"org.xtext.example.pascal.Pascal.boolean");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

@@ -29,6 +29,7 @@ import org.xtext.example.pascal.pascal.number;
  *   <li>{@link org.xtext.example.pascal.pascal.impl.constantImpl#getConstant_identifier <em>Constant identifier</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.constantImpl#getNumber <em>Number</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.constantImpl#getStrings <em>Strings</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.constantImpl#getBoolean <em>Boolean</em>}</li>
  * </ul>
  *
  * @generated
@@ -94,6 +95,26 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
    * @ordered
    */
   protected String strings = STRINGS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getBoolean() <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBoolean()
+   * @generated
+   * @ordered
+   */
+  protected static final String BOOLEAN_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getBoolean() <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBoolean()
+   * @generated
+   * @ordered
+   */
+  protected String boolean_ = BOOLEAN_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -263,6 +284,29 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getBoolean()
+  {
+    return boolean_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBoolean(String newBoolean)
+  {
+    String oldBoolean = boolean_;
+    boolean_ = newBoolean;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.CONSTANT__BOOLEAN, oldBoolean, boolean_));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -294,6 +338,8 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
         return getNumber();
       case PascalPackage.CONSTANT__STRINGS:
         return getStrings();
+      case PascalPackage.CONSTANT__BOOLEAN:
+        return getBoolean();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -319,6 +365,9 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
         return;
       case PascalPackage.CONSTANT__STRINGS:
         setStrings((String)newValue);
+        return;
+      case PascalPackage.CONSTANT__BOOLEAN:
+        setBoolean((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -346,6 +395,9 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
       case PascalPackage.CONSTANT__STRINGS:
         setStrings(STRINGS_EDEFAULT);
         return;
+      case PascalPackage.CONSTANT__BOOLEAN:
+        setBoolean(BOOLEAN_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -368,6 +420,8 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
         return number != null;
       case PascalPackage.CONSTANT__STRINGS:
         return STRINGS_EDEFAULT == null ? strings != null : !STRINGS_EDEFAULT.equals(strings);
+      case PascalPackage.CONSTANT__BOOLEAN:
+        return BOOLEAN_EDEFAULT == null ? boolean_ != null : !BOOLEAN_EDEFAULT.equals(boolean_);
     }
     return super.eIsSet(featureID);
   }
@@ -387,6 +441,8 @@ public class constantImpl extends MinimalEObjectImpl.Container implements consta
     result.append(sign);
     result.append(", strings: ");
     result.append(strings);
+    result.append(", boolean: ");
+    result.append(boolean_);
     result.append(')');
     return result.toString();
   }

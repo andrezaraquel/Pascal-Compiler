@@ -2314,12 +2314,14 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNumberNumberParserRuleCall_0_1_1_0 = (RuleCall)cNumberAssignment_0_1_1.eContents().get(0);
 		private final Assignment cStringsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cStringsStringsTerminalRuleCall_1_0 = (RuleCall)cStringsAssignment_1.eContents().get(0);
+		private final Assignment cBooleanAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cBooleanBooleanParserRuleCall_2_0 = (RuleCall)cBooleanAssignment_2.eContents().get(0);
 		
 		//constant:
-		//	sign=sign? (constant_identifier=identifier | number=number) | strings=strings;
+		//	sign=sign? (constant_identifier=identifier | number=number) | strings=strings | boolean=boolean;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//sign=sign? (constant_identifier=identifier | number=number) | strings=strings
+		//sign=sign? (constant_identifier=identifier | number=number) | strings=strings | boolean=boolean
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//sign=sign? (constant_identifier=identifier | number=number)
@@ -2351,6 +2353,12 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//strings
 		public RuleCall getStringsStringsTerminalRuleCall_1_0() { return cStringsStringsTerminalRuleCall_1_0; }
+		
+		//boolean=boolean
+		public Assignment getBooleanAssignment_2() { return cBooleanAssignment_2; }
+		
+		//boolean
+		public RuleCall getBooleanBooleanParserRuleCall_2_0() { return cBooleanBooleanParserRuleCall_2_0; }
 	}
 	public class Type_definition_partElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.pascal.Pascal.type_definition_part");
@@ -4835,7 +4843,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//constant:
-	//	sign=sign? (constant_identifier=identifier | number=number) | strings=strings;
+	//	sign=sign? (constant_identifier=identifier | number=number) | strings=strings | boolean=boolean;
 	public ConstantElements getConstantAccess() {
 		return pConstant;
 	}

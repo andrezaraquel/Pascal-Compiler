@@ -346,6 +346,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="number" eType="#//number"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="strings" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="boolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="type_definition_part">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type_definition" upperBound="-1"

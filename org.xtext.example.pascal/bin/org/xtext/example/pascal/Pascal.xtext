@@ -264,7 +264,7 @@ constant_definition:
 ;
 
 constant:
-	(sign=sign)? (constant_identifier=identifier | number=number) | strings=strings
+	(sign=sign)? (constant_identifier=identifier | number=number) | strings=strings | boolean=boolean
 ;
 
 type_definition_part:

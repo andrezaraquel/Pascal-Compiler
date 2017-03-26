@@ -13,7 +13,9 @@ public enum Message {
 	INVALID_EXPRESSION("Expressão aritmética inválida."),
 	ARITHMETIC_INVALID_OPERATION("Tipo da variável não compatível com operação aritmética."),
 	ARITHMETIC_INVALID_REAL("Expressão 'real' não aplicada a variável 'integer'"),
-	ARITHMETIC_INVALID_DIV("Operador 'div' aplicado apenas para 'integer'.");
+	ARITHMETIC_INVALID_DIV("Operador 'div' aplicado apenas para 'integer'."),
+	CASE_INVALID_EXPRESSION("Expressao deve ser dos tipos 'char', 'integer' ou 'boolean'"),
+	CASE_INVALID_OPTION("Opção não compatível com o tipo da expressão.");
 	
 	
 	private String content;

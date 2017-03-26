@@ -316,6 +316,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConstantAccess().getConstant_identifierAssignment_0_1_0(), "rule__Constant__Constant_identifierAssignment_0_1_0");
 					put(grammarAccess.getConstantAccess().getNumberAssignment_0_1_1(), "rule__Constant__NumberAssignment_0_1_1");
 					put(grammarAccess.getConstantAccess().getStringsAssignment_1(), "rule__Constant__StringsAssignment_1");
+					put(grammarAccess.getConstantAccess().getBooleanAssignment_2(), "rule__Constant__BooleanAssignment_2");
 					put(grammarAccess.getType_definition_partAccess().getType_definitionAssignment_1(), "rule__Type_definition_part__Type_definitionAssignment_1");
 					put(grammarAccess.getType_definition_partAccess().getType_definitionAssignment_3_0(), "rule__Type_definition_part__Type_definitionAssignment_3_0");
 					put(grammarAccess.getType_definitionAccess().getIdentifierAssignment_0(), "rule__Type_definition__IdentifierAssignment_0");
