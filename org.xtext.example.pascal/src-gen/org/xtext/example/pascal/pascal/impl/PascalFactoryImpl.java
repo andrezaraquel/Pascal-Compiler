@@ -88,6 +88,7 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
       case PascalPackage.ASSIGNMENT_STATEMENT: return createassignment_statement();
       case PascalPackage.EXPRESSION: return createexpression();
       case PascalPackage.SIMPLE_EXPRESSION: return createsimple_expression();
+      case PascalPackage.ADDITION_OPERATOR: return createaddition_operator();
       case PascalPackage.TERM: return createterm();
       case PascalPackage.FACTOR: return createfactor();
       case PascalPackage.FUNCTION_DESIGNATOR: return createfunction_designator();
@@ -428,6 +429,17 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
   {
     simple_expressionImpl simple_expression = new simple_expressionImpl();
     return simple_expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public addition_operator createaddition_operator()
+  {
+    addition_operatorImpl addition_operator = new addition_operatorImpl();
+    return addition_operator;
   }
 
   /**

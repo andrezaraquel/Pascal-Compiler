@@ -19,6 +19,7 @@ import org.xtext.example.pascal.pascal.actual_parameter_list;
 import org.xtext.example.pascal.pascal.actual_procedure;
 import org.xtext.example.pascal.pascal.actual_value;
 import org.xtext.example.pascal.pascal.actual_variable;
+import org.xtext.example.pascal.pascal.addition_operator;
 import org.xtext.example.pascal.pascal.array_type;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.base_type;
@@ -288,6 +289,13 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * @generated
    */
   private EClass simple_expressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass addition_operatorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1585,9 +1593,29 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getsimple_expression_Addition_operator()
+  public EReference getsimple_expression_Addition_operator()
   {
-    return (EAttribute)simple_expressionEClass.getEStructuralFeatures().get(2);
+    return (EReference)simple_expressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getaddition_operator()
+  {
+    return addition_operatorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getaddition_operator_Sign()
+  {
+    return (EAttribute)addition_operatorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -4146,7 +4174,10 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     simple_expressionEClass = createEClass(SIMPLE_EXPRESSION);
     createEAttribute(simple_expressionEClass, SIMPLE_EXPRESSION__SIGN);
     createEReference(simple_expressionEClass, SIMPLE_EXPRESSION__TERM);
-    createEAttribute(simple_expressionEClass, SIMPLE_EXPRESSION__ADDITION_OPERATOR);
+    createEReference(simple_expressionEClass, SIMPLE_EXPRESSION__ADDITION_OPERATOR);
+
+    addition_operatorEClass = createEClass(ADDITION_OPERATOR);
+    createEAttribute(addition_operatorEClass, ADDITION_OPERATOR__SIGN);
 
     termEClass = createEClass(TERM);
     createEReference(termEClass, TERM__FACTOR);
@@ -4596,7 +4627,10 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEClass(simple_expressionEClass, simple_expression.class, "simple_expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getsimple_expression_Sign(), ecorePackage.getEString(), "sign", null, 0, 1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getsimple_expression_Term(), this.getterm(), null, "term", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getsimple_expression_Addition_operator(), ecorePackage.getEString(), "addition_operator", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getsimple_expression_Addition_operator(), this.getaddition_operator(), null, "addition_operator", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(addition_operatorEClass, addition_operator.class, "addition_operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getaddition_operator_Sign(), ecorePackage.getEString(), "sign", null, 0, 1, addition_operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(termEClass, term.class, "term", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getterm_Factor(), this.getfactor(), null, "factor", null, 0, -1, term.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

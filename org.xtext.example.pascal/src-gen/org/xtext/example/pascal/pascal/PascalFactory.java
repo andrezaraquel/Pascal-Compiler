@@ -231,6 +231,15 @@ public interface PascalFactory extends EFactory
   simple_expression createsimple_expression();
 
   /**
+   * Returns a new object of class '<em>addition operator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>addition operator</em>'.
+   * @generated
+   */
+  addition_operator createaddition_operator();
+
+  /**
    * Returns a new object of class '<em>term</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

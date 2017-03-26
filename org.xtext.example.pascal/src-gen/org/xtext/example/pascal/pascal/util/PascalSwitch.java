@@ -236,6 +236,13 @@ public class PascalSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case PascalPackage.ADDITION_OPERATOR:
+      {
+        addition_operator addition_operator = (addition_operator)theEObject;
+        T result = caseaddition_operator(addition_operator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case PascalPackage.TERM:
       {
         term term = (term)theEObject;
@@ -1193,6 +1200,22 @@ public class PascalSwitch<T> extends Switch<T>
    * @generated
    */
   public T casesimple_expression(simple_expression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>addition operator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>addition operator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseaddition_operator(addition_operator object)
   {
     return null;
   }

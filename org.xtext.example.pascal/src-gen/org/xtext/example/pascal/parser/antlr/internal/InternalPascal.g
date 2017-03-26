@@ -1529,14 +1529,14 @@ rulesimple_expression returns [EObject current=null]
 ;
 
 // Entry rule entryRuleaddition_operator
-entryRuleaddition_operator returns [String current=null]:
+entryRuleaddition_operator returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getAddition_operatorRule()); }
 	iv_ruleaddition_operator=ruleaddition_operator
-	{ $current=$iv_ruleaddition_operator.current.getText(); }
+	{ $current=$iv_ruleaddition_operator.current; }
 	EOF;
 
 // Rule addition_operator
-ruleaddition_operator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleaddition_operator returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1544,21 +1544,29 @@ ruleaddition_operator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeR
 	leaveRule();
 }:
 	(
-		{
-			newCompositeNode(grammarAccess.getAddition_operatorAccess().getSignParserRuleCall_0());
-		}
-		this_sign_0=rulesign
-		{
-			$current.merge(this_sign_0);
-		}
-		{
-			afterParserOrEnumRuleCall();
-		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAddition_operatorAccess().getSignSignParserRuleCall_0_0());
+				}
+				lv_sign_0_0=rulesign
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAddition_operatorRule());
+					}
+					set(
+						$current,
+						"sign",
+						lv_sign_0_0,
+						"org.xtext.example.pascal.Pascal.sign");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 		    |
-		kw='or'
+		otherlv_1='or'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getAddition_operatorAccess().getOrKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getAddition_operatorAccess().getOrKeyword_1());
 		}
 	)
 ;

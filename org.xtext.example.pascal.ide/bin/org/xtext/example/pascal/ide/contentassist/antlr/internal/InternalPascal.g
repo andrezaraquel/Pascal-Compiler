@@ -3009,9 +3009,9 @@ rule__Addition_operator__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getAddition_operatorAccess().getSignParserRuleCall_0()); }
-		rulesign
-		{ after(grammarAccess.getAddition_operatorAccess().getSignParserRuleCall_0()); }
+		{ before(grammarAccess.getAddition_operatorAccess().getSignAssignment_0()); }
+		(rule__Addition_operator__SignAssignment_0)
+		{ after(grammarAccess.getAddition_operatorAccess().getSignAssignment_0()); }
 	)
 	|
 	(
@@ -13191,6 +13191,21 @@ rule__Simple_expression__TermAssignment_2_1
 		{ before(grammarAccess.getSimple_expressionAccess().getTermTermParserRuleCall_2_1_0()); }
 		ruleterm
 		{ after(grammarAccess.getSimple_expressionAccess().getTermTermParserRuleCall_2_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Addition_operator__SignAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getAddition_operatorAccess().getSignSignParserRuleCall_0_0()); }
+		rulesign
+		{ after(grammarAccess.getAddition_operatorAccess().getSignSignParserRuleCall_0_0()); }
 	)
 ;
 finally {

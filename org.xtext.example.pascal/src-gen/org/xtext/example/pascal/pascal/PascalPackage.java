@@ -788,7 +788,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getoutput_list()
    * @generated
    */
-  int OUTPUT_LIST = 105;
+  int OUTPUT_LIST = 106;
 
   /**
    * The number of structural features of the '<em>output list</em>' class.
@@ -807,7 +807,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getoutput_value()
    * @generated
    */
-  int OUTPUT_VALUE = 106;
+  int OUTPUT_VALUE = 107;
 
   /**
    * The feature id for the '<em><b>Output value</b></em>' containment reference list.
@@ -911,7 +911,7 @@ public interface PascalPackage extends EPackage
   int SIMPLE_EXPRESSION__TERM = 1;
 
   /**
-   * The feature id for the '<em><b>Addition operator</b></em>' attribute list.
+   * The feature id for the '<em><b>Addition operator</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -929,6 +929,34 @@ public interface PascalPackage extends EPackage
   int SIMPLE_EXPRESSION_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.pascal.pascal.impl.addition_operatorImpl <em>addition operator</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.pascal.pascal.impl.addition_operatorImpl
+   * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getaddition_operator()
+   * @generated
+   */
+  int ADDITION_OPERATOR = 23;
+
+  /**
+   * The feature id for the '<em><b>Sign</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION_OPERATOR__SIGN = 0;
+
+  /**
+   * The number of structural features of the '<em>addition operator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION_OPERATOR_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.pascal.pascal.impl.termImpl <em>term</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -936,7 +964,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getterm()
    * @generated
    */
-  int TERM = 23;
+  int TERM = 24;
 
   /**
    * The feature id for the '<em><b>Factor</b></em>' containment reference list.
@@ -973,7 +1001,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfactor()
    * @generated
    */
-  int FACTOR = 24;
+  int FACTOR = 25;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -1073,7 +1101,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfunction_designator()
    * @generated
    */
-  int FUNCTION_DESIGNATOR = 25;
+  int FUNCTION_DESIGNATOR = 26;
 
   /**
    * The feature id for the '<em><b>Function identifier</b></em>' containment reference.
@@ -1110,7 +1138,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getset()
    * @generated
    */
-  int SET = 26;
+  int SET = 27;
 
   /**
    * The feature id for the '<em><b>Element list</b></em>' containment reference.
@@ -1138,7 +1166,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getelement_list()
    * @generated
    */
-  int ELEMENT_LIST = 27;
+  int ELEMENT_LIST = 28;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference list.
@@ -1166,7 +1194,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getnumber()
    * @generated
    */
-  int NUMBER = 28;
+  int NUMBER = 29;
 
   /**
    * The feature id for the '<em><b>Integer number</b></em>' containment reference.
@@ -1203,7 +1231,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getreal_number()
    * @generated
    */
-  int REAL_NUMBER = 29;
+  int REAL_NUMBER = 30;
 
   /**
    * The feature id for the '<em><b>Digit sequence</b></em>' containment reference.
@@ -1249,7 +1277,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getscale_factor()
    * @generated
    */
-  int SCALE_FACTOR = 30;
+  int SCALE_FACTOR = 31;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -1286,7 +1314,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getvariable()
    * @generated
    */
-  int VARIABLE = 31;
+  int VARIABLE = 32;
 
   /**
    * The feature id for the '<em><b>Entire variable</b></em>' containment reference.
@@ -1332,7 +1360,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getentire_variable()
    * @generated
    */
-  int ENTIRE_VARIABLE = 32;
+  int ENTIRE_VARIABLE = 33;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -1360,7 +1388,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getexpression_list()
    * @generated
    */
-  int EXPRESSION_LIST = 33;
+  int EXPRESSION_LIST = 34;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference list.
@@ -1388,7 +1416,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getlabel()
    * @generated
    */
-  int LABEL = 34;
+  int LABEL = 35;
 
   /**
    * The feature id for the '<em><b>Integer number</b></em>' containment reference.
@@ -1416,7 +1444,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getinteger_number()
    * @generated
    */
-  int INTEGER_NUMBER = 35;
+  int INTEGER_NUMBER = 36;
 
   /**
    * The feature id for the '<em><b>Digit sequence</b></em>' containment reference.
@@ -1444,7 +1472,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getdigit_sequence()
    * @generated
    */
-  int DIGIT_SEQUENCE = 36;
+  int DIGIT_SEQUENCE = 37;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -1481,7 +1509,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getstructured_statement()
    * @generated
    */
-  int STRUCTURED_STATEMENT = 37;
+  int STRUCTURED_STATEMENT = 38;
 
   /**
    * The feature id for the '<em><b>Compound statement</b></em>' containment reference.
@@ -1536,7 +1564,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getwith_statement()
    * @generated
    */
-  int WITH_STATEMENT = 38;
+  int WITH_STATEMENT = 39;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' containment reference list.
@@ -1573,7 +1601,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getconditional_statement()
    * @generated
    */
-  int CONDITIONAL_STATEMENT = 39;
+  int CONDITIONAL_STATEMENT = 40;
 
   /**
    * The feature id for the '<em><b>If statement</b></em>' containment reference.
@@ -1610,7 +1638,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getcase_statement()
    * @generated
    */
-  int CASE_STATEMENT = 40;
+  int CASE_STATEMENT = 41;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1647,7 +1675,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getcase_limb()
    * @generated
    */
-  int CASE_LIMB = 41;
+  int CASE_LIMB = 42;
 
   /**
    * The feature id for the '<em><b>Case label list</b></em>' containment reference.
@@ -1684,7 +1712,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getcase_label_list()
    * @generated
    */
-  int CASE_LABEL_LIST = 42;
+  int CASE_LABEL_LIST = 43;
 
   /**
    * The feature id for the '<em><b>Constant</b></em>' containment reference list.
@@ -1712,7 +1740,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getif_statement()
    * @generated
    */
-  int IF_STATEMENT = 43;
+  int IF_STATEMENT = 44;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1749,7 +1777,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getrepetitive_statement()
    * @generated
    */
-  int REPETITIVE_STATEMENT = 44;
+  int REPETITIVE_STATEMENT = 45;
 
   /**
    * The feature id for the '<em><b>While statement</b></em>' containment reference.
@@ -1795,7 +1823,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfor_statement()
    * @generated
    */
-  int FOR_STATEMENT = 45;
+  int FOR_STATEMENT = 46;
 
   /**
    * The feature id for the '<em><b>Variable identifier</b></em>' containment reference.
@@ -1850,7 +1878,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfinal_expression()
    * @generated
    */
-  int FINAL_EXPRESSION = 46;
+  int FINAL_EXPRESSION = 47;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1878,7 +1906,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getinitial_expression()
    * @generated
    */
-  int INITIAL_EXPRESSION = 47;
+  int INITIAL_EXPRESSION = 48;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1906,7 +1934,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getrepeat_statement()
    * @generated
    */
-  int REPEAT_STATEMENT = 48;
+  int REPEAT_STATEMENT = 49;
 
   /**
    * The feature id for the '<em><b>Statement sequence</b></em>' containment reference.
@@ -1943,7 +1971,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getwhile_statement()
    * @generated
    */
-  int WHILE_STATEMENT = 49;
+  int WHILE_STATEMENT = 50;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1980,7 +2008,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getcompound_statement()
    * @generated
    */
-  int COMPOUND_STATEMENT = 50;
+  int COMPOUND_STATEMENT = 51;
 
   /**
    * The feature id for the '<em><b>Statement sequence</b></em>' containment reference.
@@ -2008,7 +2036,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getdeclaration_part()
    * @generated
    */
-  int DECLARATION_PART = 51;
+  int DECLARATION_PART = 52;
 
   /**
    * The feature id for the '<em><b>Label declaration part</b></em>' containment reference.
@@ -2126,7 +2154,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getlabel_declaration_part()
    * @generated
    */
-  int LABEL_DECLARATION_PART = 52;
+  int LABEL_DECLARATION_PART = 53;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' containment reference list.
@@ -2154,7 +2182,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getconstant_definition_part()
    * @generated
    */
-  int CONSTANT_DEFINITION_PART = 53;
+  int CONSTANT_DEFINITION_PART = 54;
 
   /**
    * The feature id for the '<em><b>Constant definition</b></em>' containment reference list.
@@ -2182,7 +2210,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getconstant_definition()
    * @generated
    */
-  int CONSTANT_DEFINITION = 54;
+  int CONSTANT_DEFINITION = 55;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -2219,7 +2247,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getconstant()
    * @generated
    */
-  int CONSTANT = 55;
+  int CONSTANT = 56;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -2274,7 +2302,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#gettype_definition_part()
    * @generated
    */
-  int TYPE_DEFINITION_PART = 56;
+  int TYPE_DEFINITION_PART = 57;
 
   /**
    * The feature id for the '<em><b>Type definition</b></em>' containment reference list.
@@ -2302,7 +2330,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#gettype_definition()
    * @generated
    */
-  int TYPE_DEFINITION = 57;
+  int TYPE_DEFINITION = 58;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -2339,7 +2367,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#gettype()
    * @generated
    */
-  int TYPE = 58;
+  int TYPE = 59;
 
   /**
    * The feature id for the '<em><b>Simple type</b></em>' containment reference.
@@ -2394,7 +2422,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#gettype_identifier()
    * @generated
    */
-  int TYPE_IDENTIFIER = 59;
+  int TYPE_IDENTIFIER = 60;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -2422,7 +2450,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getpointer_type()
    * @generated
    */
-  int POINTER_TYPE = 60;
+  int POINTER_TYPE = 61;
 
   /**
    * The feature id for the '<em><b>Type identifier</b></em>' containment reference.
@@ -2450,7 +2478,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getstructured_type()
    * @generated
    */
-  int STRUCTURED_TYPE = 61;
+  int STRUCTURED_TYPE = 62;
 
   /**
    * The feature id for the '<em><b>Unpacked structured type</b></em>' containment reference.
@@ -2478,7 +2506,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getunpacked_structured_type()
    * @generated
    */
-  int UNPACKED_STRUCTURED_TYPE = 62;
+  int UNPACKED_STRUCTURED_TYPE = 63;
 
   /**
    * The feature id for the '<em><b>Array type</b></em>' containment reference.
@@ -2533,7 +2561,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfile_type()
    * @generated
    */
-  int FILE_TYPE = 63;
+  int FILE_TYPE = 64;
 
   /**
    * The feature id for the '<em><b>File component type</b></em>' containment reference.
@@ -2561,7 +2589,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfile_component_type()
    * @generated
    */
-  int FILE_COMPONENT_TYPE = 64;
+  int FILE_COMPONENT_TYPE = 65;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2589,7 +2617,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getset_type()
    * @generated
    */
-  int SET_TYPE = 65;
+  int SET_TYPE = 66;
 
   /**
    * The feature id for the '<em><b>Base type</b></em>' containment reference.
@@ -2617,7 +2645,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getbase_type()
    * @generated
    */
-  int BASE_TYPE = 66;
+  int BASE_TYPE = 67;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2645,7 +2673,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getrecord_type()
    * @generated
    */
-  int RECORD_TYPE = 67;
+  int RECORD_TYPE = 68;
 
   /**
    * The feature id for the '<em><b>Field list</b></em>' containment reference.
@@ -2673,7 +2701,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfield_list()
    * @generated
    */
-  int FIELD_LIST = 68;
+  int FIELD_LIST = 69;
 
   /**
    * The feature id for the '<em><b>Fixed part</b></em>' containment reference.
@@ -2710,7 +2738,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfixed_part()
    * @generated
    */
-  int FIXED_PART = 69;
+  int FIXED_PART = 70;
 
   /**
    * The feature id for the '<em><b>Record section</b></em>' containment reference list.
@@ -2738,7 +2766,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getrecord_section()
    * @generated
    */
-  int RECORD_SECTION = 70;
+  int RECORD_SECTION = 71;
 
   /**
    * The feature id for the '<em><b>Identifier list</b></em>' containment reference.
@@ -2775,7 +2803,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getvariant_part()
    * @generated
    */
-  int VARIANT_PART = 71;
+  int VARIANT_PART = 72;
 
   /**
    * The feature id for the '<em><b>Tag field</b></em>' containment reference.
@@ -2821,7 +2849,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getvariant()
    * @generated
    */
-  int VARIANT = 72;
+  int VARIANT = 73;
 
   /**
    * The feature id for the '<em><b>Case label list</b></em>' containment reference.
@@ -2858,7 +2886,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#gettag_field()
    * @generated
    */
-  int TAG_FIELD = 73;
+  int TAG_FIELD = 74;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -2886,7 +2914,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getarray_type()
    * @generated
    */
-  int ARRAY_TYPE = 74;
+  int ARRAY_TYPE = 75;
 
   /**
    * The feature id for the '<em><b>Index type</b></em>' containment reference list.
@@ -2923,7 +2951,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getelement_type()
    * @generated
    */
-  int ELEMENT_TYPE = 75;
+  int ELEMENT_TYPE = 76;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -2951,7 +2979,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getindex_type()
    * @generated
    */
-  int INDEX_TYPE = 76;
+  int INDEX_TYPE = 77;
 
   /**
    * The feature id for the '<em><b>Simple type</b></em>' containment reference.
@@ -2979,7 +3007,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getsimple_type()
    * @generated
    */
-  int SIMPLE_TYPE = 77;
+  int SIMPLE_TYPE = 78;
 
   /**
    * The feature id for the '<em><b>Subrange type</b></em>' containment reference.
@@ -3016,7 +3044,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getenumerated_type()
    * @generated
    */
-  int ENUMERATED_TYPE = 78;
+  int ENUMERATED_TYPE = 79;
 
   /**
    * The feature id for the '<em><b>Identifier list</b></em>' containment reference.
@@ -3044,7 +3072,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getsubrange_type()
    * @generated
    */
-  int SUBRANGE_TYPE = 79;
+  int SUBRANGE_TYPE = 80;
 
   /**
    * The feature id for the '<em><b>Lower bound</b></em>' containment reference.
@@ -3081,7 +3109,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getlower_bound()
    * @generated
    */
-  int LOWER_BOUND = 80;
+  int LOWER_BOUND = 81;
 
   /**
    * The feature id for the '<em><b>Constant</b></em>' containment reference.
@@ -3109,7 +3137,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getupper_bound()
    * @generated
    */
-  int UPPER_BOUND = 81;
+  int UPPER_BOUND = 82;
 
   /**
    * The feature id for the '<em><b>Constant</b></em>' containment reference.
@@ -3137,7 +3165,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getvariable_declaration_part()
    * @generated
    */
-  int VARIABLE_DECLARATION_PART = 82;
+  int VARIABLE_DECLARATION_PART = 83;
 
   /**
    * The feature id for the '<em><b>Variable declaration</b></em>' containment reference list.
@@ -3165,7 +3193,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getvariable_declaration()
    * @generated
    */
-  int VARIABLE_DECLARATION = 83;
+  int VARIABLE_DECLARATION = 84;
 
   /**
    * The feature id for the '<em><b>Identifier list</b></em>' containment reference.
@@ -3202,7 +3230,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfunction_identification()
    * @generated
    */
-  int FUNCTION_IDENTIFICATION = 84;
+  int FUNCTION_IDENTIFICATION = 85;
 
   /**
    * The feature id for the '<em><b>Function identifier</b></em>' containment reference.
@@ -3230,7 +3258,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfunction_body()
    * @generated
    */
-  int FUNCTION_BODY = 85;
+  int FUNCTION_BODY = 86;
 
   /**
    * The feature id for the '<em><b>Function block</b></em>' containment reference.
@@ -3258,7 +3286,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getprocedure_identification()
    * @generated
    */
-  int PROCEDURE_IDENTIFICATION = 86;
+  int PROCEDURE_IDENTIFICATION = 87;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -3286,7 +3314,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getdirective()
    * @generated
    */
-  int DIRECTIVE = 87;
+  int DIRECTIVE = 88;
 
   /**
    * The feature id for the '<em><b>Compiler defined directives</b></em>' containment reference.
@@ -3314,7 +3342,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getcompiler_defined_directives()
    * @generated
    */
-  int COMPILER_DEFINED_DIRECTIVES = 88;
+  int COMPILER_DEFINED_DIRECTIVES = 89;
 
   /**
    * The feature id for the '<em><b>Procedure heading</b></em>' containment reference.
@@ -3342,7 +3370,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getprocedure_body()
    * @generated
    */
-  int PROCEDURE_BODY = 89;
+  int PROCEDURE_BODY = 90;
 
   /**
    * The feature id for the '<em><b>Procedure block</b></em>' containment reference.
@@ -3370,7 +3398,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getprocedure_heading()
    * @generated
    */
-  int PROCEDURE_HEADING = 90;
+  int PROCEDURE_HEADING = 91;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -3407,7 +3435,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getformal_parameter_list()
    * @generated
    */
-  int FORMAL_PARAMETER_LIST = 91;
+  int FORMAL_PARAMETER_LIST = 92;
 
   /**
    * The feature id for the '<em><b>Formal parameter section</b></em>' containment reference list.
@@ -3435,7 +3463,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getformal_parameter_section()
    * @generated
    */
-  int FORMAL_PARAMETER_SECTION = 92;
+  int FORMAL_PARAMETER_SECTION = 93;
 
   /**
    * The feature id for the '<em><b>Value parameter section</b></em>' containment reference.
@@ -3490,7 +3518,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfunction_parameter_section()
    * @generated
    */
-  int FUNCTION_PARAMETER_SECTION = 93;
+  int FUNCTION_PARAMETER_SECTION = 94;
 
   /**
    * The feature id for the '<em><b>Function heading</b></em>' containment reference.
@@ -3518,7 +3546,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getfunction_heading()
    * @generated
    */
-  int FUNCTION_HEADING = 94;
+  int FUNCTION_HEADING = 95;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -3564,7 +3592,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getresult_type()
    * @generated
    */
-  int RESULT_TYPE = 95;
+  int RESULT_TYPE = 96;
 
   /**
    * The feature id for the '<em><b>Type identifier</b></em>' containment reference.
@@ -3592,7 +3620,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getprocedure_parameter_section()
    * @generated
    */
-  int PROCEDURE_PARAMETER_SECTION = 96;
+  int PROCEDURE_PARAMETER_SECTION = 97;
 
   /**
    * The feature id for the '<em><b>Procedure heading</b></em>' containment reference.
@@ -3620,7 +3648,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getvariable_parameter_section()
    * @generated
    */
-  int VARIABLE_PARAMETER_SECTION = 97;
+  int VARIABLE_PARAMETER_SECTION = 98;
 
   /**
    * The feature id for the '<em><b>Identifier list</b></em>' containment reference.
@@ -3657,7 +3685,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getvalue_parameter_section()
    * @generated
    */
-  int VALUE_PARAMETER_SECTION = 98;
+  int VALUE_PARAMETER_SECTION = 99;
 
   /**
    * The feature id for the '<em><b>Identifier list</b></em>' containment reference.
@@ -3694,7 +3722,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getparameter_type()
    * @generated
    */
-  int PARAMETER_TYPE = 99;
+  int PARAMETER_TYPE = 100;
 
   /**
    * The feature id for the '<em><b>Type identifier</b></em>' containment reference.
@@ -3731,7 +3759,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getconformant_array_schema()
    * @generated
    */
-  int CONFORMANT_ARRAY_SCHEMA = 100;
+  int CONFORMANT_ARRAY_SCHEMA = 101;
 
   /**
    * The feature id for the '<em><b>Packed conformant array schema</b></em>' containment reference.
@@ -3768,7 +3796,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getunpacked_conformant_array_schema()
    * @generated
    */
-  int UNPACKED_CONFORMANT_ARRAY_SCHEMA = 101;
+  int UNPACKED_CONFORMANT_ARRAY_SCHEMA = 102;
 
   /**
    * The feature id for the '<em><b>Bound specification</b></em>' containment reference list.
@@ -3814,7 +3842,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getbound_specification()
    * @generated
    */
-  int BOUND_SPECIFICATION = 102;
+  int BOUND_SPECIFICATION = 103;
 
   /**
    * The feature id for the '<em><b>Identifier</b></em>' containment reference.
@@ -3860,7 +3888,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getordinal_type_identifier()
    * @generated
    */
-  int ORDINAL_TYPE_IDENTIFIER = 103;
+  int ORDINAL_TYPE_IDENTIFIER = 104;
 
   /**
    * The feature id for the '<em><b>Type identifier</b></em>' containment reference.
@@ -3888,7 +3916,7 @@ public interface PascalPackage extends EPackage
    * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getpacked_conformant_array_schema()
    * @generated
    */
-  int PACKED_CONFORMANT_ARRAY_SCHEMA = 104;
+  int PACKED_CONFORMANT_ARRAY_SCHEMA = 105;
 
   /**
    * The feature id for the '<em><b>Bound specification</b></em>' containment reference.
@@ -4600,15 +4628,36 @@ public interface PascalPackage extends EPackage
   EReference getsimple_expression_Term();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.pascal.pascal.simple_expression#getAddition_operator <em>Addition operator</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.pascal.pascal.simple_expression#getAddition_operator <em>Addition operator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Addition operator</em>'.
+   * @return the meta object for the containment reference list '<em>Addition operator</em>'.
    * @see org.xtext.example.pascal.pascal.simple_expression#getAddition_operator()
    * @see #getsimple_expression()
    * @generated
    */
-  EAttribute getsimple_expression_Addition_operator();
+  EReference getsimple_expression_Addition_operator();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.pascal.pascal.addition_operator <em>addition operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>addition operator</em>'.
+   * @see org.xtext.example.pascal.pascal.addition_operator
+   * @generated
+   */
+  EClass getaddition_operator();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.pascal.pascal.addition_operator#getSign <em>Sign</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Sign</em>'.
+   * @see org.xtext.example.pascal.pascal.addition_operator#getSign()
+   * @see #getaddition_operator()
+   * @generated
+   */
+  EAttribute getaddition_operator_Sign();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.pascal.pascal.term <em>term</em>}'.
@@ -7792,12 +7841,30 @@ public interface PascalPackage extends EPackage
     EReference SIMPLE_EXPRESSION__TERM = eINSTANCE.getsimple_expression_Term();
 
     /**
-     * The meta object literal for the '<em><b>Addition operator</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Addition operator</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SIMPLE_EXPRESSION__ADDITION_OPERATOR = eINSTANCE.getsimple_expression_Addition_operator();
+    EReference SIMPLE_EXPRESSION__ADDITION_OPERATOR = eINSTANCE.getsimple_expression_Addition_operator();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.pascal.pascal.impl.addition_operatorImpl <em>addition operator</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.pascal.pascal.impl.addition_operatorImpl
+     * @see org.xtext.example.pascal.pascal.impl.PascalPackageImpl#getaddition_operator()
+     * @generated
+     */
+    EClass ADDITION_OPERATOR = eINSTANCE.getaddition_operator();
+
+    /**
+     * The meta object literal for the '<em><b>Sign</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADDITION_OPERATOR__SIGN = eINSTANCE.getaddition_operator_Sign();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.pascal.pascal.impl.termImpl <em>term</em>}' class.

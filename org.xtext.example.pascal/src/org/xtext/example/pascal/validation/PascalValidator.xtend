@@ -33,7 +33,8 @@ class PascalValidator extends AbstractPascalValidator {
 	def checkBooleanExpression(assignment_statement assignment_statement) {
 		try {
 			ExpressionValidator.validateBooleanExpression(assignment_statement)	
-			ExpressionValidator.validateExpression(assignment_statement)		
+			ExpressionValidator.validateExpression(assignment_statement)
+			ExpressionValidator.validateArithmeticExpression(assignment_statement)
 			for (InvalidException exc : BlockValidator.getErrorList()) {
 				error(exc.message, exc.component, null)
 			}

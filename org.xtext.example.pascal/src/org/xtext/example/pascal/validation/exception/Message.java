@@ -9,8 +9,11 @@ public enum Message {
 	INVALID_TERM("Termo da expressão inválido."),
 	INVALID_TYPE("Tipo inválido."),
 	PARAMS_EQUALS("Parâmetros não podem ter o mesmo nome."),
-	INVALID_ATTR("Expressão e variável com tipos não compatíveis."),
-	INVALID_ATTRIBUITION("Tipo e atribuição não compatíveis");
+	INVALID_ATTRIBUITION("Tipo e atribuição não compatíveis."),
+	INVALID_EXPRESSION("Expressão aritmética inválida."),
+	ARITHMETIC_INVALID_OPERATION("Tipo da variável não compatível com operação aritmética."),
+	ARITHMETIC_INVALID_REAL("Expressão 'real' não aplicada a variável 'integer'"),
+	ARITHMETIC_INVALID_DIV("Operador 'div' aplicado apenas para 'integer'.");
 	
 	
 	private String content;

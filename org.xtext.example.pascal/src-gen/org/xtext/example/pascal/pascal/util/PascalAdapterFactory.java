@@ -191,6 +191,11 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
         return createsimple_expressionAdapter();
       }
       @Override
+      public Adapter caseaddition_operator(addition_operator object)
+      {
+        return createaddition_operatorAdapter();
+      }
+      @Override
       public Adapter caseterm(term object)
       {
         return createtermAdapter();
@@ -973,6 +978,21 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createsimple_expressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.addition_operator <em>addition operator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.pascal.pascal.addition_operator
+   * @generated
+   */
+  public Adapter createaddition_operatorAdapter()
   {
     return null;
   }

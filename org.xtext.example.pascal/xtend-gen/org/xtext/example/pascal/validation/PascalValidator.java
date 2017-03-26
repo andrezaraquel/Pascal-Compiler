@@ -43,6 +43,7 @@ public class PascalValidator extends AbstractPascalValidator {
     try {
       ExpressionValidator.validateBooleanExpression(assignment_statement);
       ExpressionValidator.validateExpression(assignment_statement);
+      ExpressionValidator.validateArithmeticExpression(assignment_statement);
       List<InvalidException> _errorList = BlockValidator.getErrorList();
       for (final InvalidException exc : _errorList) {
         this.error(exc.getMessage(), exc.getComponent(), null);

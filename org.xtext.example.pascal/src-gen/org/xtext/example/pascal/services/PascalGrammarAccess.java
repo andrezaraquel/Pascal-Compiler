@@ -774,18 +774,22 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	public class Addition_operatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.pascal.Pascal.addition_operator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cSignParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Assignment cSignAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cSignSignParserRuleCall_0_0 = (RuleCall)cSignAssignment_0.eContents().get(0);
 		private final Keyword cOrKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//addition_operator:
-		//	sign | "or";
+		//	sign=sign | "or";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//sign | "or"
+		//sign=sign | "or"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//sign=sign
+		public Assignment getSignAssignment_0() { return cSignAssignment_0; }
+		
 		//sign
-		public RuleCall getSignParserRuleCall_0() { return cSignParserRuleCall_0; }
+		public RuleCall getSignSignParserRuleCall_0_0() { return cSignSignParserRuleCall_0_0; }
 		
 		//"or"
 		public Keyword getOrKeyword_1() { return cOrKeyword_1; }
@@ -4439,7 +4443,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//addition_operator:
-	//	sign | "or";
+	//	sign=sign | "or";
 	public Addition_operatorElements getAddition_operatorAccess() {
 		return pAddition_operator;
 	}

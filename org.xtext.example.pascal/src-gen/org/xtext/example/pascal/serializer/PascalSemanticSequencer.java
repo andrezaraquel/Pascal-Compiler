@@ -22,6 +22,7 @@ import org.xtext.example.pascal.pascal.actual_parameter_list;
 import org.xtext.example.pascal.pascal.actual_procedure;
 import org.xtext.example.pascal.pascal.actual_value;
 import org.xtext.example.pascal.pascal.actual_variable;
+import org.xtext.example.pascal.pascal.addition_operator;
 import org.xtext.example.pascal.pascal.array_type;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.base_type;
@@ -156,6 +157,9 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case PascalPackage.ACTUAL_VARIABLE:
 				sequence_actual_variable(context, (actual_variable) semanticObject); 
+				return; 
+			case PascalPackage.ADDITION_OPERATOR:
+				sequence_addition_operator(context, (addition_operator) semanticObject); 
 				return; 
 			case PascalPackage.ARRAY_TYPE:
 				sequence_array_type(context, (array_type) semanticObject); 
@@ -571,6 +575,24 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getActual_variableAccess().getVariableVariableParserRuleCall_0(), semanticObject.getVariable());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     addition_operator returns addition_operator
+	 *
+	 * Constraint:
+	 *     sign=sign
+	 */
+	protected void sequence_addition_operator(ISerializationContext context, addition_operator semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, PascalPackage.Literals.ADDITION_OPERATOR__SIGN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalPackage.Literals.ADDITION_OPERATOR__SIGN));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAddition_operatorAccess().getSignSignParserRuleCall_0_0(), semanticObject.getSign());
 		feeder.finish();
 	}
 	

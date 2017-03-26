@@ -220,6 +220,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSimple_expressionAccess().getTermAssignment_1(), "rule__Simple_expression__TermAssignment_1");
 					put(grammarAccess.getSimple_expressionAccess().getAddition_operatorAssignment_2_0(), "rule__Simple_expression__Addition_operatorAssignment_2_0");
 					put(grammarAccess.getSimple_expressionAccess().getTermAssignment_2_1(), "rule__Simple_expression__TermAssignment_2_1");
+					put(grammarAccess.getAddition_operatorAccess().getSignAssignment_0(), "rule__Addition_operator__SignAssignment_0");
 					put(grammarAccess.getTermAccess().getFactorAssignment_0(), "rule__Term__FactorAssignment_0");
 					put(grammarAccess.getTermAccess().getMultiplication_operatorAssignment_1_0(), "rule__Term__Multiplication_operatorAssignment_1_0");
 					put(grammarAccess.getTermAccess().getFactorAssignment_1_1(), "rule__Term__FactorAssignment_1_1");

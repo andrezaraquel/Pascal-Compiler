@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.addition_operator;
 import org.xtext.example.pascal.pascal.simple_expression;
 import org.xtext.example.pascal.pascal.term;
 
@@ -72,14 +72,14 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   protected EList<term> term;
 
   /**
-   * The cached value of the '{@link #getAddition_operator() <em>Addition operator</em>}' attribute list.
+   * The cached value of the '{@link #getAddition_operator() <em>Addition operator</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAddition_operator()
    * @generated
    * @ordered
    */
-  protected EList<String> addition_operator;
+  protected EList<addition_operator> addition_operator;
 
   /**
    * <!-- begin-user-doc -->
@@ -144,11 +144,11 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getAddition_operator()
+  public EList<addition_operator> getAddition_operator()
   {
     if (addition_operator == null)
     {
-      addition_operator = new EDataTypeEList<String>(String.class, this, PascalPackage.SIMPLE_EXPRESSION__ADDITION_OPERATOR);
+      addition_operator = new EObjectContainmentEList<addition_operator>(addition_operator.class, this, PascalPackage.SIMPLE_EXPRESSION__ADDITION_OPERATOR);
     }
     return addition_operator;
   }
@@ -165,6 +165,8 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
     {
       case PascalPackage.SIMPLE_EXPRESSION__TERM:
         return ((InternalEList<?>)getTerm()).basicRemove(otherEnd, msgs);
+      case PascalPackage.SIMPLE_EXPRESSION__ADDITION_OPERATOR:
+        return ((InternalEList<?>)getAddition_operator()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -209,7 +211,7 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
         return;
       case PascalPackage.SIMPLE_EXPRESSION__ADDITION_OPERATOR:
         getAddition_operator().clear();
-        getAddition_operator().addAll((Collection<? extends String>)newValue);
+        getAddition_operator().addAll((Collection<? extends addition_operator>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -271,8 +273,6 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (sign: ");
     result.append(sign);
-    result.append(", addition_operator: ");
-    result.append(addition_operator);
     result.append(')');
     return result.toString();
   }

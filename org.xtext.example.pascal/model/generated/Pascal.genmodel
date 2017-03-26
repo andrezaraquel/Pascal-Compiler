@@ -92,7 +92,10 @@
     <genClasses ecoreClass="Pascal.ecore#//simple_expression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//simple_expression/sign"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//simple_expression/term"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//simple_expression/addition_operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//simple_expression/addition_operator"/>
+    </genClasses>
+    <genClasses ecoreClass="Pascal.ecore#//addition_operator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//addition_operator/sign"/>
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//term">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//term/factor"/>
