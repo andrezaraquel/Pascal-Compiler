@@ -43,7 +43,7 @@ public class PascalValidator extends AbstractPascalValidator {
   @Check
   public void checkBooleanExpression(final assignment_statement assignment_statement) {
     try {
-      ExpressionValidator.validateBooleanExpression(assignment_statement);
+      ExpressionValidator.validateBooleanAtribuition(assignment_statement);
       ExpressionValidator.validateSimpleExpression(assignment_statement);
       ExpressionValidator.validateArithmeticExpression(assignment_statement);
       List<InvalidException> _errorList = BlockValidator.getErrorList();
