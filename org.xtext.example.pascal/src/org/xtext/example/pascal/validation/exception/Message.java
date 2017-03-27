@@ -15,7 +15,10 @@ public enum Message {
 	ARITHMETIC_INVALID_REAL("Expressão 'real' não aplicada a variável 'integer'"),
 	ARITHMETIC_INVALID_DIV("Operador 'div' aplicado apenas para 'integer'."),
 	CASE_INVALID_EXPRESSION("Expressao deve ser dos tipos 'char', 'integer' ou 'boolean'"),
-	CASE_INVALID_OPTION("Opção não compatível com o tipo da expressão.");
+	CASE_INVALID_OPTION("Opção não compatível com o tipo da expressão."),
+	BOOLEAN_IN_INAVLID("Operador 'in' suporta apenas dois operandos."),
+	BOOLEAN_INVALID_TYPE("Operador relacional não aplicado ao tipo."),
+	BOOLEAN_INVALID_EXPRESSION("Tipos diferentes não são compatíveis para a operação relacional.");
 	
 	
 	private String content;

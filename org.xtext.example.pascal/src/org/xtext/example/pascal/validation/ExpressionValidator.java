@@ -1,10 +1,15 @@
 package org.xtext.example.pascal.validation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.xtext.example.pascal.pascal.addition_operator;
 import org.xtext.example.pascal.pascal.assignment_statement;
+import org.xtext.example.pascal.pascal.expression;
 import org.xtext.example.pascal.pascal.factor;
 import org.xtext.example.pascal.pascal.simple_expression;
 import org.xtext.example.pascal.pascal.term;
+import org.xtext.example.pascal.services.PascalGrammarAccess.Relational_operatorElements;
 import org.xtext.example.pascal.validation.exception.InvalidException;
 import org.xtext.example.pascal.validation.exception.Message;
 
@@ -105,10 +110,73 @@ public class ExpressionValidator {
 		}
 		return null;
 	}
+	
+	public static List<String> getTypesExpression(assignment_statement assignment_statement) {
+		List<String> listTypesExpression = new ArrayList<String>();
+		for (simple_expression simple_expression : assignment_statement.getExpression().getSimple_expression()) {
+			for (term termList : simple_expression.getTerm()) {
+				for (factor factor : termList.getFactor()) {
+
+					if (factor.getNumber() != null && factor.getNumber().getInteger_number() != null) {
+						if (assignment_statement.getVariable() != null) {
+							verifyCompatibilityTypes(listTypesExpression, "integer", assignment_statement.getExpression());
+							listTypesExpression.add("integer");
+						}
+
+					} else if (factor.getNumber() != null && factor.getNumber().getReal_number() != null) {
+						if (assignment_statement.getVariable() != null) {
+							verifyCompatibilityTypes(listTypesExpression, "real", assignment_statement.getExpression());
+							listTypesExpression.add("real");
+						}
+					} else if (factor.getStrings() != null) {
+						verifyCompatibilityTypes(listTypesExpression, "string", assignment_statement.getExpression());
+						listTypesExpression.add("string");
+
+					} else if (factor.getBoolean() != null) {
+						verifyCompatibilityTypes(listTypesExpression, "boolean", assignment_statement.getExpression());
+						listTypesExpression.add("boolean");
+
+					} else if (factor.getVariable() != null) {
+						String variableName = factor.getVariable().getEntire_variable().getIdentifier().getIdentifier();
+						String type = BlockValidator.getTypeVariable(variableName);
+						if (type == null) {
+							BlockValidator.addError(
+									new InvalidException(Message.UNDECLARED_VARIABLE, assignment_statement.getExpression()));
+						} else {
+							verifyCompatibilityTypes(listTypesExpression, type, assignment_statement.getExpression());
+						}
+						
+						listTypesExpression.add(type);
+					}
+				}
+			}
+		}
+		return listTypesExpression;
+	}
+
+	private static void verifyCompatibilityTypes(List<String> listTypesExpression, String type, expression expression) {
+		
+		if (listTypesExpression.size() > 0) {
+			if (type.equals("integer") || type.equals("real")) {
+				if (!listTypesExpression.get(0).equals("integer") && !listTypesExpression.get(0).equals("real")) {
+					BlockValidator.addError(
+							new InvalidException(Message.BOOLEAN_INVALID_EXPRESSION, expression));
+				}
+			} else {
+				if (!listTypesExpression.get(0).equals(type) ) {
+					BlockValidator.addError(
+							new InvalidException(Message.BOOLEAN_INVALID_EXPRESSION, expression));
+				}
+			}
+			
+		}
+		
+	}
 
 	public static void validateBooleanExpression(assignment_statement assignment_statement) {
-		if (assignment_statement.getExpression().getRelational_operator() != null) {
-
+		String relational_operator = assignment_statement.getExpression().getRelational_operator();
+		if (relational_operator != null) {
+			
 			if (assignment_statement.getVariable() != null) {
 				String variableName = assignment_statement.getVariable().getEntire_variable().getIdentifier()
 						.getIdentifier();
@@ -116,7 +184,17 @@ public class ExpressionValidator {
 				if (type == null || !type.equals("boolean")) {
 					BlockValidator.addError(
 							new InvalidException(Message.INVALID_ATTRIBUITION, assignment_statement.getExpression()));
+				}				
+			}
+			
+			List<String> listTypesExpression = getTypesExpression(assignment_statement);
+			
+			if (relational_operator.equals("in")) {
+				if (listTypesExpression.size() != 2) {
+					BlockValidator.addError(
+							new InvalidException(Message.BOOLEAN_IN_INAVLID, assignment_statement.getExpression()));
 				}
+				
 			}
 		}
 	}
@@ -244,4 +322,6 @@ public class ExpressionValidator {
 		}
 
 	}
+
+	
 }
