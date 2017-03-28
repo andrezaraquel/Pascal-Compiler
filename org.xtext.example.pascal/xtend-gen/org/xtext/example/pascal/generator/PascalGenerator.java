@@ -3,10 +3,19 @@
  */
 package org.xtext.example.pascal.generator;
 
+import com.google.common.collect.Iterables;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.program;
+import org.xtext.example.pascal.pascal.variable_declaration;
+import org.xtext.example.pascal.pascal.variable_declaration_part;
 
 /**
  * Generates code from your model files on save.
@@ -15,7 +24,60 @@ import org.eclipse.xtext.generator.IGeneratorContext;
  */
 @SuppressWarnings("all")
 public class PascalGenerator extends AbstractGenerator {
+  private int currentReg;
+  
+  private int currentLine;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    Iterable<program> _filter = Iterables.<program>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), program.class);
+    for (final program p : _filter) {
+      {
+        this.currentReg = 0;
+        this.currentLine = 0;
+        fsa.deleteFile("output.asm");
+        fsa.generateFile("output.asm", this.compileVariableDeclaration(p.getBlock()));
+      }
+    }
+  }
+  
+  public String getNextLine() {
+    int _currentLine = this.currentLine;
+    this.currentLine = (_currentLine + 8);
+    return (Integer.valueOf(this.currentLine) + ": ");
+  }
+  
+  public String getNextReg() {
+    this.currentReg++;
+    return ("R" + Integer.valueOf(this.currentReg));
+  }
+  
+  public String getReg() {
+    return ("R" + Integer.valueOf(this.currentReg));
+  }
+  
+  public CharSequence compileVariableDeclaration(final block block) {
+    StringConcatenation _builder = new StringConcatenation();
+    variable_declaration_part declaration_variable = block.getDeclaration_part().getVariable_declaration_part();
+    _builder.newLineIfNotEmpty();
+    {
+      EList<variable_declaration> _variable_declaration = declaration_variable.getVariable_declaration();
+      for(final variable_declaration variables_declaration : _variable_declaration) {
+        {
+          EList<String> _identifier = variables_declaration.getIdentifier_list().getIdentifier();
+          for(final String name : _identifier) {
+            String _nextLine = this.getNextLine();
+            String _plus = (_nextLine + "LD ");
+            String _nextReg = this.getNextReg();
+            String _plus_1 = (_plus + _nextReg);
+            String _plus_2 = (_plus_1 + ", ");
+            String _plus_3 = (_plus_2 + name);
+            _builder.append(_plus_3);
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder;
   }
 }

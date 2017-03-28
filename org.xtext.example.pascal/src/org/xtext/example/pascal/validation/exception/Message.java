@@ -9,7 +9,7 @@ public enum Message {
 	INVALID_TERM("Termo da expressão inválido."),
 	INVALID_TYPE("Tipo inválido."),
 	PARAMS_EQUALS("Parâmetros não podem ter o mesmo nome."),
-	INVALID_ATTRIBUITION("Tipo e atribuição não compatíveis."),
+	INVALID_ATTRIBUTION("Tipo e atribuição não compatíveis."),
 	INVALID_EXPRESSION("Expressão aritmética inválida."),
 	ARITHMETIC_INVALID_OPERATION("Tipo da variável não compatível com operação aritmética."),
 	ARITHMETIC_INVALID_REAL("Expressão 'real' não aplicada a variável 'integer'"),
@@ -18,7 +18,8 @@ public enum Message {
 	CASE_INVALID_OPTION("Opção não compatível com o tipo da expressão."),
 	BOOLEAN_OP_REL_INVALID("Operador relacional suporta apenas dois operandos."),
 	BOOLEAN_INVALID_TYPE("Operador relacional não aplicado aos tipos envolvidos."),
-	BOOLEAN_INVALID_EXPRESSION("Tipos diferentes não são compatíveis para a operação relacional.");
+	BOOLEAN_INVALID_EXPRESSION("Tipos diferentes não são compatíveis para a operação relacional."),
+	BOOLEAN_INVALID_ATTRIBUTION("Expressão 'boolean' só pode ser aplicada a variável 'boolean'.");
 	
 	
 	private String content;

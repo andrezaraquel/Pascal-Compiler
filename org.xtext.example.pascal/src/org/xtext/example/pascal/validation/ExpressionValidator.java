@@ -22,21 +22,21 @@ public class ExpressionValidator {
 				if (expressionType.equals("real")) {
 					BlockValidator.addError(new InvalidException(Message.ARITHMETIC_INVALID_REAL, assignment_statement));
 				} else {
-					BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUITION, assignment_statement));
+					BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUTION, assignment_statement));
 				}
 			}
 
 		}
 		if (parameterType != null && parameterType.equals("string")) {
 			if (expressionType == null || !expressionType.equals("string")) {
-				BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUITION, assignment_statement));
+				BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUTION, assignment_statement));
 			}
 
 		}
 
 		if (parameterType != null && parameterType.equals("boolean")) {
 			if (expressionType == null || !expressionType.equals("boolean")) {
-				BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUITION, assignment_statement));
+				BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUTION, assignment_statement));
 			}
 		}
 	}
@@ -56,13 +56,13 @@ public class ExpressionValidator {
 								.addError(new InvalidException(Message.ARITHMETIC_INVALID_REAL, assignment_statement));
 					} else {
 						BlockValidator
-								.addError(new InvalidException(Message.INVALID_ATTRIBUITION, assignment_statement));
+								.addError(new InvalidException(Message.INVALID_ATTRIBUTION, assignment_statement));
 					}
 				}
 			}
 			if (variableType.equals("string")) {
 				if (expressionType == null || !expressionType.equals("string")) {
-					BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUITION, assignment_statement));
+					BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUTION, assignment_statement));
 				}
 
 			}
@@ -70,7 +70,7 @@ public class ExpressionValidator {
 			if (variableType.equals("boolean")) {
 				if (expressionType == null || !expressionType.equals("boolean")) {
 					if (assignment_statement.getExpression().getRelational_operator() == null) {
-						BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUITION,
+						BlockValidator.addError(new InvalidException(Message.INVALID_ATTRIBUTION,
 								assignment_statement.getExpression()));
 
 					}
@@ -169,45 +169,7 @@ public class ExpressionValidator {
 		
 	}
 
-	public static void validateBooleanAtribuition(assignment_statement assignment_statement) {
-		String relational_operator = assignment_statement.getExpression().getRelational_operator();
-		if (relational_operator != null) {
-			
-			if (assignment_statement.getVariable() != null) {
-				String variableName = assignment_statement.getVariable().getEntire_variable().getIdentifier()
-						.getIdentifier();
-				String type = BlockValidator.getTypeVariable(variableName);
-				if (type == null || !type.equals("boolean")) {
-					BlockValidator.addError(
-							new InvalidException(Message.INVALID_ATTRIBUITION, assignment_statement.getExpression()));
-				}				
-			}
-			
-			validateBooleanExpression(assignment_statement.getExpression());
-						
-		}
-	}
 	
-	public static void validateBooleanExpression(expression expression) {
-		List<String> listTypesExpression = getTypesExpression(expression);
-		
-		String relational_operator = expression.getRelational_operator();
-		
-		
-		if (listTypesExpression.size() != 2) {
-			BlockValidator.addError(
-					new InvalidException(Message.BOOLEAN_OP_REL_INVALID, expression));
-		}		
-		
-		
-		if (relational_operator != null && !relational_operator.equals("=")  && !relational_operator.equals("<>")) {
-			if (listTypesExpression.contains("string") || listTypesExpression.contains("char") || listTypesExpression.contains("boolean")) {
-				BlockValidator.addError(
-						new InvalidException(Message.BOOLEAN_INVALID_TYPE, expression));
-			}
-		}
-	}
-
 	public static void validateArithmeticExpression(assignment_statement assignment_statement) {
 
 		String declaratedVariableName = assignment_statement.getVariable().getEntire_variable().getIdentifier()
@@ -265,7 +227,7 @@ public class ExpressionValidator {
 						}
 					}
 
-				}
+				} 
 			}
 		}
 	}

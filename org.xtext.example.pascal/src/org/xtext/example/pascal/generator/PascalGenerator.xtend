@@ -3,10 +3,14 @@
  */
 package org.xtext.example.pascal.generator
 
+import java.util.HashMap
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.xtext.example.pascal.pascal.block
+import org.xtext.example.pascal.pascal.factor
+import org.xtext.example.pascal.pascal.program
 
 /**
  * Generates code from your model files on save.
@@ -14,12 +18,40 @@ import org.eclipse.xtext.generator.IGeneratorContext
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class PascalGenerator extends AbstractGenerator {
+	
+	
+	private int currentReg;
+	private int currentLine;
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		for (p: resource.allContents.toIterable.filter(program)) {			
+			currentReg = 0;
+			currentLine = 0;
+			fsa.deleteFile("output.asm");
+			fsa.generateFile("output.asm", p.block.compileVariableDeclaration);
+		}
+
+	}	
+	
+	def getNextLine(){
+		currentLine +=8;
+		return currentLine+": ";
 	}
+	
+	def getNextReg(){
+		currentReg++;
+		return "R"+currentReg;
+	}
+	def getReg(){
+		return "R"+currentReg;
+	}
+	
+	def compileVariableDeclaration(block block) '''
+		«var declaration_variable = block.declaration_part.variable_declaration_part»
+		«FOR variables_declaration : declaration_variable.variable_declaration»
+			«FOR name : variables_declaration.identifier_list.identifier»
+				«getNextLine() + "LD " + nextReg+ ", " + name»
+			«ENDFOR»
+		«ENDFOR»
+	'''
 }

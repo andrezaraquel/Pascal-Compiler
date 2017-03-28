@@ -14,7 +14,7 @@ public class CaseValidator {
 
 	public static void validateCase(case_statement case_statement) {
 
-		ExpressionValidator.validateBooleanExpression(case_statement.getExpression());
+		BooleanExpressionValidator.validateBooleanExpression(case_statement.getExpression());
 		
 		for (simple_expression simple_expression : case_statement.getExpression().getSimple_expression()) {
 
