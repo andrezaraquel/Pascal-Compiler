@@ -92,7 +92,7 @@ simple_expression:
 	(sign=sign)? term+=term (addition_operator+=addition_operator term+=term)*
 ;
 
-addition_operator: 
+addition_operator:{addition_operator} 
 	sign=sign | "or"
 ;
 

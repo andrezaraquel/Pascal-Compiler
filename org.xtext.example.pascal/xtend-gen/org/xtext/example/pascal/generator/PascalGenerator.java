@@ -4,6 +4,8 @@
 package org.xtext.example.pascal.generator;
 
 import com.google.common.collect.Iterables;
+import java.util.HashMap;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,7 +15,15 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.digit_sequence;
+import org.xtext.example.pascal.pascal.factor;
+import org.xtext.example.pascal.pascal.integer_number;
 import org.xtext.example.pascal.pascal.program;
+import org.xtext.example.pascal.pascal.real_number;
+import org.xtext.example.pascal.pascal.scale_factor;
+import org.xtext.example.pascal.pascal.simple_expression;
+import org.xtext.example.pascal.pascal.statement;
+import org.xtext.example.pascal.pascal.term;
 import org.xtext.example.pascal.pascal.variable_declaration;
 import org.xtext.example.pascal.pascal.variable_declaration_part;
 
@@ -28,6 +38,8 @@ public class PascalGenerator extends AbstractGenerator {
   
   private int currentLine;
   
+  private Map<String, String> mapRegs;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     Iterable<program> _filter = Iterables.<program>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), program.class);
@@ -35,8 +47,10 @@ public class PascalGenerator extends AbstractGenerator {
       {
         this.currentReg = 0;
         this.currentLine = 0;
+        HashMap<String, String> _hashMap = new HashMap<String, String>();
+        this.mapRegs = _hashMap;
         fsa.deleteFile("output.asm");
-        fsa.generateFile("output.asm", this.compileVariableDeclaration(p.getBlock()));
+        fsa.generateFile("output.asm", this.compile(p.getBlock()));
       }
     }
   }
@@ -52,8 +66,27 @@ public class PascalGenerator extends AbstractGenerator {
     return ("R" + Integer.valueOf(this.currentReg));
   }
   
-  public String getReg() {
+  public String getCurrentReg() {
     return ("R" + Integer.valueOf(this.currentReg));
+  }
+  
+  public CharSequence compile(final block block) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _nextLine = this.getNextLine();
+    String _plus = (_nextLine + "LD SP #stackStart");
+    _builder.append(_plus);
+    _builder.newLineIfNotEmpty();
+    CharSequence _compileVariableDeclaration = this.compileVariableDeclaration(block);
+    _builder.append(_compileVariableDeclaration);
+    _builder.newLineIfNotEmpty();
+    CharSequence _compileAttribution = this.compileAttribution(block);
+    _builder.append(_compileAttribution);
+    _builder.newLineIfNotEmpty();
+    String _nextLine_1 = this.getNextLine();
+    String _plus_1 = (_nextLine_1 + "BR *0(SP)");
+    _builder.append(_plus_1);
+    _builder.newLineIfNotEmpty();
+    return _builder;
   }
   
   public CharSequence compileVariableDeclaration(final block block) {
@@ -74,10 +107,191 @@ public class PascalGenerator extends AbstractGenerator {
             String _plus_3 = (_plus_2 + name);
             _builder.append(_plus_3);
             _builder.newLineIfNotEmpty();
+            String _put = this.mapRegs.put(name, this.getCurrentReg());
+            _builder.append(_put);
+            _builder.newLineIfNotEmpty();
           }
         }
       }
     }
     return _builder;
+  }
+  
+  public CharSequence compileAttribution(final block block) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<statement> _statement = block.getStatement_part().getStatement_sequence().getStatement();
+      for(final statement statement : _statement) {
+        {
+          if (((((statement != null) && (statement.getSimple_statement() != null)) && (statement.getSimple_statement().getAssignment_statement() != null)) && (statement.getSimple_statement().getAssignment_statement().getExpression() != null))) {
+            {
+              EList<simple_expression> _simple_expression = statement.getSimple_statement().getAssignment_statement().getExpression().getSimple_expression();
+              for(final simple_expression simple_expression : _simple_expression) {
+                String variableLeftName = statement.getSimple_statement().getAssignment_statement().getVariable().getEntire_variable().getIdentifier().getIdentifier();
+                _builder.newLineIfNotEmpty();
+                {
+                  if ((simple_expression != null)) {
+                    {
+                      EList<term> _term = simple_expression.getTerm();
+                      for(final term term : _term) {
+                        {
+                          if ((term != null)) {
+                            {
+                              EList<factor> _factor = term.getFactor();
+                              for(final factor factor : _factor) {
+                                CharSequence _codeExpression = this.getCodeExpression(factor, variableLeftName);
+                                _builder.append(_codeExpression);
+                                _builder.newLineIfNotEmpty();
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence getCodeExpression(final factor factor, final String variableLeftName) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((((factor != null) && (factor.getVariable() != null)) && (factor.getVariable().getEntire_variable() != null))) {
+        String variableRigthName = factor.getVariable().getEntire_variable().getIdentifier().getIdentifier();
+        _builder.newLineIfNotEmpty();
+        String _nextLine = this.getNextLine();
+        String _plus = (_nextLine + "ST ");
+        String _get = this.mapRegs.get(variableLeftName);
+        String _plus_1 = (_plus + _get);
+        String _plus_2 = (_plus_1 + ", ");
+        String _plus_3 = (_plus_2 + variableRigthName);
+        _builder.append(_plus_3);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      if (((factor != null) && (factor.getIdentifier() != null))) {
+        String _nextLine_1 = this.getNextLine();
+        String _plus_4 = (_nextLine_1 + "ST ");
+        String _get_1 = this.mapRegs.get(variableLeftName);
+        String _plus_5 = (_plus_4 + _get_1);
+        String _plus_6 = (_plus_5 + ", ");
+        String _identifier = factor.getIdentifier().getIdentifier();
+        String _plus_7 = (_plus_6 + _identifier);
+        _builder.append(_plus_7);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      if (((factor != null) && (factor.getNumber() != null))) {
+        {
+          integer_number _integer_number = factor.getNumber().getInteger_number();
+          boolean _tripleNotEquals = (_integer_number != null);
+          if (_tripleNotEquals) {
+            String _nextLine_2 = this.getNextLine();
+            String _plus_8 = (_nextLine_2 + "ST ");
+            String _get_2 = this.mapRegs.get(variableLeftName);
+            String _plus_9 = (_plus_8 + _get_2);
+            String _plus_10 = (_plus_9 + ", #");
+            String _integerNumber = this.getIntegerNumber(factor.getNumber().getInteger_number());
+            String _plus_11 = (_plus_10 + _integerNumber);
+            _builder.append(_plus_11);
+            _builder.newLineIfNotEmpty();
+          } else {
+            String _nextLine_3 = this.getNextLine();
+            String _plus_12 = (_nextLine_3 + "ST ");
+            String _get_3 = this.mapRegs.get(variableLeftName);
+            String _plus_13 = (_plus_12 + _get_3);
+            String _plus_14 = (_plus_13 + ", #");
+            String _realNumber = this.getRealNumber(factor.getNumber().getReal_number());
+            String _plus_15 = (_plus_14 + _realNumber);
+            _builder.append(_plus_15);
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      if (((factor != null) && (factor.getStrings() != null))) {
+        String _nextLine_4 = this.getNextLine();
+        String _plus_16 = (_nextLine_4 + "ST ");
+        String _get_4 = this.mapRegs.get(variableLeftName);
+        String _plus_17 = (_plus_16 + _get_4);
+        String _plus_18 = (_plus_17 + ", ");
+        String _strings = factor.getStrings();
+        String _plus_19 = (_plus_18 + _strings);
+        _builder.append(_plus_19);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public String getRealNumber(final real_number real_number) {
+    String output = "";
+    String _output = output;
+    String _digitSequence = this.getDigitSequence(real_number.getDigit_sequence());
+    output = (_output + _digitSequence);
+    digit_sequence _digit_sequence2 = real_number.getDigit_sequence2();
+    boolean _tripleNotEquals = (_digit_sequence2 != null);
+    if (_tripleNotEquals) {
+      String _output_1 = output;
+      String _digitSequence_1 = this.getDigitSequence(real_number.getDigit_sequence2());
+      String _plus = ("." + _digitSequence_1);
+      output = (_output_1 + _plus);
+    }
+    scale_factor _scale_factor = real_number.getScale_factor();
+    boolean _tripleNotEquals_1 = (_scale_factor != null);
+    if (_tripleNotEquals_1) {
+      String _output_2 = output;
+      String _scaleFactor = this.getScaleFactor(real_number.getScale_factor());
+      output = (_output_2 + _scaleFactor);
+    }
+    return output;
+  }
+  
+  public String getScaleFactor(final scale_factor factor) {
+    String _xblockexpression = null;
+    {
+      String output = "";
+      String _output = output;
+      output = (_output + "e");
+      String _sign = factor.getSign();
+      boolean _tripleNotEquals = (_sign != null);
+      if (_tripleNotEquals) {
+        String _output_1 = output;
+        String _sign_1 = factor.getSign();
+        output = (_output_1 + _sign_1);
+      }
+      String _output_2 = output;
+      String _digitSequence = this.getDigitSequence(factor.getDigit_sequence());
+      _xblockexpression = output = (_output_2 + _digitSequence);
+    }
+    return _xblockexpression;
+  }
+  
+  public String getDigitSequence(final digit_sequence digit_sequence) {
+    String output = "";
+    String _sign = digit_sequence.getSign();
+    boolean _tripleNotEquals = (_sign != null);
+    if (_tripleNotEquals) {
+      String _output = output;
+      String _sign_1 = digit_sequence.getSign();
+      output = (_output + _sign_1);
+    }
+    String _output_1 = output;
+    String _unsigned_digit_sequence = digit_sequence.getUnsigned_digit_sequence();
+    output = (_output_1 + _unsigned_digit_sequence);
+    return output;
+  }
+  
+  public String getIntegerNumber(final integer_number integer_number) {
+    return this.getDigitSequence(integer_number.getDigit_sequence());
   }
 }
