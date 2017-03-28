@@ -3,7 +3,9 @@
  */
 package org.xtext.example.pascal.generator
 
+import java.util.ArrayList
 import java.util.HashMap
+import java.util.List
 import java.util.Map
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
@@ -11,11 +13,12 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.pascal.pascal.block
 import org.xtext.example.pascal.pascal.digit_sequence
+import org.xtext.example.pascal.pascal.factor
 import org.xtext.example.pascal.pascal.integer_number
 import org.xtext.example.pascal.pascal.program
 import org.xtext.example.pascal.pascal.real_number
 import org.xtext.example.pascal.pascal.scale_factor
-import org.xtext.example.pascal.pascal.factor
+import org.xtext.example.pascal.pascal.term
 
 /**
  * Generates code from your model files on save.
@@ -74,20 +77,65 @@ class PascalGenerator extends AbstractGenerator {
 		«FOR statement:block.statement_part.statement_sequence.statement»
 				«IF statement !== null && statement.simple_statement !== null && statement.simple_statement.assignment_statement !== null && statement.simple_statement.assignment_statement.expression !== null»
 					«FOR simple_expression: statement.simple_statement.assignment_statement.expression.simple_expression»
+						«var List<Integer> listSum = new ArrayList<Integer>()»
 						«var variableLeftName = statement.simple_statement.assignment_statement.variable.entire_variable.identifier.identifier»
 						«IF simple_expression !== null»
 							«FOR term:simple_expression.term»
-								«IF term !== null»						
-									«FOR factor: term.factor»
-										«getCodeExpression(factor, variableLeftName)»
-									«ENDFOR»
+								«IF simple_expression.addition_operator.size == 0 »
+									«IF term !== null»						
+										«FOR factor: term.factor»
+											«getCodeExpression(factor, variableLeftName)»
+										«ENDFOR»
+									«ENDIF»
+								«ENDIF»
+								«IF simple_expression.addition_operator.size > 0»
+									«IF term !== null»	
+										«loadForExpressionADD(term, variableLeftName, listSum)»
+									«ENDIF»
 								«ENDIF»
 							«ENDFOR»
 						«ENDIF»
-					«ENDFOR»
+						«storageSum(listSum, variableLeftName)»
+					«ENDFOR»					
 				«ENDIF»		
 			«ENDFOR»
 		'''
+	
+	def storageSum(List<Integer> listSum, String variableLeftName) '''
+		«IF listSum.size > 1»
+			«FOR i : 1 .. listSum.size-1»
+				«getNextLine() + "ADD "+ "R"+listSum.get(0) + ", R"+ listSum.get(0) + ", R" + listSum.get(i)»
+			«ENDFOR»
+			«getNextLine() + "ST "+ mapRegs.get(variableLeftName) +", R"+ listSum.get(0)»
+		«ENDIF»
+	'''
+	
+	def loadForExpressionADD(term term, String variableLeftName, List<Integer> listSum)'''
+		«FOR factor: term.factor»
+			«IF factor !== null && factor.variable !== null && factor.variable.entire_variable !== null»
+				«var variableRigthName = factor.variable.entire_variable.identifier.identifier»
+				«getNextLine() + "LD " + nextReg + ", " + variableRigthName»
+				«var aux = listSum.add(currentReg)»
+			«ENDIF»
+			« IF factor !== null && factor.identifier !== null»
+				«getNextLine() + "LD " + nextReg + ", " + factor.identifier.identifier»
+				«var aux = listSum.add(currentReg)»
+			«ENDIF»
+			«IF factor !== null && factor.number !== null»	
+				«IF factor.number.integer_number !== null»
+					«getNextLine() + "LD " + nextReg + ", #" + getIntegerNumber(factor.number.integer_number)»
+					«var aux = listSum.add(currentReg)»
+				«ELSE»
+					«getNextLine() + "LD " + nextReg + ", #" + getRealNumber(factor.number.real_number)»
+					«var aux = listSum.add(currentReg)»
+				«ENDIF»
+			«ENDIF»	
+			« IF factor !== null && factor.strings !== null»
+				«getNextLine() + "LD " + nextReg + ", " +factor.strings»
+				«var aux = listSum.add(currentReg)»
+			«ENDIF»		
+		«ENDFOR»
+	'''
 	
 	def getCodeExpression(factor factor, String variableLeftName)'''
 		«IF factor !== null && factor.variable !== null && factor.variable.entire_variable !== null»
