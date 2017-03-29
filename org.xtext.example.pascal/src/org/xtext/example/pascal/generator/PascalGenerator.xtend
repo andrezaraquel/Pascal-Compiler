@@ -125,7 +125,7 @@ class PascalGenerator extends AbstractGenerator {
 					«getNextLine() + "DIV "+ "R"+listMul.get(0) + ", R"+ listMul.get(0) + ", R" + listMul.get(i)»
 				«ENDIF»
 			«ENDFOR»
-			«getNextLine() + "ST "+ mapRegs.get(variableLeftName) +", R"+ listMul.get(0)»
+			«getNextLine() + "ST "+ variableLeftName +", R"+ listMul.get(0)»
 		«ENDIF»
 	'''
 		
@@ -139,7 +139,7 @@ class PascalGenerator extends AbstractGenerator {
 					«getNextLine() + "SUB "+ "R"+listSum.get(0) + ", R"+ listSum.get(0) + ", R" + listSum.get(i)»
 				«ENDIF»
 			«ENDFOR»
-			«getNextLine() + "ST "+ mapRegs.get(variableLeftName) +", R"+ listSum.get(0)»
+			«getNextLine() + "ST "+ variableLeftName +", R"+ listSum.get(0)»
 		«ENDIF»
 	'''
 	
@@ -173,20 +173,20 @@ class PascalGenerator extends AbstractGenerator {
 	def getCodeExpression(factor factor, String variableLeftName)'''
 		«IF factor !== null && factor.variable !== null && factor.variable.entire_variable !== null»
 			«var variableRigthName = factor.variable.entire_variable.identifier.identifier»
-			«getNextLine() + "ST " + mapRegs.get(variableLeftName) + ", " + variableRigthName»
+			«getNextLine() + "ST " + variableLeftName + ", " + variableRigthName»
 		«ENDIF»
 		« IF factor !== null && factor.identifier !== null»
-			«getNextLine() + "ST " + mapRegs.get(variableLeftName) + ", " + factor.identifier.identifier»
+			«getNextLine() + "ST " + variableLeftName + ", " + factor.identifier.identifier»
 		«ENDIF»
 		« IF factor !== null && factor.number !== null»
 			«IF factor.number.integer_number !== null»
-				«getNextLine() + "ST " + mapRegs.get(variableLeftName) + ", #" + getIntegerNumber(factor.number.integer_number)»
+				«getNextLine() + "ST " + variableLeftName + ", #" + getIntegerNumber(factor.number.integer_number)»
 			«ELSE»
-				«getNextLine() + "ST " + mapRegs.get(variableLeftName) + ", #" + getRealNumber(factor.number.real_number)»
+				«getNextLine() + "ST " +  variableLeftName + ", #" + getRealNumber(factor.number.real_number)»
 			«ENDIF»
 		«ENDIF»	
 		« IF factor !== null && factor.strings !== null»
-			«getNextLine() + "ST " + mapRegs.get(variableLeftName) + ", " +factor.strings»
+			«getNextLine() + "ST " + variableLeftName + ", " +factor.strings»
 		«ENDIF»
 	'''
 	

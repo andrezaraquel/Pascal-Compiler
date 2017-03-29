@@ -266,11 +266,10 @@ public class PascalGenerator extends AbstractGenerator {
         }
         String _nextLine_2 = this.getNextLine();
         String _plus_14 = (_nextLine_2 + "ST ");
-        String _get_6 = this.mapRegs.get(variableLeftName);
-        String _plus_15 = (_plus_14 + _get_6);
+        String _plus_15 = (_plus_14 + variableLeftName);
         String _plus_16 = (_plus_15 + ", R");
-        Integer _get_7 = listMul.get(0);
-        String _plus_17 = (_plus_16 + _get_7);
+        Integer _get_6 = listMul.get(0);
+        String _plus_17 = (_plus_16 + _get_6);
         _builder.append(_plus_17);
         _builder.newLineIfNotEmpty();
       }
@@ -329,11 +328,10 @@ public class PascalGenerator extends AbstractGenerator {
         }
         String _nextLine_2 = this.getNextLine();
         String _plus_14 = (_nextLine_2 + "ST ");
-        String _get_6 = this.mapRegs.get(variableLeftName);
-        String _plus_15 = (_plus_14 + _get_6);
+        String _plus_15 = (_plus_14 + variableLeftName);
         String _plus_16 = (_plus_15 + ", R");
-        Integer _get_7 = listSum.get(0);
-        String _plus_17 = (_plus_16 + _get_7);
+        Integer _get_6 = listSum.get(0);
+        String _plus_17 = (_plus_16 + _get_6);
         _builder.append(_plus_17);
         _builder.newLineIfNotEmpty();
       }
@@ -438,8 +436,7 @@ public class PascalGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
         String _nextLine = this.getNextLine();
         String _plus = (_nextLine + "ST ");
-        String _get = this.mapRegs.get(variableLeftName);
-        String _plus_1 = (_plus + _get);
+        String _plus_1 = (_plus + variableLeftName);
         String _plus_2 = (_plus_1 + ", ");
         String _plus_3 = (_plus_2 + variableRigthName);
         _builder.append(_plus_3);
@@ -450,8 +447,7 @@ public class PascalGenerator extends AbstractGenerator {
       if (((factor != null) && (factor.getIdentifier() != null))) {
         String _nextLine_1 = this.getNextLine();
         String _plus_4 = (_nextLine_1 + "ST ");
-        String _get_1 = this.mapRegs.get(variableLeftName);
-        String _plus_5 = (_plus_4 + _get_1);
+        String _plus_5 = (_plus_4 + variableLeftName);
         String _plus_6 = (_plus_5 + ", ");
         String _identifier = factor.getIdentifier().getIdentifier();
         String _plus_7 = (_plus_6 + _identifier);
@@ -467,8 +463,7 @@ public class PascalGenerator extends AbstractGenerator {
           if (_tripleNotEquals) {
             String _nextLine_2 = this.getNextLine();
             String _plus_8 = (_nextLine_2 + "ST ");
-            String _get_2 = this.mapRegs.get(variableLeftName);
-            String _plus_9 = (_plus_8 + _get_2);
+            String _plus_9 = (_plus_8 + variableLeftName);
             String _plus_10 = (_plus_9 + ", #");
             String _integerNumber = this.getIntegerNumber(factor.getNumber().getInteger_number());
             String _plus_11 = (_plus_10 + _integerNumber);
@@ -477,8 +472,7 @@ public class PascalGenerator extends AbstractGenerator {
           } else {
             String _nextLine_3 = this.getNextLine();
             String _plus_12 = (_nextLine_3 + "ST ");
-            String _get_3 = this.mapRegs.get(variableLeftName);
-            String _plus_13 = (_plus_12 + _get_3);
+            String _plus_13 = (_plus_12 + variableLeftName);
             String _plus_14 = (_plus_13 + ", #");
             String _realNumber = this.getRealNumber(factor.getNumber().getReal_number());
             String _plus_15 = (_plus_14 + _realNumber);
@@ -492,8 +486,7 @@ public class PascalGenerator extends AbstractGenerator {
       if (((factor != null) && (factor.getStrings() != null))) {
         String _nextLine_4 = this.getNextLine();
         String _plus_16 = (_nextLine_4 + "ST ");
-        String _get_4 = this.mapRegs.get(variableLeftName);
-        String _plus_17 = (_plus_16 + _get_4);
+        String _plus_17 = (_plus_16 + variableLeftName);
         String _plus_18 = (_plus_17 + ", ");
         String _strings = factor.getStrings();
         String _plus_19 = (_plus_18 + _strings);

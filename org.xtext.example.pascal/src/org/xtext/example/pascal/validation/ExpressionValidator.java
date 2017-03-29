@@ -153,11 +153,14 @@ public class ExpressionValidator {
 		
 		if (listTypesExpression.size() > 0) {
 			if (type.equals("integer") || type.equals("real")) {
-				if (!listTypesExpression.get(0).equals("integer") && !listTypesExpression.get(0).equals("real")) {
-					BlockValidator.addError(
-							new InvalidException(Message.BOOLEAN_INVALID_EXPRESSION, expression));
+				if (listTypesExpression.size() > 1) {
+					if (!listTypesExpression.get(0).equals("integer") && !listTypesExpression.get(0).equals("real")) {
+						BlockValidator.addError(
+								new InvalidException(Message.BOOLEAN_INVALID_EXPRESSION, expression));
+					}
 				}
-			} else {
+				
+			} else if (listTypesExpression.size() > 1)  {
 				if (!listTypesExpression.get(0).equals(type) ) {
 					BlockValidator.addError(
 							new InvalidException(Message.BOOLEAN_INVALID_EXPRESSION, expression));

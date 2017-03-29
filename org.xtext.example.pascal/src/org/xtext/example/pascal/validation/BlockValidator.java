@@ -62,23 +62,25 @@ public class BlockValidator {
 
 		if (declarationPart != null) {
 			if (declarationPart.getVariable_declaration_part() != null) {
-
-				for (type_definition type_definition : declarationPart.getType_definition_part().getType_definition()) {
-					addDeclaredType(type_definition.getIdentifier().getIdentifier());
+				if (declarationPart != null && declarationPart.getType_definition_part() != null && declarationPart.getType_definition_part().getType_definition() != null) {
+					for (type_definition type_definition : declarationPart.getType_definition_part().getType_definition()) {
+						addDeclaredType(type_definition.getIdentifier().getIdentifier());
+					}
 				}
+				
 
 				VariableValidator.validateDeclarationVariable(block, declarationPart);
 
 			}
 
-			if (declarationPart.getProcedure_heading() != null) {
+			if (declarationPart != null && declarationPart.getProcedure_heading() != null) {
 
 				EList<procedure_heading> procedures = declarationPart.getProcedure_heading();
 
 				for (procedure_heading procedure : procedures) {
 					ProcedureValidator.validateDeclarationProcedure(block, procedure);
 				}
-			} else if (declarationPart.getProcedure_identification() != null) {
+			} else if (declarationPart != null  && declarationPart.getProcedure_identification() != null) {
 
 				EList<procedure_identification> procedures = declarationPart.getProcedure_identification();
 

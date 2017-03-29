@@ -13,7 +13,7 @@ import org.xtext.example.pascal.validation.exception.Message;
 
 public class BooleanExpressionValidator {
 
-	public static void validateBooleanAtribuition(assignment_statement assignment_statement) {
+	public static void validateBooleanAttribution(assignment_statement assignment_statement) {
 		String relational_operator = assignment_statement.getExpression().getRelational_operator();
 		if (relational_operator != null) {
 
