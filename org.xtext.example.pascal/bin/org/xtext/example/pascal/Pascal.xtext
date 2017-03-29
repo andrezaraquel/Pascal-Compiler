@@ -80,7 +80,7 @@ assignment_statement:
 	(variable=variable | function_identifier=identifier) ":=" expression=expression
 ;
 
-expression:
+expression: {expression}
 	simple_expression+=simple_expression (relational_operator=relational_operator simple_expression+=simple_expression)?
 ;
 
@@ -92,7 +92,7 @@ simple_expression:
 	(sign=sign)? term+=term (addition_operator+=addition_operator term+=term)*
 ;
 
-addition_operator:{addition_operator} 
+addition_operator:
 	sign=sign | "or"
 ;
 

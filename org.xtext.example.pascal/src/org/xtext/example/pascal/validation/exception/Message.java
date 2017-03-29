@@ -19,7 +19,8 @@ public enum Message {
 	BOOLEAN_OP_REL_INVALID("Operador relacional suporta apenas dois operandos."),
 	BOOLEAN_INVALID_TYPE("Operador relacional não aplicado aos tipos envolvidos."),
 	BOOLEAN_INVALID_EXPRESSION("Tipos diferentes não são compatíveis para a operação relacional."),
-	BOOLEAN_INVALID_ATTRIBUTION("Expressão 'boolean' só pode ser aplicada a variável 'boolean'.");
+	BOOLEAN_INVALID_ATTRIBUTION("Expressão 'boolean' só pode ser atribuída a variável 'boolean'."),
+	BOOLEAN_INVALID_OPERATORS("Operadores 'boolean' só podem ser aplicados a operandos do tipo 'boolean'");
 	
 	
 	private String content;

@@ -5,6 +5,7 @@ import java.util.List;
 import org.xtext.example.pascal.pascal.addition_operator;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.expression;
+import org.xtext.example.pascal.pascal.factor;
 import org.xtext.example.pascal.pascal.simple_expression;
 import org.xtext.example.pascal.pascal.term;
 import org.xtext.example.pascal.validation.exception.InvalidException;
@@ -26,10 +27,9 @@ public class BooleanExpressionValidator {
 				}
 			}
 
-			validateBooleanExpression(assignment_statement.getExpression());
-			validateAndOrExpression(assignment_statement);
-
 		}
+		validateBooleanExpression(assignment_statement.getExpression());
+		validateAndOrExpression(assignment_statement);
 	}
 
 	public static void validateBooleanExpression(expression expression) {
@@ -37,9 +37,12 @@ public class BooleanExpressionValidator {
 
 		String relational_operator = expression.getRelational_operator();
 
-		if (listTypesExpression.size() != 2) {
-			BlockValidator.addError(new InvalidException(Message.BOOLEAN_OP_REL_INVALID, expression));
+		if (relational_operator != null) {
+			if (listTypesExpression.size() != 2) {
+				BlockValidator.addError(new InvalidException(Message.BOOLEAN_OP_REL_INVALID, expression));
+			}
 		}
+		
 
 		if (relational_operator != null && !relational_operator.equals("=") && !relational_operator.equals("<>")) {
 			if (listTypesExpression.contains("string") || listTypesExpression.contains("char")
@@ -62,6 +65,13 @@ public class BooleanExpressionValidator {
 							BlockValidator.addError(
 									new InvalidException(Message.BOOLEAN_INVALID_ATTRIBUTION, assignment_statement));
 						}
+
+						List<String> listTypes = ExpressionValidator.getTypesExpression(assignment_statement.getExpression());
+						if (listContainsAnyTypeBesidesBool(listTypes)) {
+							BlockValidator.addError(new InvalidException(Message.BOOLEAN_INVALID_OPERATORS,
+									assignment_statement));
+						}
+						
 					}
 				}
 			}
@@ -69,10 +79,15 @@ public class BooleanExpressionValidator {
 			for (term term : simple_expression.getTerm()) {
 				if (term.getMultiplication_operator() != null) {
 					for (String multiplication_operator : term.getMultiplication_operator()) {
-						if (multiplication_operator != null && multiplication_operator.equals("and")) {
+						if (multiplication_operator != null && multiplication_operator.contains("and")) {
 							if (!declaratedVariableType.equals("boolean")) {
-								BlockValidator.addError(
-										new InvalidException(Message.BOOLEAN_INVALID_ATTRIBUTION, assignment_statement));
+								BlockValidator.addError(new InvalidException(Message.BOOLEAN_INVALID_ATTRIBUTION,
+										assignment_statement));
+							}
+							List<String> listTypes = ExpressionValidator.getTypesExpression(assignment_statement.getExpression());
+							if (listContainsAnyTypeBesidesBool(listTypes)) {
+								BlockValidator.addError(new InvalidException(Message.BOOLEAN_INVALID_OPERATORS,
+										assignment_statement));
 							}
 						}
 					}
@@ -81,6 +96,15 @@ public class BooleanExpressionValidator {
 
 		}
 
+	}
+
+	private static boolean listContainsAnyTypeBesidesBool(List<String> listTypes) {
+		for (String type : listTypes) {
+			if (!type.equals("boolean")) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

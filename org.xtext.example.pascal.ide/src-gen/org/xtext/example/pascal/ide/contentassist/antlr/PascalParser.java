@@ -80,7 +80,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getActual_parameter_listAccess().getGroup_2(), "rule__Actual_parameter_list__Group_2__0");
 					put(grammarAccess.getAssignment_statementAccess().getGroup(), "rule__Assignment_statement__Group__0");
 					put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
-					put(grammarAccess.getExpressionAccess().getGroup_1(), "rule__Expression__Group_1__0");
+					put(grammarAccess.getExpressionAccess().getGroup_2(), "rule__Expression__Group_2__0");
 					put(grammarAccess.getSimple_expressionAccess().getGroup(), "rule__Simple_expression__Group__0");
 					put(grammarAccess.getSimple_expressionAccess().getGroup_2(), "rule__Simple_expression__Group_2__0");
 					put(grammarAccess.getTermAccess().getGroup(), "rule__Term__Group__0");
@@ -213,9 +213,9 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssignment_statementAccess().getVariableAssignment_0_0(), "rule__Assignment_statement__VariableAssignment_0_0");
 					put(grammarAccess.getAssignment_statementAccess().getFunction_identifierAssignment_0_1(), "rule__Assignment_statement__Function_identifierAssignment_0_1");
 					put(grammarAccess.getAssignment_statementAccess().getExpressionAssignment_2(), "rule__Assignment_statement__ExpressionAssignment_2");
-					put(grammarAccess.getExpressionAccess().getSimple_expressionAssignment_0(), "rule__Expression__Simple_expressionAssignment_0");
-					put(grammarAccess.getExpressionAccess().getRelational_operatorAssignment_1_0(), "rule__Expression__Relational_operatorAssignment_1_0");
-					put(grammarAccess.getExpressionAccess().getSimple_expressionAssignment_1_1(), "rule__Expression__Simple_expressionAssignment_1_1");
+					put(grammarAccess.getExpressionAccess().getSimple_expressionAssignment_1(), "rule__Expression__Simple_expressionAssignment_1");
+					put(grammarAccess.getExpressionAccess().getRelational_operatorAssignment_2_0(), "rule__Expression__Relational_operatorAssignment_2_0");
+					put(grammarAccess.getExpressionAccess().getSimple_expressionAssignment_2_1(), "rule__Expression__Simple_expressionAssignment_2_1");
 					put(grammarAccess.getSimple_expressionAccess().getSignAssignment_0(), "rule__Simple_expression__SignAssignment_0");
 					put(grammarAccess.getSimple_expressionAccess().getTermAssignment_1(), "rule__Simple_expression__TermAssignment_1");
 					put(grammarAccess.getSimple_expressionAccess().getAddition_operatorAssignment_2_0(), "rule__Simple_expression__Addition_operatorAssignment_2_0");

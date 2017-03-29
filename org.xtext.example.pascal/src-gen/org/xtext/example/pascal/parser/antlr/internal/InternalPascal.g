@@ -1310,11 +1310,21 @@ ruleexpression returns [EObject current=null]
 }:
 	(
 		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getExpressionAccess().getExpressionAction_0(),
+					$current);
+			}
+		)
+		(
 			(
 				{
-					newCompositeNode(grammarAccess.getExpressionAccess().getSimple_expressionSimple_expressionParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getExpressionAccess().getSimple_expressionSimple_expressionParserRuleCall_1_0());
 				}
-				lv_simple_expression_0_0=rulesimple_expression
+				lv_simple_expression_1_0=rulesimple_expression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getExpressionRule());
@@ -1322,7 +1332,7 @@ ruleexpression returns [EObject current=null]
 					add(
 						$current,
 						"simple_expression",
-						lv_simple_expression_0_0,
+						lv_simple_expression_1_0,
 						"org.xtext.example.pascal.Pascal.simple_expression");
 					afterParserOrEnumRuleCall();
 				}
@@ -1332,9 +1342,9 @@ ruleexpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getExpressionAccess().getRelational_operatorRelational_operatorParserRuleCall_1_0_0());
+						newCompositeNode(grammarAccess.getExpressionAccess().getRelational_operatorRelational_operatorParserRuleCall_2_0_0());
 					}
-					lv_relational_operator_1_0=rulerelational_operator
+					lv_relational_operator_2_0=rulerelational_operator
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getExpressionRule());
@@ -1342,7 +1352,7 @@ ruleexpression returns [EObject current=null]
 						set(
 							$current,
 							"relational_operator",
-							lv_relational_operator_1_0,
+							lv_relational_operator_2_0,
 							"org.xtext.example.pascal.Pascal.relational_operator");
 						afterParserOrEnumRuleCall();
 					}
@@ -1351,9 +1361,9 @@ ruleexpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getExpressionAccess().getSimple_expressionSimple_expressionParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getExpressionAccess().getSimple_expressionSimple_expressionParserRuleCall_2_1_0());
 					}
-					lv_simple_expression_2_0=rulesimple_expression
+					lv_simple_expression_3_0=rulesimple_expression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getExpressionRule());
@@ -1361,7 +1371,7 @@ ruleexpression returns [EObject current=null]
 						add(
 							$current,
 							"simple_expression",
-							lv_simple_expression_2_0,
+							lv_simple_expression_3_0,
 							"org.xtext.example.pascal.Pascal.simple_expression");
 						afterParserOrEnumRuleCall();
 					}

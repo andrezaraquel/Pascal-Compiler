@@ -649,41 +649,47 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.pascal.Pascal.expression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cSimple_expressionAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cSimple_expressionSimple_expressionParserRuleCall_0_0 = (RuleCall)cSimple_expressionAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cRelational_operatorAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cRelational_operatorRelational_operatorParserRuleCall_1_0_0 = (RuleCall)cRelational_operatorAssignment_1_0.eContents().get(0);
-		private final Assignment cSimple_expressionAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSimple_expressionSimple_expressionParserRuleCall_1_1_0 = (RuleCall)cSimple_expressionAssignment_1_1.eContents().get(0);
+		private final Action cExpressionAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cSimple_expressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cSimple_expressionSimple_expressionParserRuleCall_1_0 = (RuleCall)cSimple_expressionAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cRelational_operatorAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cRelational_operatorRelational_operatorParserRuleCall_2_0_0 = (RuleCall)cRelational_operatorAssignment_2_0.eContents().get(0);
+		private final Assignment cSimple_expressionAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cSimple_expressionSimple_expressionParserRuleCall_2_1_0 = (RuleCall)cSimple_expressionAssignment_2_1.eContents().get(0);
 		
 		//expression:
-		//	simple_expression+=simple_expression (relational_operator=relational_operator simple_expression+=simple_expression)?;
+		//	{expression} simple_expression+=simple_expression (relational_operator=relational_operator
+		//	simple_expression+=simple_expression)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//simple_expression+=simple_expression (relational_operator=relational_operator simple_expression+=simple_expression)?
+		//{expression} simple_expression+=simple_expression (relational_operator=relational_operator
+		//simple_expression+=simple_expression)?
 		public Group getGroup() { return cGroup; }
 		
+		//{expression}
+		public Action getExpressionAction_0() { return cExpressionAction_0; }
+		
 		//simple_expression+=simple_expression
-		public Assignment getSimple_expressionAssignment_0() { return cSimple_expressionAssignment_0; }
+		public Assignment getSimple_expressionAssignment_1() { return cSimple_expressionAssignment_1; }
 		
 		//simple_expression
-		public RuleCall getSimple_expressionSimple_expressionParserRuleCall_0_0() { return cSimple_expressionSimple_expressionParserRuleCall_0_0; }
+		public RuleCall getSimple_expressionSimple_expressionParserRuleCall_1_0() { return cSimple_expressionSimple_expressionParserRuleCall_1_0; }
 		
 		//(relational_operator=relational_operator simple_expression+=simple_expression)?
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_2() { return cGroup_2; }
 		
 		//relational_operator=relational_operator
-		public Assignment getRelational_operatorAssignment_1_0() { return cRelational_operatorAssignment_1_0; }
+		public Assignment getRelational_operatorAssignment_2_0() { return cRelational_operatorAssignment_2_0; }
 		
 		//relational_operator
-		public RuleCall getRelational_operatorRelational_operatorParserRuleCall_1_0_0() { return cRelational_operatorRelational_operatorParserRuleCall_1_0_0; }
+		public RuleCall getRelational_operatorRelational_operatorParserRuleCall_2_0_0() { return cRelational_operatorRelational_operatorParserRuleCall_2_0_0; }
 		
 		//simple_expression+=simple_expression
-		public Assignment getSimple_expressionAssignment_1_1() { return cSimple_expressionAssignment_1_1; }
+		public Assignment getSimple_expressionAssignment_2_1() { return cSimple_expressionAssignment_2_1; }
 		
 		//simple_expression
-		public RuleCall getSimple_expressionSimple_expressionParserRuleCall_1_1_0() { return cSimple_expressionSimple_expressionParserRuleCall_1_1_0; }
+		public RuleCall getSimple_expressionSimple_expressionParserRuleCall_2_1_0() { return cSimple_expressionSimple_expressionParserRuleCall_2_1_0; }
 	}
 	public class Relational_operatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.pascal.Pascal.relational_operator");
@@ -4421,7 +4427,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//expression:
-	//	simple_expression+=simple_expression (relational_operator=relational_operator simple_expression+=simple_expression)?;
+	//	{expression} simple_expression+=simple_expression (relational_operator=relational_operator
+	//	simple_expression+=simple_expression)?;
 	public ExpressionElements getExpressionAccess() {
 		return pExpression;
 	}
