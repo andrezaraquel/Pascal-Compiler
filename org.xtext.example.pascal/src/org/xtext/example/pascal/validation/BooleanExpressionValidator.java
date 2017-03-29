@@ -43,7 +43,6 @@ public class BooleanExpressionValidator {
 			}
 		}
 		
-
 		if (relational_operator != null && !relational_operator.equals("=") && !relational_operator.equals("<>")) {
 			if (listTypesExpression.contains("string") || listTypesExpression.contains("char")
 					|| listTypesExpression.contains("boolean")) {

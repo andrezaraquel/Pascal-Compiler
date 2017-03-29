@@ -17,6 +17,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.pascal.pascal.addition_operator;
 import org.xtext.example.pascal.pascal.block;
 import org.xtext.example.pascal.pascal.digit_sequence;
 import org.xtext.example.pascal.pascal.factor;
@@ -132,6 +133,10 @@ public class PascalGenerator extends AbstractGenerator {
               for(final simple_expression simple_expression : _simple_expression) {
                 List<Integer> listSum = new ArrayList<Integer>();
                 _builder.newLineIfNotEmpty();
+                List<String> listSign = new ArrayList<String>();
+                _builder.newLineIfNotEmpty();
+                List<Integer> listMul = new ArrayList<Integer>();
+                _builder.newLineIfNotEmpty();
                 String variableLeftName = statement.getSimple_statement().getAssignment_statement().getVariable().getEntire_variable().getIdentifier().getIdentifier();
                 _builder.newLineIfNotEmpty();
                 {
@@ -140,9 +145,7 @@ public class PascalGenerator extends AbstractGenerator {
                       EList<term> _term = simple_expression.getTerm();
                       for(final term term : _term) {
                         {
-                          int _size = simple_expression.getAddition_operator().size();
-                          boolean _equals = (_size == 0);
-                          if (_equals) {
+                          if (((simple_expression.getAddition_operator().size() == 0) && (term.getMultiplication_operator().size() == 0))) {
                             {
                               if ((term != null)) {
                                 {
@@ -158,13 +161,36 @@ public class PascalGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          int _size_1 = simple_expression.getAddition_operator().size();
-                          boolean _greaterThan = (_size_1 > 0);
-                          if (_greaterThan) {
+                          if (((simple_expression.getAddition_operator().size() == 0) && (term.getMultiplication_operator().size() > 0))) {
+                            {
+                              EList<String> _multiplication_operator = term.getMultiplication_operator();
+                              for(final String multiplication_operator : _multiplication_operator) {
+                                boolean aux = listSign.add(multiplication_operator);
+                                _builder.newLineIfNotEmpty();
+                              }
+                            }
                             {
                               if ((term != null)) {
-                                CharSequence _loadForExpressionADD = this.loadForExpressionADD(term, variableLeftName, listSum);
-                                _builder.append(_loadForExpressionADD);
+                                CharSequence _loadForExpressionAddOrMul = this.loadForExpressionAddOrMul(term, variableLeftName, listMul);
+                                _builder.append(_loadForExpressionAddOrMul);
+                                _builder.newLineIfNotEmpty();
+                              }
+                            }
+                          }
+                        }
+                        {
+                          if (((simple_expression.getAddition_operator().size() > 0) && (term.getMultiplication_operator().size() == 0))) {
+                            {
+                              EList<addition_operator> _addition_operator = simple_expression.getAddition_operator();
+                              for(final addition_operator addition_operator : _addition_operator) {
+                                boolean aux_1 = listSign.add(addition_operator.getSign());
+                                _builder.newLineIfNotEmpty();
+                              }
+                            }
+                            {
+                              if ((term != null)) {
+                                CharSequence _loadForExpressionAddOrMul_1 = this.loadForExpressionAddOrMul(term, variableLeftName, listSum);
+                                _builder.append(_loadForExpressionAddOrMul_1);
                                 _builder.newLineIfNotEmpty();
                               }
                             }
@@ -174,8 +200,12 @@ public class PascalGenerator extends AbstractGenerator {
                     }
                   }
                 }
-                CharSequence _storageSum = this.storageSum(listSum, variableLeftName);
+                CharSequence _storageMUL = this.storageMUL(listMul, variableLeftName, listSign);
+                _builder.append(_storageMUL);
+                _builder.newLineIfNotEmpty();
+                CharSequence _storageSum = this.storageSum(listSum, variableLeftName, listSign);
                 _builder.append(_storageSum);
+                _builder.append("\t\t\t\t\t\t");
                 _builder.newLineIfNotEmpty();
               }
             }
@@ -186,7 +216,69 @@ public class PascalGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence storageSum(final List<Integer> listSum, final String variableLeftName) {
+  public CharSequence storageMUL(final List<Integer> listMul, final String variableLeftName, final List<String> listSign) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      int _size = listMul.size();
+      boolean _greaterThan = (_size > 1);
+      if (_greaterThan) {
+        {
+          int _size_1 = listMul.size();
+          int _minus = (_size_1 - 1);
+          IntegerRange _upTo = new IntegerRange(1, _minus);
+          for(final Integer i : _upTo) {
+            {
+              boolean _equals = listSign.get(((i).intValue() - 1)).equals("*");
+              if (_equals) {
+                String _nextLine = this.getNextLine();
+                String _plus = (_nextLine + "MUL ");
+                String _plus_1 = (_plus + "R");
+                Integer _get = listMul.get(0);
+                String _plus_2 = (_plus_1 + _get);
+                String _plus_3 = (_plus_2 + ", R");
+                Integer _get_1 = listMul.get(0);
+                String _plus_4 = (_plus_3 + _get_1);
+                String _plus_5 = (_plus_4 + ", R");
+                Integer _get_2 = listMul.get((i).intValue());
+                String _plus_6 = (_plus_5 + _get_2);
+                _builder.append(_plus_6);
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            {
+              if ((listSign.get(((i).intValue() - 1)).equals("/") || listSign.get(((i).intValue() - 1)).equals("div"))) {
+                String _nextLine_1 = this.getNextLine();
+                String _plus_7 = (_nextLine_1 + "DIV ");
+                String _plus_8 = (_plus_7 + "R");
+                Integer _get_3 = listMul.get(0);
+                String _plus_9 = (_plus_8 + _get_3);
+                String _plus_10 = (_plus_9 + ", R");
+                Integer _get_4 = listMul.get(0);
+                String _plus_11 = (_plus_10 + _get_4);
+                String _plus_12 = (_plus_11 + ", R");
+                Integer _get_5 = listMul.get((i).intValue());
+                String _plus_13 = (_plus_12 + _get_5);
+                _builder.append(_plus_13);
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        String _nextLine_2 = this.getNextLine();
+        String _plus_14 = (_nextLine_2 + "ST ");
+        String _get_6 = this.mapRegs.get(variableLeftName);
+        String _plus_15 = (_plus_14 + _get_6);
+        String _plus_16 = (_plus_15 + ", R");
+        Integer _get_7 = listMul.get(0);
+        String _plus_17 = (_plus_16 + _get_7);
+        _builder.append(_plus_17);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence storageSum(final List<Integer> listSum, final String variableLeftName, final List<String> listSign) {
     StringConcatenation _builder = new StringConcatenation();
     {
       int _size = listSum.size();
@@ -197,36 +289,59 @@ public class PascalGenerator extends AbstractGenerator {
           int _minus = (_size_1 - 1);
           IntegerRange _upTo = new IntegerRange(1, _minus);
           for(final Integer i : _upTo) {
-            String _nextLine = this.getNextLine();
-            String _plus = (_nextLine + "ADD ");
-            String _plus_1 = (_plus + "R");
-            Integer _get = listSum.get(0);
-            String _plus_2 = (_plus_1 + _get);
-            String _plus_3 = (_plus_2 + ", R");
-            Integer _get_1 = listSum.get(0);
-            String _plus_4 = (_plus_3 + _get_1);
-            String _plus_5 = (_plus_4 + ", R");
-            Integer _get_2 = listSum.get((i).intValue());
-            String _plus_6 = (_plus_5 + _get_2);
-            _builder.append(_plus_6);
-            _builder.newLineIfNotEmpty();
+            {
+              boolean _equals = listSign.get(((i).intValue() - 1)).equals("+");
+              if (_equals) {
+                String _nextLine = this.getNextLine();
+                String _plus = (_nextLine + "ADD ");
+                String _plus_1 = (_plus + "R");
+                Integer _get = listSum.get(0);
+                String _plus_2 = (_plus_1 + _get);
+                String _plus_3 = (_plus_2 + ", R");
+                Integer _get_1 = listSum.get(0);
+                String _plus_4 = (_plus_3 + _get_1);
+                String _plus_5 = (_plus_4 + ", R");
+                Integer _get_2 = listSum.get((i).intValue());
+                String _plus_6 = (_plus_5 + _get_2);
+                _builder.append(_plus_6);
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            {
+              boolean _equals_1 = listSign.get(((i).intValue() - 1)).equals("-");
+              if (_equals_1) {
+                String _nextLine_1 = this.getNextLine();
+                String _plus_7 = (_nextLine_1 + "SUB ");
+                String _plus_8 = (_plus_7 + "R");
+                Integer _get_3 = listSum.get(0);
+                String _plus_9 = (_plus_8 + _get_3);
+                String _plus_10 = (_plus_9 + ", R");
+                Integer _get_4 = listSum.get(0);
+                String _plus_11 = (_plus_10 + _get_4);
+                String _plus_12 = (_plus_11 + ", R");
+                Integer _get_5 = listSum.get((i).intValue());
+                String _plus_13 = (_plus_12 + _get_5);
+                _builder.append(_plus_13);
+                _builder.newLineIfNotEmpty();
+              }
+            }
           }
         }
-        String _nextLine_1 = this.getNextLine();
-        String _plus_7 = (_nextLine_1 + "ST ");
-        String _get_3 = this.mapRegs.get(variableLeftName);
-        String _plus_8 = (_plus_7 + _get_3);
-        String _plus_9 = (_plus_8 + ", R");
-        Integer _get_4 = listSum.get(0);
-        String _plus_10 = (_plus_9 + _get_4);
-        _builder.append(_plus_10);
+        String _nextLine_2 = this.getNextLine();
+        String _plus_14 = (_nextLine_2 + "ST ");
+        String _get_6 = this.mapRegs.get(variableLeftName);
+        String _plus_15 = (_plus_14 + _get_6);
+        String _plus_16 = (_plus_15 + ", R");
+        Integer _get_7 = listSum.get(0);
+        String _plus_17 = (_plus_16 + _get_7);
+        _builder.append(_plus_17);
         _builder.newLineIfNotEmpty();
       }
     }
     return _builder;
   }
   
-  public CharSequence loadForExpressionADD(final term term, final String variableLeftName, final List<Integer> listSum) {
+  public CharSequence loadForExpressionAddOrMul(final term term, final String variableLeftName, final List<Integer> listOperands) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<factor> _factor = term.getFactor();
@@ -243,7 +358,7 @@ public class PascalGenerator extends AbstractGenerator {
             String _plus_3 = (_plus_2 + variableRigthName);
             _builder.append(_plus_3);
             _builder.newLineIfNotEmpty();
-            boolean aux = listSum.add(Integer.valueOf(this.currentReg));
+            boolean aux = listOperands.add(Integer.valueOf(this.currentReg));
             _builder.newLineIfNotEmpty();
           }
         }
@@ -258,7 +373,7 @@ public class PascalGenerator extends AbstractGenerator {
             String _plus_7 = (_plus_6 + _identifier);
             _builder.append(_plus_7);
             _builder.newLineIfNotEmpty();
-            boolean aux_1 = listSum.add(Integer.valueOf(this.currentReg));
+            boolean aux_1 = listOperands.add(Integer.valueOf(this.currentReg));
             _builder.newLineIfNotEmpty();
           }
         }
@@ -277,7 +392,7 @@ public class PascalGenerator extends AbstractGenerator {
                 String _plus_11 = (_plus_10 + _integerNumber);
                 _builder.append(_plus_11);
                 _builder.newLineIfNotEmpty();
-                boolean aux_2 = listSum.add(Integer.valueOf(this.currentReg));
+                boolean aux_2 = listOperands.add(Integer.valueOf(this.currentReg));
                 _builder.newLineIfNotEmpty();
               } else {
                 String _nextLine_3 = this.getNextLine();
@@ -289,7 +404,7 @@ public class PascalGenerator extends AbstractGenerator {
                 String _plus_15 = (_plus_14 + _realNumber);
                 _builder.append(_plus_15);
                 _builder.newLineIfNotEmpty();
-                boolean aux_3 = listSum.add(Integer.valueOf(this.currentReg));
+                boolean aux_3 = listOperands.add(Integer.valueOf(this.currentReg));
                 _builder.newLineIfNotEmpty();
               }
             }
@@ -306,7 +421,7 @@ public class PascalGenerator extends AbstractGenerator {
             String _plus_19 = (_plus_18 + _strings);
             _builder.append(_plus_19);
             _builder.newLineIfNotEmpty();
-            boolean aux_4 = listSum.add(Integer.valueOf(this.currentReg));
+            boolean aux_4 = listOperands.add(Integer.valueOf(this.currentReg));
             _builder.newLineIfNotEmpty();
           }
         }

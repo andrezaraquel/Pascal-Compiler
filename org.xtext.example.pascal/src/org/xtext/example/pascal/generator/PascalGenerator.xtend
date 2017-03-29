@@ -78,61 +78,94 @@ class PascalGenerator extends AbstractGenerator {
 				«IF statement !== null && statement.simple_statement !== null && statement.simple_statement.assignment_statement !== null && statement.simple_statement.assignment_statement.expression !== null»
 					«FOR simple_expression: statement.simple_statement.assignment_statement.expression.simple_expression»
 						«var List<Integer> listSum = new ArrayList<Integer>()»
+						«var List<String> listSign= new ArrayList<String>()»
+						«var List<Integer> listMul = new ArrayList<Integer>()»
 						«var variableLeftName = statement.simple_statement.assignment_statement.variable.entire_variable.identifier.identifier»
 						«IF simple_expression !== null»
-							«FOR term:simple_expression.term»
-								«IF simple_expression.addition_operator.size == 0 »
-									«IF term !== null»						
+							«FOR term:simple_expression.term»													
+								«IF simple_expression.addition_operator.size == 0 && term.multiplication_operator.size == 0»
+									«IF term !== null»
 										«FOR factor: term.factor»
 											«getCodeExpression(factor, variableLeftName)»
 										«ENDFOR»
 									«ENDIF»
 								«ENDIF»
-								«IF simple_expression.addition_operator.size > 0»
+								«IF simple_expression.addition_operator.size == 0 && term.multiplication_operator.size > 0»
+									«FOR multiplication_operator: term.multiplication_operator»
+										«var aux = listSign.add(multiplication_operator)»
+									«ENDFOR»
 									«IF term !== null»	
-										«loadForExpressionADD(term, variableLeftName, listSum)»
+										«loadForExpressionAddOrMul(term, variableLeftName, listMul)»
 									«ENDIF»
 								«ENDIF»
+								«IF simple_expression.addition_operator.size > 0 && term.multiplication_operator.size == 0»
+									«FOR addition_operator: simple_expression.addition_operator»
+										«var aux = listSign.add(addition_operator.sign)»
+									«ENDFOR»
+									«IF term !== null»	
+										«loadForExpressionAddOrMul(term, variableLeftName, listSum)»
+									«ENDIF»
+								«ENDIF»								
 							«ENDFOR»
 						«ENDIF»
-						«storageSum(listSum, variableLeftName)»
+						«storageMUL(listMul, variableLeftName, listSign)»
+						«storageSum(listSum, variableLeftName, listSign)»						
 					«ENDFOR»					
 				«ENDIF»		
 			«ENDFOR»
 		'''
 	
-	def storageSum(List<Integer> listSum, String variableLeftName) '''
+	def storageMUL(List<Integer> listMul, String variableLeftName, List<String> listSign) '''
+		«IF listMul.size > 1»
+			«FOR i : 1 .. listMul.size-1»
+				«IF listSign.get(i-1).equals('*')»
+					«getNextLine() + "MUL "+ "R"+listMul.get(0) + ", R"+ listMul.get(0) + ", R" + listMul.get(i)»
+				«ENDIF»
+				«IF listSign.get(i-1).equals('/') || listSign.get(i-1).equals('div')»
+					«getNextLine() + "DIV "+ "R"+listMul.get(0) + ", R"+ listMul.get(0) + ", R" + listMul.get(i)»
+				«ENDIF»
+			«ENDFOR»
+			«getNextLine() + "ST "+ mapRegs.get(variableLeftName) +", R"+ listMul.get(0)»
+		«ENDIF»
+	'''
+		
+	def storageSum(List<Integer> listSum, String variableLeftName, List<String> listSign) '''
 		«IF listSum.size > 1»
 			«FOR i : 1 .. listSum.size-1»
-				«getNextLine() + "ADD "+ "R"+listSum.get(0) + ", R"+ listSum.get(0) + ", R" + listSum.get(i)»
+				«IF listSign.get(i-1).equals("+")»
+					«getNextLine() + "ADD "+ "R"+listSum.get(0) + ", R"+ listSum.get(0) + ", R" + listSum.get(i)»
+				«ENDIF»
+				«IF listSign.get(i-1).equals("-")»
+					«getNextLine() + "SUB "+ "R"+listSum.get(0) + ", R"+ listSum.get(0) + ", R" + listSum.get(i)»
+				«ENDIF»
 			«ENDFOR»
 			«getNextLine() + "ST "+ mapRegs.get(variableLeftName) +", R"+ listSum.get(0)»
 		«ENDIF»
 	'''
 	
-	def loadForExpressionADD(term term, String variableLeftName, List<Integer> listSum)'''
+	def loadForExpressionAddOrMul(term term, String variableLeftName, List<Integer> listOperands)'''
 		«FOR factor: term.factor»
 			«IF factor !== null && factor.variable !== null && factor.variable.entire_variable !== null»
 				«var variableRigthName = factor.variable.entire_variable.identifier.identifier»
 				«getNextLine() + "LD " + nextReg + ", " + variableRigthName»
-				«var aux = listSum.add(currentReg)»
+				«var aux = listOperands.add(currentReg)»
 			«ENDIF»
 			« IF factor !== null && factor.identifier !== null»
 				«getNextLine() + "LD " + nextReg + ", " + factor.identifier.identifier»
-				«var aux = listSum.add(currentReg)»
+				«var aux = listOperands.add(currentReg)»
 			«ENDIF»
 			«IF factor !== null && factor.number !== null»	
 				«IF factor.number.integer_number !== null»
 					«getNextLine() + "LD " + nextReg + ", #" + getIntegerNumber(factor.number.integer_number)»
-					«var aux = listSum.add(currentReg)»
+					«var aux = listOperands.add(currentReg)»
 				«ELSE»
 					«getNextLine() + "LD " + nextReg + ", #" + getRealNumber(factor.number.real_number)»
-					«var aux = listSum.add(currentReg)»
+					«var aux = listOperands.add(currentReg)»
 				«ENDIF»
 			«ENDIF»	
 			« IF factor !== null && factor.strings !== null»
 				«getNextLine() + "LD " + nextReg + ", " +factor.strings»
-				«var aux = listSum.add(currentReg)»
+				«var aux = listOperands.add(currentReg)»
 			«ENDIF»		
 		«ENDFOR»
 	'''
@@ -163,8 +196,7 @@ class PascalGenerator extends AbstractGenerator {
 		
 		if (real_number.digit_sequence2 !== null) {
 			output += "." + getDigitSequence(real_number.digit_sequence2)
-		}
-		
+		}		
 		if (real_number.scale_factor !== null) {
 			output += getScaleFactor(real_number.scale_factor);
 		}
